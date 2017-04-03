@@ -29,13 +29,7 @@ def rmsd(f1, f2, chain):
 	# second structure file
 	file_2 = open(f2, 'r')
 	struct_2 = file_2.readlines()
-
-	# find the length of the target file's Ag chain and line where it starts
-	one_start_found = False
-	one_start = 0
-	one_len = 0
-	peptide_number = 0
-
+	
 
 	# *** CALCULATING RMSD *** #
 	n = 0

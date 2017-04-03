@@ -26,70 +26,33 @@ def rmsd(f1, f2, chain):
 	file_2 = open(f2, 'r')
 	struct_2 = file_2.readlines()
 
-	# find the length of the first file's chain and line where it starts
-	one_start_found = False
-	one_start = 0
-	one_len = 0
-
-	for c_line in struct_1:
-		if (c_line[0:1] == "\n" or c_line[0:3] == "END"): break
-		if (c_line[21] == chain and c_line[0:4] == "ATOM"):
-
-			# if first time seeing chain then set the start line to this line
-			if one_start_found == False:
-				one_start_found = True
-
-			one_len += 1
-
-		if one_start_found == False:
-			one_start += 1
-
-
-	# find the length of the second file's chain and line where it starts
-	two_start_found = False
-	two_start = 0
-	two_len = 0
-
-	for m_line in struct_2:
-		if (m_line[0:1] == "\n" or m_line[0:3] == "END"): break
-		if (m_line[21] == chain and m_line[0:4] == "ATOM"):
-
-			if two_start_found == False:
-				two_start_found = True
-
-			two_len += 1
-
-		if two_start_found == False:
-			two_start += 1
-
-		print one_start, one_len, one_start_found, two_start, two_len, two_start_found
-
 
 	# *** CALCULATING RMSD *** #
 	n = 0
 
 	# loop through the lines of each from the start of the Ag for both files
 	rmsd_squared = 0
-	for i in range(one_len):
+	for c_line in struct_1:
 
 		# skip if not the CB atom, CA and Gly, or BMET ** Comment out if wanna compare all atoms
-		if not ((struct_1[one_start+i][17:20].strip() == "GLY" and 
-			struct_1[one_start+i][13:15].strip() == "CA") or 
-			(struct_1[one_start+i][13:15].strip() == "CB")):
+		if (c_line[0:1] == "\n" or c_line[0:3] == "END"): break
+		if not (c_line[21] == chain and c_line[0:4] == "ATOM"): continue
+		if not ((c_line[17:20].strip() == "GLY" and 
+			c_line[13:15].strip() == "CA") or 
+			(c_line[13:15].strip() == "CB")):
 			continue
-		if struct_1[one_start+i][16:20].strip() == "BMET":
+		if c_line[16:20].strip() == "BMET":
 			continue
 
-		#print struct_1[one_start+i][17:20]
-		two_start
 		n += 1
-		for j in range(two_len):
+
+		for m_line in struct_2:
 			# make sure that we are looking at the right AA and find the right atom
-			if (struct_1[one_start+i][23:26] == struct_2[two_start+j][23:26]):
-				if (struct_1[one_start+i][13:15] == struct_2[two_start+j][13:15]):
-					xsq = (float(struct_1[one_start+i][30:38].strip()) - float(struct_2[two_start+j][30:38].strip()))**2
-					ysq = (float(struct_1[one_start+i][38:46].strip()) - float(struct_2[two_start+j][38:46].strip()))**2
-					zsq = (float(struct_1[one_start+i][46:54].strip()) - float(struct_2[two_start+j][46:54].strip()))**2
+			if (c_line[23:26] == m_line[23:26]):
+				if (c_line[13:15] == m_line[13:15]):
+					xsq = (float(c_line[30:38].strip()) - float(m_line[30:38].strip()))**2
+					ysq = (float(c_line[38:46].strip()) - float(m_line[38:46].strip()))**2
+					zsq = (float(c_line[46:54].strip()) - float(m_line[46:54].strip()))**2
 					#print xsq, ysq, zsq
 					squared = xsq + ysq + zsq
 					rmsd_squared += squared
