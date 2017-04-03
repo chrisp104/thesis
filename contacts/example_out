@@ -1,79 +1,3 @@
-Ag Chain: R, res #: 260
-# contacts: 13
-Contacts in Ab: 
-151 ILE O
-176 VAL O
-183 PRO O
-185 ILE O
-227 VAL O
-228 SER O
-229 ASN O
-230 GLY O
-231 THR O
-232 LYS O
-256 PHE O
-258 GLN O
-259 PRO O
-
-Ag Chain: R, res #: 261
-# contacts: 4
-Contacts in Ab: 
-229 ASN O
-230 GLY O
-258 GLN O
-259 PRO O
-
-Ag Chain: R, res #: 262
-# contacts: 3
-Contacts in Ab: 
-178 PHE O
-183 PRO O
-229 ASN O
-
-Ag Chain: R, res #: 263
-# contacts: 3
-Contacts in Ab: 
-149 ARG O
-176 VAL O
-258 GLN O
-
-Ag Chain: R, res #: 264
-# contacts: 1
-Contacts in Ab: 
-149 ARG O
-
-Ag Chain: R, res #: 265
-# contacts: 3
-Contacts in Ab: 
-147 ASN O
-149 ARG O
-178 PHE O
-
-Ag Chain: R, res #: 267
-# contacts: 4
-Contacts in Ab: 
-146 PRO O
-147 ASN O
-148 SER O
-149 ARG O
-
-Ag Chain: R, res #: 270
-# contacts: 2
-Contacts in Ab: 
-149 ARG O
-150 PRO O
-
-Ag Chain: R, res #: 271
-# contacts: 1
-Contacts in Ab: 
-150 PRO O
-
-Ag Chain: R, res #: 273
-# contacts: 2
-Contacts in Ab: 
-150 PRO O
-173 PRO O
-
 Ag Chain: R, res #: 281
 # contacts: 2
 Contacts in Ab: 
@@ -193,6 +117,6 @@ Contacts in Ab:
 31 SER H
 97 PRO H
 
-R: 60
+R: 24
 T: 23
 O: 0
