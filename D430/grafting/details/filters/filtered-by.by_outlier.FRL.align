@@ -1,0 +1,2 @@
+# Fields: query-id subject-id %-identity alignment-length mismatches gap-opens q.start q.end s.start s.end evalue bit-score
+FRL	pdb1rmf_chothia.pdb	81.034	58	11	0	1	58	1	58	1.14e-32	100

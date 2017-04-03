@@ -1,0 +1,7 @@
+# BLASTP 2.4.0+
+# Query: H3
+# Database: /home/anthill/cpark/rosetta_linux_2016/tools/antibody/blast_database/database.H3.18
+# Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 1 hits found
+H3	pdb5cgy_chothia.pdb	53.846	13	6	0	6	18	6	18	0.010	18.0
+# BLAST processed 1 queries

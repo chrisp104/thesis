@@ -1,0 +1,64 @@
+Model #00
+Result: {'R': 24, 'T': 23, 'O': 0}
+Model #01
+Result: {'R': 0, 'T': 14, 'O': 57}
+Model #02
+Result: {'R': 0, 'T': 0, 'O': 57}
+Model #03
+Result: {'R': 0, 'T': 10, 'O': 53}
+Model #04
+Result: {'R': 0, 'T': 0, 'O': 41}
+Model #05
+Result: {'R': 36, 'T': 5, 'O': 0}
+Model #06
+Result: {'R': 1, 'T': 0, 'O': 52}
+Model #07
+Result: {'R': 51, 'T': 37, 'O': 0}
+Model #08
+Result: {'R': 0, 'T': 0, 'O': 46}
+Model #09
+Result: {'R': 43, 'T': 16, 'O': 0}
+Model #10
+Result: {'R': 8, 'T': 0, 'O': 72}
+Model #11
+Result: {'R': 4, 'T': 0, 'O': 70}
+Model #12
+Result: {'R': 0, 'T': 0, 'O': 49}
+Model #13
+Result: {'R': 26, 'T': 0, 'O': 23}
+Model #14
+Result: {'R': 10, 'T': 50, 'O': 0}
+Model #15
+Result: {'R': 14, 'T': 28, 'O': 32}
+Model #16
+Result: {'R': 22, 'T': 17, 'O': 0}
+Model #17
+Result: {'R': 31, 'T': 0, 'O': 25}
+Model #18
+Result: {'R': 25, 'T': 20, 'O': 46}
+Model #19
+Result: {'R': 37, 'T': 17, 'O': 0}
+Model #20
+Result: {'R': 0, 'T': 0, 'O': 72}
+Model #21
+Result: {'R': 23, 'T': 0, 'O': 39}
+Model #22
+Result: {'R': 0, 'T': 2, 'O': 45}
+Model #23
+Result: {'R': 0, 'T': 0, 'O': 55}
+Model #24
+Result: {'R': 0, 'T': 45, 'O': 0}
+Model #25
+Result: {'R': 21, 'T': 0, 'O': 19}
+Model #26
+Result: {'R': 1, 'T': 9, 'O': 50}
+Model #27
+Result: {'R': 0, 'T': 0, 'O': 34}
+Model #28
+Result: {'R': 35, 'T': 16, 'O': 0}
+Model #29
+Result: {'R': 0, 'T': 16, 'O': 41}
+TOTALS 
+R: 412
+T: 325
+O: 978

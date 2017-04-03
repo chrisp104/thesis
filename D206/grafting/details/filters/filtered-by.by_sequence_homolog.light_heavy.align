@@ -1,0 +1,23 @@
+# Fields: query-id subject-id %-identity alignment-length mismatches gap-opens q.start q.end s.start s.end evalue bit-score
+light_heavy	pdb4xak_chothia.pdb	85.780	218	18	3	5	213	1	214	9.57e-130	360
+light_heavy	pdb4kq3_chothia.pdb	89.474	209	18	3	5	213	1	205	1.57e-129	358
+light_heavy	pdb2cmr_chothia.pdb	83.732	209	33	1	5	213	1	208	5.33e-127	352
+light_heavy	pdb4m62_chothia.pdb	78.082	219	36	4	5	213	1	217	3.15e-117	328
+light_heavy	pdb4odx_chothia.pdb	78.082	219	36	4	5	213	1	217	2.27e-117	328
+light_heavy	pdb3qot_chothia.pdb	76.744	215	43	2	5	213	1	214	3.44e-115	323
+light_heavy	pdb5i18_chothia.pdb	76.744	215	43	2	5	213	1	214	3.44e-115	323
+light_heavy	pdb4dn3_chothia.pdb	78.199	211	43	3	5	213	1	210	1.50e-115	323
+light_heavy	pdb4dn4_chothia.pdb	78.199	211	43	3	5	213	1	210	1.50e-115	323
+light_heavy	pdb1rz7_chothia.pdb	77.990	209	44	2	5	213	1	207	8.90e-114	319
+light_heavy	pdb4dvr_chothia.pdb	77.990	209	44	2	5	213	1	207	8.90e-114	319
+light_heavy	pdb3jwd_chothia.pdb	77.990	209	44	2	5	213	1	207	8.90e-114	319
+light_heavy	pdb3sqo_chothia.pdb	78.947	209	42	2	5	213	1	207	2.55e-113	318
+light_heavy	pdb3hc4_chothia.pdb	77.990	209	42	2	5	213	1	205	3.80e-112	315
+light_heavy	pdb3ncj_chothia.pdb	75.829	211	48	2	5	213	1	210	4.32e-111	312
+light_heavy	pdb3naa_chothia.pdb	75.355	211	49	2	5	213	1	210	4.91e-110	310
+light_heavy	pdb3hc3_chothia.pdb	77.033	209	44	2	5	213	1	205	1.35e-109	308
+light_heavy	pdb3hc0_chothia.pdb	77.033	209	44	2	5	213	1	205	3.99e-109	307
+light_heavy	pdb1vge_chothia.pdb	75.355	211	49	2	5	213	1	210	4.54e-109	307
+light_heavy	pdb3nfs_chothia.pdb	75.120	209	47	3	5	213	1	204	2.87e-109	307
+light_heavy	pdb3nfp_chothia.pdb	75.120	209	47	3	5	213	1	204	2.87e-109	307
+light_heavy	pdb4liq_chothia.pdb	78.469	209	40	4	5	213	1	204	8.63e-107	301

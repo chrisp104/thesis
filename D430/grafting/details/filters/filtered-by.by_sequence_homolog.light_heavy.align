@@ -1,0 +1,10 @@
+# Fields: query-id subject-id %-identity alignment-length mismatches gap-opens q.start q.end s.start s.end evalue bit-score
+light_heavy	pdb3qot_chothia.pdb	78.605	215	42	4	5	216	1	214	2.83e-117	328
+light_heavy	pdb5i18_chothia.pdb	78.605	215	42	4	5	216	1	214	2.83e-117	328
+light_heavy	pdb3u0t_chothia.pdb	76.887	212	47	2	5	216	1	210	6.51e-115	322
+light_heavy	pdb4yho_chothia.pdb	75.701	214	49	2	5	216	1	213	7.53e-114	320
+light_heavy	pdb2eh7_chothia.pdb	76.415	212	47	2	5	216	1	209	8.34e-114	319
+light_heavy	pdb2eh8_chothia.pdb	76.415	212	47	2	5	216	1	209	8.34e-114	319
+light_heavy	pdb1wt5_chothia.pdb	75.587	213	50	2	5	216	1	212	2.27e-113	318
+light_heavy	pdb3pp4_chothia.pdb	75.701	214	49	2	5	216	1	213	1.12e-110	311
+light_heavy	pdb3pp3_chothia.pdb	75.701	214	49	2	5	216	1	213	1.12e-110	311

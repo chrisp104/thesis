@@ -1,0 +1,11 @@
+reference "grafting/details//template.light_heavy.0.pdb"
+mobile "grafting/details//template.threaded.FRL.0.pdb"
+atoms ca
+zone L10-L23
+zone L35-L49
+zone L57-L66
+zone L69-L88
+zone L98-L100
+fit
+write "grafting/details//fitted.L.pdb"
+quit
