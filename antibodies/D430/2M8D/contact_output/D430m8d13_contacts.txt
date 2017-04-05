@@ -1,0 +1,172 @@
+Ag Chain: O, res #: 146
+# contacts: 4
+Contacts in Ab: 
+30 ASN L
+50 LYS L
+52 SER L
+53 ASN L
+
+Ag Chain: O, res #: 147
+# contacts: 5
+Contacts in Ab: 
+30 ASN L
+49 TYR L
+50 LYS L
+53 ASN L
+97 ARG H
+
+Ag Chain: O, res #: 178
+# contacts: 2
+Contacts in Ab: 
+97 ARG H
+98 GLY H
+
+Ag Chain: O, res #: 179
+# contacts: 2
+Contacts in Ab: 
+55 ASP L
+56 SER L
+
+Ag Chain: O, res #: 180
+# contacts: 13
+Contacts in Ab: 
+46 ARG L
+49 TYR L
+53 ASN L
+54 ARG L
+55 ASP L
+56 SER L
+57 GLY L
+2 VAL H
+95 ASP H
+96 GLY H
+97 ARG H
+101 GLN H
+102 TYR H
+
+Ag Chain: O, res #: 181
+# contacts: 4
+Contacts in Ab: 
+55 ASP L
+56 SER L
+2 VAL H
+101 GLN H
+
+Ag Chain: O, res #: 229
+# contacts: 4
+Contacts in Ab: 
+2 VAL H
+26 GLY H
+27 GLY H
+28 THR H
+
+Ag Chain: O, res #: 230
+# contacts: 2
+Contacts in Ab: 
+27 GLY H
+28 THR H
+
+Ag Chain: R, res #: 261
+# contacts: 4
+Contacts in Ab: 
+27 GLY H
+28 THR H
+31 SER H
+32 TYR H
+
+Ag Chain: R, res #: 262
+# contacts: 9
+Contacts in Ab: 
+27 GLY H
+28 THR H
+31 SER H
+32 TYR H
+97 ARG H
+98 GLY H
+99 ALA H
+100 LEU H
+101 GLN H
+
+Ag Chain: R, res #: 263
+# contacts: 3
+Contacts in Ab: 
+31 SER H
+32 TYR H
+98 GLY H
+
+Ag Chain: R, res #: 264
+# contacts: 2
+Contacts in Ab: 
+30 ASP L
+98 GLY H
+
+Ag Chain: R, res #: 265
+# contacts: 11
+Contacts in Ab: 
+30 ASP L
+30 ASN L
+32 TYR L
+49 TYR L
+50 LYS L
+91 ALA L
+32 TYR H
+96 GLY H
+97 ARG H
+98 GLY H
+99 ALA H
+
+Ag Chain: R, res #: 266
+# contacts: 8
+Contacts in Ab: 
+30 HIS L
+30 SER L
+30 ASP L
+30 GLY L
+30 ASN L
+32 TYR L
+97 ARG H
+98 GLY H
+
+Ag Chain: R, res #: 267
+# contacts: 3
+Contacts in Ab: 
+30 ASP L
+30 GLY L
+30 ASN L
+
+Ag Chain: R, res #: 268
+# contacts: 5
+Contacts in Ab: 
+30 HIS L
+30 SER L
+30 ASP L
+30 GLY L
+30 ASN L
+
+Ag Chain: R, res #: 269
+# contacts: 5
+Contacts in Ab: 
+30 HIS L
+30 SER L
+30 ASP L
+30 GLY L
+30 ASN L
+
+Ag Chain: R, res #: 270
+# contacts: 1
+Contacts in Ab: 
+30 ASP L
+
+Ag Chain: R, res #: 271
+# contacts: 1
+Contacts in Ab: 
+30 ASP L
+
+Ag Chain: R, res #: 272
+# contacts: 1
+Contacts in Ab: 
+30 ASP L
+
+R: 53
+T: 0
+O: 36

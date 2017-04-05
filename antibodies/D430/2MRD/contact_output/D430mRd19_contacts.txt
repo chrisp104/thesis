@@ -1,0 +1,178 @@
+Ag Chain: R, res #: 337
+# contacts: 1
+Contacts in Ab: 
+54 PHE B
+
+Ag Chain: R, res #: 339
+# contacts: 5
+Contacts in Ab: 
+52 MET B
+53 ILE B
+54 PHE B
+55 ALA B
+56 ALA B
+
+Ag Chain: R, res #: 340
+# contacts: 3
+Contacts in Ab: 
+52 MET B
+54 PHE B
+56 ALA B
+
+Ag Chain: R, res #: 341
+# contacts: 9
+Contacts in Ab: 
+31 THR B
+32 HIS B
+33 THR B
+52 MET B
+54 PHE B
+56 ALA B
+95 ASP B
+98 GLY B
+99 ALA B
+
+Ag Chain: T, res #: 342
+# contacts: 7
+Contacts in Ab: 
+31 THR B
+32 HIS B
+33 THR B
+52 MET B
+53 ILE B
+95 ASP B
+96 GLY B
+
+Ag Chain: T, res #: 343
+# contacts: 13
+Contacts in Ab: 
+27 ASP B
+28 THR B
+31 THR B
+32 HIS B
+33 THR B
+52 MET B
+94 ARG B
+95 ASP B
+96 GLY B
+97 ARG B
+98 GLY B
+99 ALA B
+101 GLN B
+
+Ag Chain: T, res #: 344
+# contacts: 11
+Contacts in Ab: 
+2 VAL B
+27 ASP B
+28 THR B
+31 THR B
+32 HIS B
+94 ARG B
+95 ASP B
+96 GLY B
+97 ARG B
+98 GLY B
+101 GLN B
+
+Ag Chain: T, res #: 345
+# contacts: 3
+Contacts in Ab: 
+28 THR B
+31 THR B
+32 HIS B
+
+Ag Chain: T, res #: 372
+# contacts: 1
+Contacts in Ab: 
+31 THR B
+
+Ag Chain: T, res #: 374
+# contacts: 3
+Contacts in Ab: 
+31 THR B
+96 GLY B
+97 ARG B
+
+Ag Chain: T, res #: 375
+# contacts: 7
+Contacts in Ab: 
+32 HIS B
+95 ASP B
+96 GLY B
+97 ARG B
+98 GLY B
+99 ALA B
+101 GLN B
+
+Ag Chain: T, res #: 376
+# contacts: 3
+Contacts in Ab: 
+30 ASP A
+95 ASP B
+98 GLY B
+
+Ag Chain: T, res #: 377
+# contacts: 13
+Contacts in Ab: 
+30 HIS A
+30 ASP A
+30 ASP A
+32 TYR A
+49 TYR A
+50 LYS A
+91 ALA A
+92 THR A
+33 THR B
+95 ASP B
+96 GLY B
+98 GLY B
+99 ALA B
+
+Ag Chain: T, res #: 378
+# contacts: 13
+Contacts in Ab: 
+30 ASP A
+30 ASP A
+32 TYR A
+49 TYR A
+50 LYS A
+53 ILE A
+91 ALA A
+95 ASP B
+96 GLY B
+97 ARG B
+98 GLY B
+99 ALA B
+101 GLN B
+
+Ag Chain: T, res #: 379
+# contacts: 7
+Contacts in Ab: 
+30 HIS A
+30 ASP A
+30 GLY A
+30 ASP A
+32 TYR A
+50 LYS A
+98 GLY B
+
+Ag Chain: T, res #: 380
+# contacts: 2
+Contacts in Ab: 
+97 ARG B
+98 GLY B
+
+Ag Chain: T, res #: 406
+# contacts: 1
+Contacts in Ab: 
+54 PHE B
+
+Ag Chain: T, res #: 419
+# contacts: 1
+Contacts in Ab: 
+30 ASP A
+
+R: 18
+T: 85
+O: 0

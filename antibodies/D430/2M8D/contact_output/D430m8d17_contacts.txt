@@ -1,0 +1,321 @@
+Ag Chain: O, res #: 121
+# contacts: 2
+Contacts in Ab: 
+26 GLY H
+27 GLY H
+
+Ag Chain: O, res #: 136
+# contacts: 2
+Contacts in Ab: 
+56 SER L
+57 GLY L
+
+Ag Chain: O, res #: 139
+# contacts: 5
+Contacts in Ab: 
+53 ASN L
+54 ARG L
+55 ASP L
+56 SER L
+57 GLY L
+
+Ag Chain: O, res #: 140
+# contacts: 8
+Contacts in Ab: 
+49 TYR L
+50 LYS L
+53 ASN L
+54 ARG L
+55 ASP L
+56 SER L
+97 ARG H
+101 GLN H
+
+Ag Chain: O, res #: 141
+# contacts: 2
+Contacts in Ab: 
+56 SER L
+101 GLN H
+
+Ag Chain: O, res #: 142
+# contacts: 9
+Contacts in Ab: 
+49 TYR L
+2 VAL H
+32 TYR H
+96 GLY H
+97 ARG H
+98 GLY H
+99 ALA H
+100 LEU H
+101 GLN H
+
+Ag Chain: O, res #: 143
+# contacts: 2
+Contacts in Ab: 
+97 ARG H
+98 GLY H
+
+Ag Chain: O, res #: 144
+# contacts: 11
+Contacts in Ab: 
+30 ASP L
+30 ASN L
+32 TYR L
+50 LYS L
+91 ALA L
+32 TYR H
+33 ALA H
+96 GLY H
+97 ARG H
+98 GLY H
+99 ALA H
+
+Ag Chain: O, res #: 145
+# contacts: 5
+Contacts in Ab: 
+28 THR H
+31 SER H
+32 TYR H
+98 GLY H
+99 ALA H
+
+Ag Chain: O, res #: 146
+# contacts: 11
+Contacts in Ab: 
+28 THR H
+30 SER H
+31 SER H
+32 TYR H
+33 ALA H
+52 ILE H
+53 ILE H
+54 PHE H
+56 THR H
+98 GLY H
+99 ALA H
+
+Ag Chain: O, res #: 147
+# contacts: 7
+Contacts in Ab: 
+28 THR H
+30 SER H
+31 SER H
+32 TYR H
+52 ILE H
+53 ILE H
+54 PHE H
+
+Ag Chain: O, res #: 148
+# contacts: 1
+Contacts in Ab: 
+31 SER H
+
+Ag Chain: O, res #: 150
+# contacts: 1
+Contacts in Ab: 
+30 ASP L
+
+Ag Chain: O, res #: 171
+# contacts: 1
+Contacts in Ab: 
+30 ASP L
+
+Ag Chain: O, res #: 173
+# contacts: 1
+Contacts in Ab: 
+30 ASP L
+
+Ag Chain: O, res #: 177
+# contacts: 1
+Contacts in Ab: 
+31 SER H
+
+Ag Chain: O, res #: 178
+# contacts: 2
+Contacts in Ab: 
+31 SER H
+53 ILE H
+
+Ag Chain: O, res #: 214
+# contacts: 1
+Contacts in Ab: 
+53 ASN L
+
+Ag Chain: O, res #: 215
+# contacts: 4
+Contacts in Ab: 
+30 ASN L
+50 LYS L
+53 ASN L
+97 ARG H
+
+Ag Chain: O, res #: 216
+# contacts: 5
+Contacts in Ab: 
+50 LYS L
+52 SER L
+53 ASN L
+54 ARG L
+55 ASP L
+
+Ag Chain: O, res #: 217
+# contacts: 7
+Contacts in Ab: 
+48 ILE L
+50 LYS L
+51 VAL L
+52 SER L
+53 ASN L
+54 ARG L
+64 GLY L
+
+Ag Chain: O, res #: 218
+# contacts: 4
+Contacts in Ab: 
+30 ASN L
+50 LYS L
+52 SER L
+53 ASN L
+
+Ag Chain: R, res #: 265
+# contacts: 3
+Contacts in Ab: 
+31 SER H
+53 ILE H
+54 PHE H
+
+Ag Chain: R, res #: 266
+# contacts: 5
+Contacts in Ab: 
+52 ILE H
+53 ILE H
+54 PHE H
+55 GLY H
+56 THR H
+
+Ag Chain: R, res #: 267
+# contacts: 3
+Contacts in Ab: 
+52 ILE H
+54 PHE H
+56 THR H
+
+Ag Chain: R, res #: 268
+# contacts: 4
+Contacts in Ab: 
+52 ILE H
+54 PHE H
+56 THR H
+58 ASN H
+
+Ag Chain: R, res #: 271
+# contacts: 2
+Contacts in Ab: 
+30 SER L
+30 ASP L
+
+Ag Chain: R, res #: 272
+# contacts: 1
+Contacts in Ab: 
+30 SER L
+
+Ag Chain: R, res #: 273
+# contacts: 2
+Contacts in Ab: 
+30 SER L
+30 ASP L
+
+Ag Chain: R, res #: 274
+# contacts: 4
+Contacts in Ab: 
+30 HIS L
+30 SER L
+30 ASP L
+30 GLY L
+
+Ag Chain: R, res #: 275
+# contacts: 2
+Contacts in Ab: 
+30 SER L
+30 ASP L
+
+Ag Chain: R, res #: 276
+# contacts: 1
+Contacts in Ab: 
+30 SER L
+
+Ag Chain: R, res #: 277
+# contacts: 2
+Contacts in Ab: 
+30 SER L
+30 ASP L
+
+Ag Chain: R, res #: 278
+# contacts: 3
+Contacts in Ab: 
+30 SER L
+30 ASP L
+30 GLY L
+
+Ag Chain: R, res #: 299
+# contacts: 1
+Contacts in Ab: 
+28 SER L
+
+Ag Chain: R, res #: 300
+# contacts: 3
+Contacts in Ab: 
+28 SER L
+30 VAL L
+68 GLY L
+
+Ag Chain: R, res #: 301
+# contacts: 2
+Contacts in Ab: 
+30 VAL L
+30 SER L
+
+Ag Chain: R, res #: 302
+# contacts: 1
+Contacts in Ab: 
+30 SER L
+
+Ag Chain: R, res #: 303
+# contacts: 7
+Contacts in Ab: 
+28 SER L
+30 VAL L
+30 HIS L
+30 SER L
+92 THR L
+93 HIS L
+94 TRP L
+
+Ag Chain: R, res #: 304
+# contacts: 3
+Contacts in Ab: 
+1 ASP L
+27 GLN L
+93 HIS L
+
+Ag Chain: R, res #: 305
+# contacts: 3
+Contacts in Ab: 
+30 SER L
+93 HIS L
+94 TRP L
+
+Ag Chain: R, res #: 306
+# contacts: 1
+Contacts in Ab: 
+30 SER L
+
+Ag Chain: R, res #: 307
+# contacts: 1
+Contacts in Ab: 
+30 SER L
+
+R: 54
+T: 0
+O: 92

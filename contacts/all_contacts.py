@@ -1,12 +1,14 @@
-#	Use if we want all contact information that is NOT Ag residue specific
+import os
 
+#	Use if we want all contact information that is NOT Ag residue specific
+#
 # FUNCTIONS
 # 1. allContacts
 # 2. writeAllContacts
-
+#
 # functions to return an array with residues within dist angstroms
 # for each residue's beta carbon 
-
+#
 # *** function contacts()
 #
 # ARGUMENTS
@@ -74,7 +76,9 @@ def allContacts(pdb, ag, dist):
 #	2. the return value from allContacts()
 
 def writeAllContacts(file_name, numbers):
-	output = open(file_name, 'w')
+	if not os.path.exists("./contact_num_output"):
+		os.makedirs("./contact_num_output", 0777)
+	output = open("./contact_num_output/"+file_name, 'w')
 
 	for i in range(len(numbers)):
 		# don't write anything if Ag residue has no contacts
@@ -84,13 +88,39 @@ def writeAllContacts(file_name, numbers):
 		# otherwise display the Ag res number and number of contacts
 		output.write("Res #" + numbers[i][0]+": "+str(numbers[i][1])+"\n")
 
-
 numbers = allContacts("example.pdb", ['O', 'R', 'T'], 8)
 writeAllContacts("all_num_out", numbers)
 
 
 
+# bulkAllContacts()
+# bulk writeAllContacts for each docking model
+#
+# ARGUMENTS
+# model_pre: string - file name prefix (before number) of second model pdb files
+# chains: array containing characters of chains of Ag
+#					e.g. ['O', 'R', 'T']
+# dist: num - angstrom threshold for determining 'contact'
+#
+# RETURNS 
+# 	outputs a file and prints the total contact numbers for each chain
+def bulkAllContacts(model_pre, chains, dist):
 
+	# Find contacts for each Ag chain for each of the model files
+	for i in range(40):
+		if i < 10:
+			i = "0" + str(i)
+		name = model_pre + str(i)
+		pdb_name = name+".pdb"
+		try:
+			file = open(pdb_name, 'r')
+		except IOError as e:
+			break
+
+		numbers = allContacts(pdb_name, chains, dist)
+		writeAllContacts(name+"_contacts.txt", numbers)
+
+		file.close()
 
 
 

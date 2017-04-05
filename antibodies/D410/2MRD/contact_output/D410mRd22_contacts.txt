@@ -1,0 +1,214 @@
+Ag Chain: O, res #: 119
+# contacts: 1
+Contacts in Ab: 
+67 SER D
+
+Ag Chain: O, res #: 147
+# contacts: 2
+Contacts in Ab: 
+56 SER D
+58 THR D
+
+Ag Chain: O, res #: 178
+# contacts: 5
+Contacts in Ab: 
+54 TYR D
+56 SER D
+58 THR D
+59 THR D
+60 TYR D
+
+Ag Chain: O, res #: 179
+# contacts: 3
+Contacts in Ab: 
+58 THR D
+59 THR D
+60 TYR D
+
+Ag Chain: O, res #: 180
+# contacts: 11
+Contacts in Ab: 
+51 GLY D
+53 ILE D
+57 GLY D
+58 THR D
+59 THR D
+60 TYR D
+61 TYR D
+66 GLN D
+69 VAL D
+70 SER D
+71 MET D
+
+Ag Chain: O, res #: 181
+# contacts: 8
+Contacts in Ab: 
+95 TYR C
+59 THR D
+60 TYR D
+61 TYR D
+62 ASN D
+63 PRO D
+66 GLN D
+67 SER D
+
+Ag Chain: O, res #: 182
+# contacts: 5
+Contacts in Ab: 
+95 TYR C
+60 TYR D
+61 TYR D
+63 PRO D
+66 GLN D
+
+Ag Chain: O, res #: 183
+# contacts: 3
+Contacts in Ab: 
+95 TYR C
+58 THR D
+60 TYR D
+
+Ag Chain: O, res #: 202
+# contacts: 1
+Contacts in Ab: 
+94 THR C
+
+Ag Chain: O, res #: 203
+# contacts: 3
+Contacts in Ab: 
+28 GLN C
+29 ALA C
+94 THR C
+
+Ag Chain: O, res #: 204
+# contacts: 3
+Contacts in Ab: 
+3 ILE C
+27 SER C
+28 GLN C
+
+Ag Chain: O, res #: 226
+# contacts: 1
+Contacts in Ab: 
+63 PRO D
+
+Ag Chain: O, res #: 227
+# contacts: 2
+Contacts in Ab: 
+94 THR C
+95 TYR C
+
+Ag Chain: O, res #: 228
+# contacts: 6
+Contacts in Ab: 
+93 ASN C
+94 THR C
+95 TYR C
+96 PRO C
+60 TYR D
+63 PRO D
+
+Ag Chain: O, res #: 229
+# contacts: 11
+Contacts in Ab: 
+92 LEU C
+93 ASN C
+94 THR C
+95 TYR C
+96 PRO C
+97 PHE C
+35 TYR D
+52 ILE D
+60 TYR D
+110 ASP D
+112 TYR D
+
+Ag Chain: O, res #: 230
+# contacts: 8
+Contacts in Ab: 
+30 VAL C
+31 ARG C
+33 SER C
+92 LEU C
+93 ASN C
+94 THR C
+95 TYR C
+112 TYR D
+
+Ag Chain: O, res #: 231
+# contacts: 3
+Contacts in Ab: 
+93 ASN C
+94 THR C
+95 TYR C
+
+Ag Chain: O, res #: 232
+# contacts: 2
+Contacts in Ab: 
+31 ARG C
+93 ASN C
+
+Ag Chain: O, res #: 259
+# contacts: 4
+Contacts in Ab: 
+31 ARG C
+33 SER C
+93 ASN C
+112 TYR D
+
+Ag Chain: R, res #: 260
+# contacts: 2
+Contacts in Ab: 
+94 THR C
+95 TYR C
+
+Ag Chain: R, res #: 261
+# contacts: 5
+Contacts in Ab: 
+34 TYR D
+109 GLY D
+110 ASP D
+111 ASP D
+112 TYR D
+
+Ag Chain: R, res #: 262
+# contacts: 10
+Contacts in Ab: 
+34 TYR D
+35 TYR D
+52 ILE D
+54 TYR D
+55 PHE D
+56 SER D
+58 THR D
+60 TYR D
+109 GLY D
+110 ASP D
+
+Ag Chain: R, res #: 263
+# contacts: 1
+Contacts in Ab: 
+110 ASP D
+
+Ag Chain: R, res #: 264
+# contacts: 1
+Contacts in Ab: 
+56 SER D
+
+Ag Chain: R, res #: 265
+# contacts: 5
+Contacts in Ab: 
+54 TYR D
+55 PHE D
+56 SER D
+57 GLY D
+58 THR D
+
+Ag Chain: R, res #: 266
+# contacts: 1
+Contacts in Ab: 
+56 SER D
+
+R: 25
+T: 0
+O: 82

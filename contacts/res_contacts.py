@@ -1,3 +1,5 @@
+import os
+
 #	Use if we want antigen RESIDUE-specific contact information
 
 # FUNCTIONS
@@ -99,7 +101,9 @@ def resContacts(pdb, ag, dist):
 #	3. the second return value from resContacts()
 
 def writeResContacts(file_name, numbers, residues, chain_nums):
-	output = open(file_name, 'w')
+	if not os.path.exists("./contact_output"):
+		os.makedirs("./contact_output", 0777)
+	output = open("./contact_output/"+file_name, 'w')
 	for i in range(len(numbers)):
 		# don't write anything if Ag residue has no contacts
 		if len(residues[i]) == 0:
@@ -121,10 +125,36 @@ def writeResContacts(file_name, numbers, residues, chain_nums):
 		output.write(key + ": " + str(chain_nums[key]) + "\n")
 
 
-numbers, residues, chain_nums = resContacts("example.pdb", ['O', 'R', 'T'], 8)
-writeResContacts("example_out", numbers, residues, chain_nums)
 
 
+# bulkContacts()
+# bulk writeResContacts for each docking model
+#
+# ARGUMENTS
+# model_pre: string - file name prefix (before number) of second model pdb files
+# chains: array containing characters of chains of Ag
+#					e.g. ['O', 'R', 'T']
+# dist: num - angstrom threshold for determining 'contact'
+#
+# RETURNS 
+# 	outputs a file and prints the total contact numbers for each chain
+def bulkContacts(model_pre, chains, dist):
+
+	# Find contacts for each Ag chain for each of the model files
+	for i in range(40):
+		if i < 10:
+			i = "0" + str(i)
+		name = model_pre + str(i)
+		pdb_name = name+".pdb"
+		try:
+			file = open(pdb_name, 'r')
+		except IOError as e:
+			break
+
+		numbers, residues, chain_nums = resContacts(pdb_name, chains, dist)
+		writeResContacts(name+"_contacts.txt", numbers, residues, chain_nums)
+
+		file.close()
 
 
 
