@@ -76,8 +76,6 @@ def allContacts(pdb, ag, dist):
 #	2. the return value from allContacts()
 
 def writeAllContacts(file_name, numbers):
-	if not os.path.exists("./contact_num_output"):
-		os.makedirs("./contact_num_output", 0777)
 	output = open("./contact_num_output/"+file_name, 'w')
 
 	for i in range(len(numbers)):
@@ -87,9 +85,6 @@ def writeAllContacts(file_name, numbers):
 
 		# otherwise display the Ag res number and number of contacts
 		output.write("Res #" + numbers[i][0]+": "+str(numbers[i][1])+"\n")
-
-numbers = allContacts("example.pdb", ['O', 'R', 'T'], 8)
-writeAllContacts("all_num_out", numbers)
 
 
 
@@ -103,8 +98,16 @@ writeAllContacts("all_num_out", numbers)
 # dist: num - angstrom threshold for determining 'contact'
 #
 # RETURNS 
-# 	outputs a file and prints the total contact numbers for each chain
+# 	outputs a file for each docking model and prints the total number of Ab 
+#			residues contacting each Ag res
+#		ouptuts one file for Ag contacts accumulated over all docking models
 def bulkAllContacts(model_pre, chains, dist):
+
+	if not os.path.exists("./contact_num_output"):
+		os.makedirs("./contact_num_output", 0777)
+
+	# dictionary to hold Ag res contact totals over all models
+	contact_totals = {}
 
 	# Find contacts for each Ag chain for each of the model files
 	for i in range(40):
@@ -120,7 +123,23 @@ def bulkAllContacts(model_pre, chains, dist):
 		numbers = allContacts(pdb_name, chains, dist)
 		writeAllContacts(name+"_contacts.txt", numbers)
 
+		# increment Ag contacts in contact_totals
+		for i in range(len(numbers)):
+			if numbers[i][1] == 0:
+				continue
+
+			res_num = numbers[i][0]
+			if res_num in contact_totals:
+				contact_totals[res_num] += 1
+			else:
+				contact_totals[res_num] = 1
+
 		file.close()
+
+	# write the contact totals to one file
+	output = open("./contact_num_output/contact_totals.txt", 'w')
+	for key in sorted(contact_totals):
+		output.write("Res #" + key+": "+str(contact_totals[key])+"\n")
 
 
 
