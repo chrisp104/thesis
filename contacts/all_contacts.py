@@ -125,19 +125,18 @@ def bulkAllContacts(model_pre, chains, dist):
 
 		# increment Ag contacts in contact_totals
 		for i in range(len(numbers)):
-			if numbers[i][1] == 0:
-				continue
 
 			res_num = numbers[i][0]
+			num_contacts = numbers[i][1]
 			if res_num in contact_totals:
-				contact_totals[res_num] += 1
+				contact_totals[res_num] += num_contacts
 			else:
-				contact_totals[res_num] = 1
+				contact_totals[res_num] = num_contacts
 
 		file.close()
 
 	# write the contact totals to one file
-	output = open("./contact_num_output/contact_totals.txt", 'w')
+	output = open("./contact_num_output/totals_"+model_pre[0:6]+".txt", 'w')
 	for key in sorted(contact_totals):
 		output.write("Res #" + key+": "+str(contact_totals[key])+"\n")
 
