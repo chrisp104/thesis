@@ -1,6 +1,6 @@
 import os
 
-#	Use if we want antigen RESIDUE-specific contact information
+#	Use if we want Ab contacts info for a given Ag as well
 
 # FUNCTIONS
 # 1. resContacts

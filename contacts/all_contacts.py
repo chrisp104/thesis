@@ -1,6 +1,7 @@
 import os
 
-#	Use if we want all contact information that is NOT Ag residue specific
+#	Use if we want all contact information that is NOT Ab residue specific
+# for each Ag residue
 #
 # FUNCTIONS
 # 1. allContacts
@@ -15,11 +16,12 @@ import os
 # pdb: string - pdb file name of the structure in question
 # ag: array - the chains of the Ag
 # dist: num - angstrom threshold for determining 'contact'
+# binary: boolean - if true, will just set contact number as 1, else count
 #
 # RETURNS 
 # 	1. an array of arrays - each entry is [Ab residue #, # contacts]
 
-def allContacts(pdb, ag, dist):
+def allContacts(pdb, ag, dist, binary=True):
 	struct = open(pdb, 'r')
 	lines = struct.readlines()
 
@@ -61,11 +63,20 @@ def allContacts(pdb, ag, dist):
 
 		# ******* STRIP if you don't want leading white spaces
 		ag_number = agen[23:26]
-		contacts.append([ag_number, num_contacts])
+
+		# good for if we don't need to normalize and want absolute contact numbers
+		# across all docks
+		if not binary:
+			contacts.append([ag_number, num_contacts])
+
+		# if we just want num_contacts to be 1.
+		if binary:
+		 	if num_contacts > 0:
+				contacts.append([ag_number, 1])
+			else:
+				contacts.append([ag_number, 0])
 
 	struct.close()
-	# print	return_contact_info
-	# print return_contacts
 	return	contacts
 
 
@@ -92,16 +103,18 @@ def writeAllContacts(file_name, numbers):
 # bulk writeAllContacts for each docking model
 #
 # ARGUMENTS
-# model_pre: string - file name prefix (before number) of second model pdb files
-# chains: array containing characters of chains of Ag
+# 1. model_pre: string - file name prefix (before number) of second model pdb files
+# 2. chains: array containing characters of chains of Ag
 #					e.g. ['O', 'R', 'T']
-# dist: num - angstrom threshold for determining 'contact'
+# 3. dist: num - angstrom threshold for determining 'contact'
+# 4. normalized: boolean - set to True to account for varying numbers of dock models for a given 
+# 												 Ab. Will set absolute parameter to True as well for allContacts()
 #
 # RETURNS 
 # 	outputs a file for each docking model and prints the total number of Ab 
 #			residues contacting each Ag res
 #		ouptuts one file for Ag contacts accumulated over all docking models
-def bulkAllContacts(model_pre, chains, dist):
+def bulkAllContacts(model_pre, chains, dist, normalized=True):
 
 	if not os.path.exists("./contact_num_output"):
 		os.makedirs("./contact_num_output", 0777)
@@ -110,6 +123,7 @@ def bulkAllContacts(model_pre, chains, dist):
 	contact_totals = {}
 
 	# Find contacts for each Ag chain for each of the model files
+	counter = 0		# to keep track of how many dock files there are to normalize totals
 	for i in range(40):
 		if i < 10:
 			i = "0" + str(i)
@@ -120,7 +134,9 @@ def bulkAllContacts(model_pre, chains, dist):
 		except IOError as e:
 			break
 
-		numbers = allContacts(pdb_name, chains, dist)
+		counter += 1
+
+		numbers = allContacts(pdb_name, chains, dist, normalized)
 		writeAllContacts(name+"_contacts.txt", numbers)
 
 		# increment Ag contacts in contact_totals
@@ -135,10 +151,18 @@ def bulkAllContacts(model_pre, chains, dist):
 
 		file.close()
 
+	# now contact_totals holds NON NORMALIZED contact totals for each Ag res
+
 	# write the contact totals to one file
 	output = open("./contact_num_output/totals_"+model_pre[0:6]+".txt", 'w')
 	for key in sorted(contact_totals):
-		output.write("Res #" + key+": "+str(contact_totals[key])+"\n")
+		num_contacts = contact_totals[key]
+
+		# normalize if necessary 
+		if normalized:
+			num_contacts = round(float(num_contacts)/counter, 2)
+
+		output.write("Res #" + key+": "+str(num_contacts)+"\n")
 
 
 

@@ -8,13 +8,14 @@ import os
 # for each Ag residue, and finds percentage intersection between them
 #
 # ARGUMENTS
-# files = array: array of file names with the results
-# out = output file name where results will be written
+# 1. files = array: array of file names with the results
+# 2. out = output file name where results will be written
+#	3. threshold = how many contacts determines a "contact" across 
 #
 # RETURNS 
 # 	1. array of tuples, tuple = (model comparison pair, percentage intersection)
 
-def intersection(files, out):
+def intersection(files, out, threshold):
 
 	# stores all files
 	data = {}
