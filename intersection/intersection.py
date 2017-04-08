@@ -32,7 +32,8 @@ def intersection(files, threshold, out):
 
 	# nested loop to go through all pairs of files
 	for i in range(len(files)):
-		for j in range(i+1, len(files)):
+		# for j in range(i+1, len(files)): 	# if we don't want redundancy
+		for j in range(len(files)):
 			print i, j
 			file_one = files[i]
 			file_two = files[j]
@@ -53,7 +54,11 @@ def intersection(files, threshold, out):
 				total_one = float(line_one[10:].strip())
 				total_two = float(line_two[10:].strip())
 
+				# *********** NEED TO ASK ABOUT THIS PART TO MAKE NUMBERS MEANINGFUL ********************
 				if (total_one >= threshold and total_two >= threshold):
+					intersection += 1
+
+				if (total_one < threshold and total_two < threshold and total_one == total_two):
 					intersection += 1
 
 			# write to return array
