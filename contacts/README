@@ -4,7 +4,7 @@ Contacts is for determining the number of Ab contact residues for a given Ag.
 One "contact" run is executed for each Ab:Ag docked model, which should be
 in one pdb file.
 
-The results will return the C beta residues in the Ag that have contacts
+The results will return the CB residues in the Ag that have contacts
 within a given distance (in angstroms), the number of Ab residues, and 
 the specific Ab residues that are in contact.
 

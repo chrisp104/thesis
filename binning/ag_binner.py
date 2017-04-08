@@ -1,17 +1,19 @@
 # FUNCTIONS
 # 1. find_region()
+# 2. find_bin()
+#
 
-
+# 1.
 # find_region()
 # for the three chains in the Ag, find the number of contacts for each
 # peptide and cumulate
-
+#
 # ARGUMENTS
 # file: string - file name of first pdb
 # chains: array containing characters of chains of Ag
 #					e.g. ['O', 'R', 'T']
 # dist: num - angstrom threshold for determining 'contact'
-
+#
 # RETURNS 
 # 	1. the number of contacts for each chain in the 
 
@@ -23,7 +25,6 @@ def find_region(file, chains, dist):
 	chain_nums = {}
 	for key in chains:
 		chain_nums[key] = 0
-
 
 	# loop through the Ag's residues and get contacts for each C beta
 	for agen in lines:
@@ -53,8 +54,6 @@ def find_region(file, chains, dist):
 			squared = xsq + ysq + zsq
 			distance = squared**(0.5)
 
-			# CONVERT DISTANCE TO ANSTROMS?
-
 			# count if less than $dist anstroms
 			if (distance <= dist):
 				chain = agen[21:22]
@@ -69,17 +68,17 @@ def find_region(file, chains, dist):
 #find_region("example.pdb", ['O', 'R', 'T'], 8)
 
 
-
+# 2.
 # find_bin()
 # bulk find_region for each docking model and find most contacted Ag chain
-
+#
 # ARGUMENTS
 # model_pre: string - file name prefix (before number) of second model pdb files
 # chains: array containing characters of chains of Ag
 #					e.g. ['O', 'R', 'T']
 # dist: num - angstrom threshold for determining 'contact'
 # out: output text file name
-
+#
 # RETURNS 
 # 	outputs a file and prints the total contact numbers for each chain
 def find_bin(model_pre, chains, dist, out):
@@ -106,12 +105,13 @@ def find_bin(model_pre, chains, dist, out):
 		for ag_chain in result:
 			totals[ag_chain] += result[ag_chain]
 
+		file.close()
+
 	# write the chain contact totals to the file
 	output.write("TOTALS \n")
 	for key in totals:
 		output.write(key +": "+str(totals[key])+"\n")
 
-		file.close()
 	output.close()
 
 

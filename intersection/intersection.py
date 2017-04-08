@@ -2,7 +2,8 @@ import os
 
 #	To use with the results of all_contacts (bulk_all_contacts especially)
 #
-#	1. intersection()
+#	1.
+# intersection()
 # 
 # takes in an array of file names, where each file has the number of Ab contacts
 # for each Ag residue, and finds percentage intersection between them
@@ -14,7 +15,9 @@ import os
 #
 # RETURNS 
 # 	1. array of tuples, tuple = (str - model comparison pair, int - percentage intersection)
-
+#
+#	OUTPUTS
+#		a file with the docking model pairs and their overlapping contact percentages
 def intersection(files, threshold, out):
 
 	# stores all files
@@ -76,11 +79,13 @@ def intersection(files, threshold, out):
 	print results
 	return results
 
+# all models
 intersection(["totals_D206m2.txt", "totals_D206m9.txt", "totals_D206mR.txt",
 	"totals_D410m1.txt", "totals_D410m5.txt", "totals_D410mR.txt",
-	"totals_D430m7.txt", "totals_D430m8.txt", "totals_D430mR.txt"], 0.05, "output.txt", )
+	"totals_D430m7.txt", "totals_D430m8.txt", "totals_D430mR.txt"], 0.05, "output_all.txt", )
 
-
+# just crystal structure models
+intersection(["totals_D206mR.txt", "totals_D410mR.txt", "totals_D430mR.txt"], 0.05, "output_crystals.txt", )
 
 
 

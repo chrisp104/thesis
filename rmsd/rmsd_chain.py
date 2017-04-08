@@ -2,18 +2,19 @@
 # 1. rmsd
 # 2. rmsdMultiple
 
+
+# 1.
 # rmsd()
 # calculates rmsd between two pdb files BY ANTIGEN CHAIN
 # ****** CHAIN TO COMPARE MUST BE THE SAME LABEL!!
-
+#
 # ARGUMENTS
 # f1: string - file name of first pdb
 # f2: string - file name of second pdb
 # chain: string - letter of chain to compare
-
+#
 # RETURNS 
 # 	1. the rmsd between the designated chain between the two structures
-
 def rmsd(f1, f2, chain):
 
 	## FILES
@@ -70,19 +71,20 @@ def rmsd(f1, f2, chain):
 # rmsd("5d1q_aligned.pdb", "D206m2d00.pdb", "E")
 
 
+
+# 2.
 # rmsdMultiple()
 # calculates rmsds between a target file and many model files against it
-
+#
 # ARGUMENTS
 # target: string - file name of target pdb
 # model_pre: string - file name prefix (before number) of second model pdb files
 # chain: string - letter of chain to compare
 # out: string - name of the output file to write all rmsds to
-
+#
 # RESULT 
 # 	1. prints rmsds
 #		2. outputs file with rmsds
-
 def rmsdMultiple(target, model_pre, chain, out):
 
 	output = open(out, 'w')

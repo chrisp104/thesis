@@ -6,11 +6,14 @@ import os
 # FUNCTIONS
 # 1. allContacts
 # 2. writeAllContacts
+# 3. bulkAllContacts
 #
 # functions to return an array with residues within dist angstroms
 # for each residue's beta carbon 
-#
-# *** function contacts()
+
+
+# 1. 
+# contacts()
 #
 # ARGUMENTS
 # pdb: string - pdb file name of the structure in question
@@ -81,11 +84,15 @@ def allContacts(pdb, ag, dist, binary=True):
 
 
 
+
+# 2.
+#	writeAllContacts()
+#
 # function to write and produce output of residue contact information into file
+#
 # ARUGMENTS
 #	1. the output file name
 #	2. the return value from allContacts()
-
 def writeAllContacts(file_name, numbers):
 	output = open("./contact_num_output/"+file_name, 'w')
 
@@ -99,7 +106,9 @@ def writeAllContacts(file_name, numbers):
 
 
 
+# 3.
 # bulkAllContacts()
+#
 # bulk writeAllContacts for each docking model
 #
 # ARGUMENTS

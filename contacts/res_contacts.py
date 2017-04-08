@@ -1,15 +1,18 @@
 import os
 
 #	Use if we want Ab contacts info for a given Ag as well
-
+#
 # FUNCTIONS
 # 1. resContacts
 # 2. writeResContacts
-
+# 3. bulkContacts
+#
 # functions to return an array with residues within dist angstroms
 # for each residue's beta carbon 
 
-# *** function contacts()
+
+# 1.
+# contacts()
 #
 # ARGUMENTS
 # pdb: string - pdb file name of the structure in question
@@ -94,7 +97,11 @@ def resContacts(pdb, ag, dist):
 
 
 
+# 2. 
+# writeResContacts()
+#
 # function to write and produce output of residue contact information into file
+#
 # ARUGMENTS
 #	1. the output file name
 #	2. the first return value from resContacts()
@@ -127,7 +134,9 @@ def writeResContacts(file_name, numbers, residues, chain_nums):
 
 
 
+# 3. 
 # bulkContacts()
+#
 # bulk writeResContacts for each docking model
 #
 # ARGUMENTS

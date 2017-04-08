@@ -32,4 +32,5 @@ def makeArray(file, x):
 	print matrix
 
 makeArray("output.txt", 9)
+makeArray("output_crystals.txt", 3)
 

@@ -1,0 +1,47 @@
+Christopher Park
+Senior Thesis
+Winter - Spring 2017
+
+The overarching aim of this project is two-fold:
+1.  To attempt to reproduce cross-blocking (epitope binning) results in silico using antibody (Ab) design, 
+		Ab:Antigen (Ag) docking servers, and mutational manipulation and redocking.
+2. 	To integrate experimental cross-blocking data to improve and refine in silico Ab:Ag docking predictions.
+
+DESCRIPTIONS OF DIRECTORIES
+
+*** ./antibodies/ ***
+	prepare_files.sh - bash script to prepare files for functions in other directories
+		removes HEADER, ANISOU, END lines
+	Contains the bulk of the data. 
+	- One Antibody from the Ab table
+		- Docking models
+			- Ab:Ag contact information folders and docking model pdb files
+
+*** ./binning/ ***
+	ag_binner.py - counts number of Ab residue contacts for all Ag residues for a given chain across
+		all docking models for a given Ab model and then returns totals, which can be useful in checking 
+		binning
+	bulk_bin.py - to run ag_binner across multiple models
+
+*** ./contacts/ ***
+	see README in directory
+
+*** ./intersection/ ***
+	intersection.py - will compare two contact data files (one for each docking model) returned by contact methods
+		in contacts directory and find percentage of overlapping contacts.
+	*** ./heatmaps/ ***
+		take output from intersection.py and run through array_maker.py to turn in matrix for heatmap maker
+		see example.py for how to make a heatmap
+
+*** ./isdb/ ***
+	Contains isdb protein structures, individual domains and whole structure
+
+*** ./rmsd/ ***
+	rmsd_pep - will compare rmsd between two docking models for the Ag, given the Ag chains - do not have to have the same
+		chain letters but must have same amino acid numberings
+	rmsd_chain - must have same chain letters
+	run_* - will bulk run the rmsd
+
+
+
+
