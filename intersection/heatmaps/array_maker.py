@@ -19,7 +19,7 @@ def makeArray(file, x):
 	for i in range(len(lines)):
 
 		line = lines[i]
-		num = int(line[17:19])
+		num = float(line[17:])
 		arr.append(num)
 
 		# if filled row, add to matrix and then clear arr

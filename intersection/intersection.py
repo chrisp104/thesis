@@ -43,7 +43,8 @@ def intersection(files, threshold, out):
 			two = data[file_two]
 
 			# loop through Ag residues and add up total intersection
-			intersection = 0
+			numerator = 0
+			denominator = 0
 			for k in range(len(one)):
 				line_one = one[k]
 				line_two = two[k]
@@ -54,15 +55,16 @@ def intersection(files, threshold, out):
 				total_one = float(line_one[10:].strip())
 				total_two = float(line_two[10:].strip())
 
-				# *********** NEED TO ASK ABOUT THIS PART TO MAKE NUMBERS MEANINGFUL ********************
-				if (total_one >= threshold and total_two >= threshold):
-					intersection += 1
-
-				if (total_one < threshold and total_two < threshold and total_one == total_two):
-					intersection += 1
+				# numerator incremented if both are above threshold
+				# denominator incremented if one is above threshold
+				if total_one >= threshold or total_two >= threshold:
+					denominator += 1
+				if total_one >= threshold and total_two >= threshold:
+					numerator += 1
 
 			# write to return array
-			result = (file_one[7:13] + " & " + file_two[7:13], intersection)
+			percent_intersect = round(numerator/float(denominator), 3)
+			result = (file_one[7:13] + " & " + file_two[7:13], percent_intersect)
 			results.append(result)
 
 	output = open(out, 'w')
@@ -76,7 +78,7 @@ def intersection(files, threshold, out):
 
 intersection(["totals_D206m2.txt", "totals_D206m9.txt", "totals_D206mR.txt",
 	"totals_D410m1.txt", "totals_D410m5.txt", "totals_D410mR.txt",
-	"totals_D430m7.txt", "totals_D430m8.txt", "totals_D430mR.txt"], 0.15, "output.txt", )
+	"totals_D430m7.txt", "totals_D430m8.txt", "totals_D430mR.txt"], 0.05, "output.txt", )
 
 
 
