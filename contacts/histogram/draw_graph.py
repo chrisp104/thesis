@@ -49,7 +49,7 @@ def drawHistogram(file, lower, upper, width):
 
 	ax = plt.axes()
 	ax.set_xticks(pos+(width / 2))
-	ax.set_ylim([0,100])
+	ax.set_ylim([0,150])					# MAX Y VALUE HERE
 	ax.set_xticklabels(bins, rotation=90, size=5)
 
 	plt.bar(pos, frequencies, width, color='b')
@@ -68,10 +68,10 @@ def drawHistogram(file, lower, upper, width):
 # EXECUTE - NEED TO ONLY DO ONE FOLDER AT A TIME
 for fn in os.listdir("/Users/Chris/GitHub/thesis/contacts/histogram/mutants/"):
 	if (fn[:3] == "tot"):
-		drawHistogram("mutants/"+fn, 119, 457, 5)
+		drawHistogram("mutants/"+fn, 119, 457, 10)
 
-# for fn in os.listdir("/Users/Chris/GitHub/thesis/contacts/histogram/crystals/"):
-# 	if (fn[:3] == "tot"):
-# 		drawHistogram("crystals/"+fn, 119, 457, 5)
+for fn in os.listdir("/Users/Chris/GitHub/thesis/contacts/histogram/crystals/"):
+	if (fn[:3] == "tot"):
+		drawHistogram("crystals/"+fn, 119, 457, 10)
 
 
