@@ -26,9 +26,14 @@ DESCRIPTIONS OF DIRECTORIES
 *** ./contacts/ ***
 	see README in directory
 
+	*** ./histogram/ ***
+		takes all_contact information and creates a histogram to see contact distribution for given docking model
+			across all models
+
 *** ./intersection/ ***
 	intersection.py - will compare two contact data files (one for each docking model) returned by contact methods
 		in contacts directory and find percentage of overlapping contacts.
+		
 	*** ./heatmaps/ ***
 		take output from intersection.py and run through array_maker.py to turn in matrix for heatmap maker
 		see example.py for how to make a heatmap

@@ -8,8 +8,8 @@ for ab in */ ; do
 	
 	# loop through files
 	for f1 in * ; do
-		# start at position 0 for length 1
-		if [[ ${f1:0:1} == "M" ]]; then
+		# start at position 1 for length 1
+		if [[ ${f1:1:1} == "M" ]]; then
 
 			# remove HEADER from files
 			find "$f1" -type f -exec sed -i '' -e "/HEADER/d" {} \;

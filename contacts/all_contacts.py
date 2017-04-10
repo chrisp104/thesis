@@ -163,7 +163,10 @@ def bulkAllContacts(model_pre, chains, dist, normalized=True):
 	# now contact_totals holds NON NORMALIZED contact totals for each Ag res
 
 	# write the contact totals to one file
-	output = open("./contact_num_output/totals_"+model_pre[0:6]+".txt", 'w')
+	if model_pre[4:7] == "mut":
+		output = open("./contact_num_output/totals_"+model_pre[0:10]+".txt", 'w')
+	else:
+		output = open("./contact_num_output/totals_"+model_pre[0:6]+".txt", 'w')
 	for key in sorted(contact_totals):
 		num_contacts = contact_totals[key]
 
