@@ -48,3 +48,13 @@ Model #23
 rmsd = 22.9433320174
 Model #24
 rmsd = 24.3867685477
+Model #25
+rmsd = 25.3295925678
+Model #26
+rmsd = 27.6496336788
+Model #27
+rmsd = 22.9433320174
+Model #28
+rmsd = 17.9748014683
+Model #29
+rmsd = 24.3867685477
