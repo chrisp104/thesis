@@ -34,6 +34,7 @@ def rmsd(f1, f2, chain, ag):
 
 	# *** CALCULATING RMSD *** #
 	n = 0
+	count = 0		# for checking how many residues were compared
 
 	# loop through the lines of each from the start of the Ag for both files
 	rmsd_squared = 0
@@ -47,8 +48,6 @@ def rmsd(f1, f2, chain, ag):
 			continue
 		if c_line[16:20].strip() == "BMET":
 			continue
-
-		n += 1
 
 		for m_line in struct_2:
 			# make sure that we are looking at the right AA in an Ag chain and find the right atom
@@ -66,6 +65,7 @@ def rmsd(f1, f2, chain, ag):
 				
 					squared = xsq + ysq + zsq
 					rmsd_squared += squared
+					n += 1
 					break
 
 	rmsd_s_mean = rmsd_squared / n
@@ -88,7 +88,7 @@ def rmsd(f1, f2, chain, ag):
 # model_pre: string - file name prefix (before number) of second model pdb files
 # chain: string - letter of chain to compare
 # ag: array - containing chain letters for the Ag in the non crystal structure files
-# out: string - name of the output file to write all rmsds to
+# out: string - path of the output file to write all rmsds to
 #
 # RESULT 
 # 	1. prints rmsds
@@ -107,8 +107,15 @@ def rmsdMultiple(target, model_pre, chain, ag, out):
 		except IOError as e:
 			break
 		result = rmsd(target, name, chain, ag)
+
+		# Put stars by the models with RMSD lower than THRESHOLD
+		THRESHOLD = 10
 		output.write("Model #" + str(i)+'\n')
-		output.write("rmsd = "+str(result)+'\n')
+
+		if result < THRESHOLD:
+			output.write("*** rmsd = "+str(result)+'\n')
+		else:
+			output.write("rmsd = "+str(result)+'\n')
 		file.close()
 	output.close()
 

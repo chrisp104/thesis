@@ -1,0 +1,60 @@
+Model #00
+*** rmsd = 3.71430734945
+Model #01
+rmsd = 51.6408025775
+Model #02
+rmsd = 63.8597929577
+Model #03
+rmsd = 29.4399035737
+Model #04
+rmsd = 53.0823989285
+Model #05
+rmsd = 58.2770584681
+Model #06
+rmsd = 64.717873771
+Model #07
+rmsd = 63.6532999145
+Model #08
+rmsd = 18.5017088088
+Model #09
+rmsd = 60.5526080872
+Model #10
+rmsd = 63.1319506526
+Model #11
+rmsd = 24.1154326677
+Model #12
+rmsd = 55.188739173
+Model #13
+rmsd = 46.3610200713
+Model #14
+rmsd = 22.0015690622
+Model #15
+rmsd = 19.7441882475
+Model #16
+rmsd = 59.9961143508
+Model #17
+rmsd = 68.7115484512
+Model #18
+rmsd = 61.0728850353
+Model #19
+rmsd = 29.0033276193
+Model #20
+rmsd = 42.5357161746
+Model #21
+rmsd = 14.1549615646
+Model #22
+rmsd = 35.4124339342
+Model #23
+rmsd = 65.7491482516
+Model #24
+rmsd = 43.5876012577
+Model #25
+rmsd = 56.0284392157
+Model #26
+rmsd = 34.5361214242
+Model #27
+rmsd = 31.0921260773
+Model #28
+rmsd = 66.292052041
+Model #29
+rmsd = 48.2105843004
