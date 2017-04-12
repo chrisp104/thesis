@@ -27,7 +27,7 @@ for ab in */ ; do
 				#echo "$f2"
 				#model="${f1:2:3}"
 
-				rename "s/model.000./${ab:0:4}m${f1:1:1}d/" *
+				rename "s/model.000./${ab:0:4}m${f1:2:1}d/" *
 			done
 
 			cd ..

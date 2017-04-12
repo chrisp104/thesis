@@ -80,7 +80,7 @@ def allContacts(pdb, ag, dist, binary=True):
 				contacts.append([ag_number, 0])
 
 	struct.close()
-	return	contacts
+	return contacts
 
 
 
@@ -91,10 +91,11 @@ def allContacts(pdb, ag, dist, binary=True):
 # function to write and produce output of residue contact information into file
 #
 # ARUGMENTS
-#	1. the output file name
-#	2. the return value from allContacts()
-def writeAllContacts(file_name, numbers):
-	output = open("./contact_num_output/"+file_name, 'w')
+#	1. path: str - path to directory to write out files to
+# 2. file_name: str - output file name
+# 3. numbers: array - the return value from allContacts()
+def writeAllContacts(path, file_name, numbers):
+	output = open(path+file_name, 'w')
 
 	for i in range(len(numbers)):
 		# don't write anything if Ag residue has no contacts
@@ -106,24 +107,26 @@ def writeAllContacts(file_name, numbers):
 
 
 
+
 # 3.
 # bulkAllContacts()
 #
 # bulk writeAllContacts for each docking model
 #
 # ARGUMENTS
-# 1. model_pre: string - file name prefix (before number) of second model pdb files
-# 2. chains: array containing characters of chains of Ag
+# 1. path: str - the directory to write the output files to
+# 2. model_pre: string - file name prefix (before number) of second model pdb files
+# 3. chains: array containing characters of chains of Ag
 #					e.g. ['O', 'R', 'T']
-# 3. dist: num - angstrom threshold for determining 'contact'
-# 4. normalized: boolean - set to True to account for varying numbers of dock models for a given 
+# 4. dist: num - angstrom threshold for determining 'contact'
+# 5. normalized: boolean - set to True to account for varying numbers of dock models for a given 
 # 												 Ab. Will set absolute parameter to True as well for allContacts()
 #
 # RETURNS 
 # 	outputs a file for each docking model and prints the total number of Ab 
 #			residues contacting each Ag res
 #		ouptuts one file for Ag contacts accumulated over all docking models
-def bulkAllContacts(model_pre, chains, dist, normalized=True):
+def bulkAllContacts(path, model_pre, chains, dist, normalized=True):
 
 	if not os.path.exists("./contact_num_output"):
 		os.makedirs("./contact_num_output", 0777)
@@ -146,7 +149,7 @@ def bulkAllContacts(model_pre, chains, dist, normalized=True):
 		counter += 1
 
 		numbers = allContacts(pdb_name, chains, dist, normalized)
-		writeAllContacts(name+"_contacts.txt", numbers)
+		writeAllContacts(path, name+"_contacts.txt", numbers)
 
 		# increment Ag contacts in contact_totals
 		for i in range(len(numbers)):

@@ -20,10 +20,10 @@ import os
 # dist: num - angstrom threshold for determining 'contact'
 #
 # RETURNS 
-# 	1. an array of numbers corresponding to the number of Fv residues in contact
-#		with the nth residue in the Ag - (Ag res #, number of residues in contact)
-#		2. an array of arrays, each array representing one Ag residue and containing
-#		tuples with (Ag res #, res # of Ab contact residue, AA abbreviation, chain letter)
+# 	1. an array of tuples corresponding to the number of Fv residues in contact
+#		with the nth residue in the Ag - (Ag chain, Ag res #, number of residues in contact)
+#		2. an dictionary of arrays, key = Ag res # and key =  array of
+#		tuples with (Ab contact residue #, AA abbreviation, chain letter)
 #		3. a dictionary with the chains and number of contact residues for each chain
 
 def resContacts(pdb, ag, dist):
@@ -31,7 +31,7 @@ def resContacts(pdb, ag, dist):
 	lines = struct.readlines()
 
 	return_contact_info = []		# first return value
-	return_contacts = []				# second return value
+	return_contacts = {}				# second return value
 	return_chain_num = {}				# third return value
 
 	# instantiate the desired chains
@@ -81,17 +81,13 @@ def resContacts(pdb, ag, dist):
 				chain = agen[21:22]
 				return_chain_num[chain] += 1  
 
-		# ## 1. returns with Ag res #s
-		#	return_contact_info.append((agen[22:26].strip(), num_contacts))
-		# return_contacts.append((agen[22:26].strip(), res_contacts))
 
-		## 2. returns without Ag res #s
+		## 2. Add information to return values for this Ag res
 		return_contact_info.append((agen[21], agen[23:26], num_contacts))
-		return_contacts.append((res_contacts))
+		return_contacts[agen[23:26]] = (res_contacts)
 
 	struct.close()
-	# print	return_contact_info
-	# print return_contacts
+
 	return	return_contact_info, return_contacts, return_chain_num
 
 
@@ -103,28 +99,23 @@ def resContacts(pdb, ag, dist):
 # function to write and produce output of residue contact information into file
 #
 # ARUGMENTS
-#	1. the output file name
-#	2. the first return value from resContacts()
-#	3. the second return value from resContacts()
-
-def writeResContacts(file_name, numbers, residues, chain_nums):
-	if not os.path.exists("./contact_output"):
-		os.makedirs("./contact_output", 0777)
-	output = open("./contact_output/"+file_name, 'w')
-	for i in range(len(numbers)):
-		# don't write anything if Ag residue has no contacts
-		if len(residues[i]) == 0:
-			continue
+#	1. path: str - path to directory to write out files to
+# 2. file_name: str - output file name
+#	3. numbers: array - the first return value from resContacts()
+#	4. residues: dictionary - the second return value from resContacts()
+# 5. chain_nums: dictionary - the third
+def writeResContacts(path, file_name, numbers, residues, chain_nums):
+	output = open(path+file_name, 'w')
+	for key in sorted(residues):
 
 		# header information
-		output.write("Ag Chain: "+str(numbers[i][0])+", "
-			"res #: "+str(numbers[i][1])+"\n")
-		output.write("# contacts: "+str(numbers[i][2])+"\n")
+		output.write("Ag res #: "+str(key)+"\n")
 		output.write("Contacts in Ab: \n")
+		contacts = residues[key]
 		
 		# contact information
-		for residue in residues[i]:
-			output.write(residue[0]+' '+residue[1]+' '+residue[2]+"\n")
+		for contact in contacts:
+			output.write(contact[0]+' '+contact[1]+' '+contact[2]+"\n")
 		output.write("\n")
 
 	# chain contact numbers
@@ -140,14 +131,15 @@ def writeResContacts(file_name, numbers, residues, chain_nums):
 # bulk writeResContacts for each docking model
 #
 # ARGUMENTS
-# model_pre: string - file name prefix (before number) of second model pdb files
-# chains: array containing characters of chains of Ag
+# 1. model_pre: string - file name prefix (before number) of second model pdb files
+# 2. chains: array containing characters of chains of Ag
 #					e.g. ['O', 'R', 'T']
-# dist: num - angstrom threshold for determining 'contact'
+# 3. dist: num - angstrom threshold for determining 'contact'
+# 4. path: str - the directory to write the output files to
 #
 # RETURNS 
 # 	outputs a file and prints the total contact numbers for each chain
-def bulkContacts(model_pre, chains, dist):
+def bulkContacts(model_pre, chains, dist, path):
 
 	# Find contacts for each Ag chain for each of the model files
 	for i in range(40):
@@ -161,7 +153,7 @@ def bulkContacts(model_pre, chains, dist):
 			break
 
 		numbers, residues, chain_nums = resContacts(pdb_name, chains, dist)
-		writeResContacts(name+"_contacts.txt", numbers, residues, chain_nums)
+		writeResContacts(path, name+"_contacts.txt", numbers, residues, chain_nums)
 
 		file.close()
 
