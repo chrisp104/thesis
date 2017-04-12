@@ -27,10 +27,10 @@ import os
 
 
 
-# ************ FOR THE MODELS IN THE DIRECTORY HERE **************
+# ************ DIRECTORY BASED CONTACT COUNTING **************
 
 os.chdir("/Users/Chris/GitHub/thesis/contacts/contacts_crystal/")
-bulkDirectory(['O', 'R', 'T'], 10, "/Users/Chris/GitHub/thesis/contacts/out_crystal/")
+bulkDirectory(['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/out_crystal/")
 
 os.chdir("/Users/Chris/GitHub/thesis/contacts/contacts_mutant/")
-bulkDirectory(['O', 'R', 'T'], 10, "/Users/Chris/GitHub/thesis/contacts/out_mutant/")
+bulkDirectory(['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/out_mutant/")

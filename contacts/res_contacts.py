@@ -85,10 +85,10 @@ def resContacts(pdb, ag, dist):
 
 		## 2. Add information to return values for this Ag res
 		return_contact_info.append((agen[21], agen[23:26], num_contacts))
-		return_contacts[agen[23:26]] = (res_contacts)
+		return_contacts[(agen[23:26], agen[17:20])] = (res_contacts)
 
 	struct.close()
-
+	print pdb + " finished.\n"
 	return	return_contact_info, return_contacts, return_chain_num
 
 
@@ -110,7 +110,7 @@ def writeResContacts(path, file_name, numbers, residues, chain_nums):
 	for key in sorted(residues):
 
 		# header information
-		output.write("Ag res #: "+str(key)+"\n")
+		output.write("Ag res: "+str(key)+"\n")
 		output.write("Contacts in Ab: \n")
 		contacts = residues[key]
 		
@@ -179,13 +179,14 @@ def bulkDirectory(chains, dist, path):
 
 	# Find contacts for each Ag chain for each of the model files
 	for fn in os.listdir('.'):
+		if fn[0:1] == '.': continue
 		try:
 			file = open(fn, 'r')
 		except IOError as e:
 			break
 
-		numbers, residues, chain_nums = resContacts(pdb_name, chains, dist)
-		writeResContacts(path, name+"_contacts.txt", numbers, residues, chain_nums)
+		numbers, residues, chain_nums = resContacts(fn, chains, dist)
+		writeResContacts(path, fn[:-7]+"_contacts.txt", numbers, residues, chain_nums)
 
 		file.close()
 

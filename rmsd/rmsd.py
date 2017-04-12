@@ -1,3 +1,5 @@
+import os
+
 # FUNCTIONS
 # 1. rmsd
 # 2. rmsdMultiple
@@ -86,7 +88,6 @@ def rmsd(f1, f2, chain, ag):
 #
 # ARGUMENTS
 # target: string - file name of target pdb
-# model_pre: string - file name prefix (before number) of second model pdb files
 # chain: string - letter of chain to compare
 # ag: array - containing chain letters for the Ag in the non crystal structure files
 # out: string - path of the output file to write all rmsds to
@@ -94,24 +95,23 @@ def rmsd(f1, f2, chain, ag):
 # RESULT 
 # 	1. prints rmsds
 #		2. outputs file with rmsds
-def rmsdMultiple(target, model_pre, chain, ag, out):
+def rmsdMultiple(target, chain, ag, out):
 
 	output = open(out, 'w')
 
 	# Calculate rmsd for each of the model files
-	for i in range(40):
-		if i < 10:
-			i = "0" + str(i)
-		name = model_pre + str(i) + ".pdb"
+	for fn in os.listdir('.'):
+		if not (fn[0:1] == 'D'): continue
 		try:
-			file = open(name, 'r')
+			file = open(fn, 'r')
 		except IOError as e:
 			break
-		result = rmsd(target, name, chain, ag)
+
+		result = rmsd(target, fn, chain, ag)
 
 		# Put stars by the models with RMSD lower than THRESHOLD
 		THRESHOLD = 10
-		output.write("Model #" + str(i)+'\n')
+		output.write(fn+'\n')
 
 		if result < THRESHOLD:
 			output.write("*** rmsd = "+str(result)+'\n')
