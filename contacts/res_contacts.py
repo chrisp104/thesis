@@ -6,6 +6,7 @@ import os
 # 1. resContacts
 # 2. writeResContacts
 # 3. bulkContacts
+# 4. bulkDirectory
 #
 # functions to return an array with residues within dist angstroms
 # for each residue's beta carbon 
@@ -128,7 +129,7 @@ def writeResContacts(path, file_name, numbers, residues, chain_nums):
 # 3. 
 # bulkContacts()
 #
-# bulk writeResContacts for each docking model
+# bulk writeResContacts for each docking model 
 #
 # ARGUMENTS
 # 1. model_pre: string - file name prefix (before number) of second model pdb files
@@ -160,6 +161,33 @@ def bulkContacts(model_pre, chains, dist, path):
 
 
 
+
+# 4. 
+# bulkDirectory()
+#
+# bulk writeResContacts for each docking model in a given directory
+#
+# ARGUMENTS
+# 1. chains: array containing characters of chains of Ag
+#					e.g. ['O', 'R', 'T']
+# 2. dist: num - angstrom threshold for determining 'contact'
+# 3. path: str - the directory to write the output files to
+#
+# RETURNS 
+# 	outputs a file and prints the total contact numbers for each chain
+def bulkDirectory(chains, dist, path):
+
+	# Find contacts for each Ag chain for each of the model files
+	for fn in os.listdir('.'):
+		try:
+			file = open(fn, 'r')
+		except IOError as e:
+			break
+
+		numbers, residues, chain_nums = resContacts(pdb_name, chains, dist)
+		writeResContacts(path, name+"_contacts.txt", numbers, residues, chain_nums)
+
+		file.close()
 
 
 

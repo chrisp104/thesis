@@ -44,9 +44,10 @@ os.chdir("/Users/Chris/GitHub/thesis/antibodies/D410/MR_m435")
 rmsdMultiple("5d1z_aligned.pdb", "D410mut435d", "I", ['O', 'R', 'T'], "/Users/Chris/GitHub/thesis/rmsd/outputs/rmsd_D410mut435.txt")
 
 
-os.chdir("/Users/Chris/GitHub/thesis/antibodies/D206/3MRD")
-rmsdMultiple("5d1q_aligned.pdb", "D206mRd", "E", ['O', 'R', 'T'], "/Users/Chris/GitHub/thesis/rmsd/outputs/rmsd_D206mR_2.txt")
-os.chdir("/Users/Chris/GitHub/thesis/antibodies/D430/3MRD")
-rmsdMultiple("5d1x_aligned.pdb", "D430mRd", "E", ['O', 'R', 'T'], "/Users/Chris/GitHub/thesis/rmsd/outputs/rmsd_D430mR_2.txt")
-os.chdir("/Users/Chris/GitHub/thesis/antibodies/D410/3MRD")
-rmsdMultiple("5d1z_aligned.pdb", "D410mRd", "I", ['O', 'R', 'T'], "/Users/Chris/GitHub/thesis/rmsd/outputs/rmsd_D410mR_2.txt")
+# THESE WERE THE CRYSTAL STRUCTURES DOCKED ONCE MORE TO SEE IF BETTER PREDICTIONS WOULD HAPPEN BUT THEY ARE THE EXACT SAME
+# os.chdir("/Users/Chris/GitHub/thesis/antibodies/D206/3MRD")
+# rmsdMultiple("5d1q_aligned.pdb", "D206mRd", "E", ['O', 'R', 'T'], "/Users/Chris/GitHub/thesis/rmsd/outputs/rmsd_D206mR_2.txt")
+# os.chdir("/Users/Chris/GitHub/thesis/antibodies/D430/3MRD")
+# rmsdMultiple("5d1x_aligned.pdb", "D430mRd", "E", ['O', 'R', 'T'], "/Users/Chris/GitHub/thesis/rmsd/outputs/rmsd_D430mR_2.txt")
+# os.chdir("/Users/Chris/GitHub/thesis/antibodies/D410/3MRD")
+# rmsdMultiple("5d1z_aligned.pdb", "D410mRd", "I", ['O', 'R', 'T'], "/Users/Chris/GitHub/thesis/rmsd/outputs/rmsd_D410mR_2.txt")
