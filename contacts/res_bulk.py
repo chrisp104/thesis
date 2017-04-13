@@ -1,7 +1,7 @@
 from res_contacts import *
 import os
 
-# ********* FOR EACH AB:AG DIRECTORY **************
+# ***************** FOR EACH AB:AG DIRECTORY ******************
 
 # print os.getcwd()
 # os.chdir("/Users/Chris/GitHub/thesis/antibodies/D206/2M2D")
@@ -29,8 +29,20 @@ import os
 
 # ************ DIRECTORY BASED CONTACT COUNTING **************
 
-os.chdir("/Users/Chris/GitHub/thesis/contacts/contacts_crystal/")
-bulkDirectory(['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/out_crystal/")
+# os.chdir("/Users/Chris/GitHub/thesis/contacts/contacts_crystal/")
+# bulkDirectory(['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/out_crystal/")
 
-os.chdir("/Users/Chris/GitHub/thesis/contacts/contacts_mutant/")
-bulkDirectory(['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/out_mutant/")
+# os.chdir("/Users/Chris/GitHub/thesis/contacts/contacts_mutant/")
+# bulkDirectory(['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/out_mutant/")
+
+
+# ********************* PERCENT CORRECT ***********************
+
+os.chdir("/Users/Chris/GitHub/thesis/contacts/D206/")
+percentContact("D206mRd00.pdb", ['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/D206/percent_contacts.txt")
+
+os.chdir("/Users/Chris/GitHub/thesis/contacts/D410/")
+percentContact("D410mRd14.pdb", ['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/D410/percent_contacts.txt")
+
+os.chdir("/Users/Chris/GitHub/thesis/contacts/D430/")
+percentContact("D430mRd01.pdb", ['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/D430/percent_contacts.txt")

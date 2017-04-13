@@ -1,0 +1,10 @@
+D206mRd00.pdb: 100.0% correct
+
+D206mut165d00.pdb: 98.2% correct
+
+D206mut390d09.pdb: 92.7% correct
+
+D206mut435d00.pdb: 83.6% correct
+
+D206mut54d00.pdb: 87.3% correct
+

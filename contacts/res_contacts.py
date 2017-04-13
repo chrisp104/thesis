@@ -7,6 +7,7 @@ import os
 # 2. writeResContacts
 # 3. bulkContacts
 # 4. bulkDirectory
+# 5. percentContact
 #
 # functions to return an array with residues within dist angstroms
 # for each residue's beta carbon 
@@ -19,6 +20,7 @@ import os
 # pdb: string - pdb file name of the structure in question
 # ag: array - the chains of the Ag
 # dist: num - angstrom threshold for determining 'contact'
+# res_num_only: boolean - set to true if key in return_contacts should just be residue number
 #
 # RETURNS 
 # 	1. an array of tuples corresponding to the number of Fv residues in contact
@@ -26,8 +28,7 @@ import os
 #		2. an dictionary of arrays, key = Ag res # and key =  array of
 #		tuples with (Ab contact residue #, AA abbreviation, chain letter)
 #		3. a dictionary with the chains and number of contact residues for each chain
-
-def resContacts(pdb, ag, dist):
+def resContacts(pdb, ag, dist, res_num_only=False):
 	struct = open(pdb, 'r')
 	lines = struct.readlines()
 
@@ -85,10 +86,13 @@ def resContacts(pdb, ag, dist):
 
 		## 2. Add information to return values for this Ag res
 		return_contact_info.append((agen[21], agen[23:26], num_contacts))
-		return_contacts[(agen[23:26], agen[17:20])] = (res_contacts)
+		if not res_num_only:
+			return_contacts[(agen[23:26], agen[17:20])] = (res_contacts)
+		else:
+			return_contacts[agen[23:26]] = (res_contacts)
 
 	struct.close()
-	print pdb + " finished.\n"
+	print pdb + " finished."
 	return	return_contact_info, return_contacts, return_chain_num
 
 
@@ -189,6 +193,77 @@ def bulkDirectory(chains, dist, path):
 		writeResContacts(path, fn[:-7]+"_contacts.txt", numbers, residues, chain_nums)
 
 		file.close()
+
+
+
+
+
+# 5.
+# percentContact()
+#
+# take two outputs of residue contacts (second return value of res_contacts first function)
+# 1 of the correct contacts derived from the crystal structure and 1 from the mutants or 
+# models to be compared (is a directory of models)
+#
+# PERCENT CORRECT CONTACT is calculated as number of contacts in non crystal
+# structure docking model that are correctly within $dist angstroms / total number of contacts
+# as determined by crystal structure
+#
+# INCORECT " is same idea???
+#
+# ARGUMENTS
+# 1. crystal: str - crystal structure pdb
+# 2. chains: array containing characters of chains of Ag
+#					e.g. ['O', 'R', 'T']
+# 3. dist: num - angstrom threshold for determining 'contact'
+# 4. output: str - path to write outpu file to
+#
+# RETURNS 
+# 	outputs one file containing percent correct contact for each non-crystal model
+def percentContact(crystal, chains, dist, output):
+	out = open(output, 'w')
+
+	# GET CRYSTAL CORRECT CONTACTS
+	c_numbers, correct_contacts, c_chain_nums = resContacts(crystal, chains, dist, True)
+
+	# Find contacts for each Ag chain for each of the model files
+	for fn in os.listdir('.'):
+		print fn
+		if fn[0:1] == '.' or fn[-3:] != "pdb": continue
+		try:
+			file = open(fn, 'r')
+		except IOError as e:
+			break
+
+		numbers, residues, chain_nums = resContacts(fn, chains, dist, True)
+		file.close()
+
+
+		# ** COMPARE against the correct contacts determined from crystal structure
+		num_correct = 0
+		total = 0
+		for resi in sorted(correct_contacts):
+
+			c_con = correct_contacts[resi]
+			m_con = residues[resi]
+
+			# loop through the correct Ab contacts in the crystal contact array
+			for contact in c_con:
+				total += 1
+				if contact in m_con:
+					num_correct += 1
+
+		percent_correct = round(float(num_correct)/total, 3)
+
+		print num_correct, total
+		print str(percent_correct) + "\n"
+
+		out.write(fn+": "+ str(percent_correct*100)+"% correct\n\n")
+
+
+
+
+
 
 
 
