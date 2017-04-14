@@ -15,8 +15,6 @@ for ab in */ ; do
 			find "$f1" -type f -exec sed -i '' -e "/HEADER/d" {} \;
 			# remove END from files
 			find "$f1" -type f -exec sed -i '' -e "/END/d" {} \;
-			# remove ANISOU from files
-			find "$f1" -type f -exec sed -i '' -e "/ANISOU/d" {} \;
 			# remove the second to last column from PDB files
 			find "$f1" -type f -name '*.pdb' -exec sed -i '' -e 's/^\(.\{72\}\).\{3\}/\1   /' {} \;
 

@@ -47,6 +47,7 @@ def resContacts(pdb, ag, dist, res_num_only=False):
 		res_contacts = []		# to hold the Ab contact residues for second return value
 
 		# skip if not the CB atom, CA and Gly, or BMET ** Comment out if wanna commpare all atoms
+		if agen[0:3] == "END": continue
 		if not (agen[21] in ag):
 			continue
 		if not ((agen[17:20].strip() == "GLY" and agen[13:15].strip() == "CA") or 
@@ -183,14 +184,17 @@ def bulkDirectory(chains, dist, path):
 
 	# Find contacts for each Ag chain for each of the model files
 	for fn in os.listdir('.'):
-		if fn[0:1] == '.': continue
+		if fn[0:1] == '.' or fn[-3:] != "pdb": continue
 		try:
 			file = open(fn, 'r')
 		except IOError as e:
 			break
 
 		numbers, residues, chain_nums = resContacts(fn, chains, dist)
-		writeResContacts(path, fn[:-7]+"_contacts.txt", numbers, residues, chain_nums)
+		if fn[0] == 'D':
+			writeResContacts(path, fn[:-7]+"_contacts.txt", numbers, residues, chain_nums)
+		if fn[0] == '5':
+			writeResContacts(path, fn[:-4]+"_contacts.txt", numbers, residues, chain_nums)
 
 		file.close()
 
@@ -223,7 +227,7 @@ def bulkDirectory(chains, dist, path):
 def percentContact(crystal, chains, dist, output):
 	out = open(output, 'w')
 
-	# GET CRYSTAL CORRECT CONTACTS
+	# GET CRYSTAL CORRECT CONTACTS *********** CHANGE IF CRYSTAL STRUCTURE CHAINS CHANGE
 	c_numbers, correct_contacts, c_chain_nums = resContacts(crystal, chains, dist, True)
 
 	# Find contacts for each Ag chain for each of the model files

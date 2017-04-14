@@ -1,0 +1,64 @@
+5d1z.pdb: 100.0% correct
+
+5d1z_aligned.pdb: 100.0% correct
+
+D410mut52d00.pdb: 0.0% correct
+
+D410mut52d01.pdb: 0.0% correct
+
+D410mut52d02.pdb: 2.2% correct
+
+D410mut52d03.pdb: 0.0% correct
+
+D410mut52d04.pdb: 0.0% correct
+
+D410mut52d05.pdb: 0.0% correct
+
+D410mut52d06.pdb: 0.0% correct
+
+D410mut52d07.pdb: 0.0% correct
+
+D410mut52d08.pdb: 0.0% correct
+
+D410mut52d09.pdb: 10.9% correct
+
+D410mut52d10.pdb: 0.0% correct
+
+D410mut52d11.pdb: 0.0% correct
+
+D410mut52d12.pdb: 0.0% correct
+
+D410mut52d13.pdb: 0.0% correct
+
+D410mut52d14.pdb: 10.9% correct
+
+D410mut52d15.pdb: 0.0% correct
+
+D410mut52d16.pdb: 0.0% correct
+
+D410mut52d17.pdb: 2.2% correct
+
+D410mut52d18.pdb: 0.0% correct
+
+D410mut52d19.pdb: 0.0% correct
+
+D410mut52d20.pdb: 0.0% correct
+
+D410mut52d21.pdb: 6.5% correct
+
+D410mut52d22.pdb: 0.0% correct
+
+D410mut52d23.pdb: 0.0% correct
+
+D410mut52d24.pdb: 0.0% correct
+
+D410mut52d25.pdb: 2.2% correct
+
+D410mut52d26.pdb: 0.0% correct
+
+D410mut52d27.pdb: 0.0% correct
+
+D410mut52d28.pdb: 0.0% correct
+
+D410mut52d29.pdb: 0.0% correct
+

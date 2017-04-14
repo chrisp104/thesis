@@ -88,7 +88,7 @@ def rmsd(f1, f2, chain, ag):
 #
 # ARGUMENTS
 # target: string - file name of target pdb
-# chain: string - letter of chain to compare
+# chain: string - letter of chain to compare to in crystal structure
 # ag: array - containing chain letters for the Ag in the non crystal structure files
 # out: string - path of the output file to write all rmsds to
 #

@@ -1,0 +1,12 @@
+5d1z.pdb: 100.0% correct
+
+D410mRd14.pdb: 78.3% correct
+
+D410mut165d11.pdb: 0.0% correct
+
+D410mut390d13.pdb: 87.0% correct
+
+D410mut435d14.pdb: 84.8% correct
+
+D410mut52d00.pdb: 0.0% correct
+
