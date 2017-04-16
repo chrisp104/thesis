@@ -8,6 +8,7 @@ import os
 # 3. bulkContacts
 # 4. bulkDirectory
 # 5. percentContact
+# 6. percentPairs
 #
 # functions to return an array with residues within dist angstroms
 # for each residue's beta carbon 
@@ -202,6 +203,8 @@ def bulkDirectory(chains, dist, path):
 
 
 
+
+
 # 5.
 # percentContact()
 #
@@ -257,7 +260,7 @@ def percentContact(crystal, chains, dist, output):
 				if contact in m_con:
 					num_correct += 1
 
-		percent_correct = round(float(num_correct)/total, 3)
+		percent_correct = round(float(num_correct)/total, 4)
 
 		print num_correct, total
 		print str(percent_correct) + "\n"
@@ -268,11 +271,100 @@ def percentContact(crystal, chains, dist, output):
 
 
 
+# 6.
+# percentContact()
+#
+# take two outputs of residue contacts (second return value of res_contacts first function)
+# to be compared for % contacts similarity
+#
+# PERCENT CORRECT CONTACT is calculated as number of contacts in non crystal
+# structure docking model that are correctly within $dist angstroms / total number of contacts
+# as determined by crystal structure
+#
+# INCORECT " is same idea???
+#
+# ARGUMENTS
+# 1. chains: array containing characters of chains of Ag
+#					e.g. ['O', 'R', 'T']
+# 2. dist: num - angstrom threshold for determining 'contact'
+# 3. output: str - path to write outpu file to
+#
+# RETURNS 
+# 	outputs one file containing percent correct contact for each non-crystal model
+def percentContact(chains, dist, output):
+	out = open(output, 'w')
+	
+	# store the contacts data for each docking model in an array of tuples:
+	# [(file name, [data]), (...), ...]
+	data = []
+
+	for fn in os.listdir('.'):
+		if fn[0:1] == '.' or fn[-3:] != "pdb": continue
+		print "Reading in "+fn
+		try:
+			file = open(fn, 'r')
+		except IOError as e:
+			break
+
+		numbers, residues, chain_nums = resContacts(fn, chains, dist, True)
+		file.close()
+		data.append((fn, residues))
 
 
+	# write out the contact information in a file in case
+	contact_out = open("contacts.txt", 'w')
+	for i in range(len(data)):
+		contact_out.write("**** "+data[i][0]+"\n")
+		residues = data[i][1]
+		for key in sorted(residues):
+
+			# header information
+			if (len(residues[key]) != 0):
+				contact_out.write("Ag res: "+str(key)+"\n")
+				contact_out.write("Contacts in Ab: \n")
+				contacts = residues[key]
+			
+				# contact information
+				for contact in contacts:
+					contact_out.write(contact[0]+' '+contact[1]+' '+contact[2]+"\n")
+				contact_out.write("\n")
 
 
+	# loop through pairs and calculate % contact
+	for i in range(len(data)):
+		for j in range(i, len(data)):
+			print "Comparing "+data[i][0]+" & "+data[j][0]
 
+
+			num_correct = 0
+			total = 0
+			c1 = data[i][1]
+			c2 = data[j][1]
+
+			for resi in sorted(c1):
+				if not resi in c2: continue
+
+				con1 = c1[resi]
+				con2 = c2[resi]
+
+				# loop through the correct Ab contacts in the crystal contact array
+				for contact in con1:
+					total += 1
+					if contact in con2:
+						num_correct += 1
+
+			print num_correct, total
+
+			if total == 0:
+				percent_correct = 0
+			else:
+				percent_correct = round(float(num_correct)/total, 4)
+
+			out.write(data[i][0]+" & "+data[j][0]+": "+ str(percent_correct*100)+"% similar\n\n")
+
+
+	contact_out.close()
+	out.close()
 
 
 
