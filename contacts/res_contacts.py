@@ -26,9 +26,9 @@ import os
 # RETURNS 
 # 	1. an array of tuples corresponding to the number of Fv residues in contact
 #		with the nth residue in the Ag - (Ag chain, Ag res #, number of residues in contact)
-#		2. an dictionary of arrays, key = Ag res # and key =  array of
+#	2. an dictionary of arrays, key = Ag res # and key =  array of
 #		tuples with (Ab contact residue #, AA abbreviation, chain letter)
-#		3. a dictionary with the chains and number of contact residues for each chain
+#	3. a dictionary with the chains and number of contact residues for each chain
 def resContacts(pdb, ag, dist, res_num_only=False):
 	struct = open(pdb, 'r')
 	lines = struct.readlines()
@@ -106,10 +106,10 @@ def resContacts(pdb, ag, dist, res_num_only=False):
 # function to write and produce output of residue contact information into file
 #
 # ARUGMENTS
-#	1. path: str - path to directory to write out files to
+# 1. path: str - path to directory to write out files to
 # 2. file_name: str - output file name
-#	3. numbers: array - the first return value from resContacts()
-#	4. residues: dictionary - the second return value from resContacts()
+# 3. numbers: array - the first return value from resContacts()
+# 4. residues: dictionary - the second return value from resContacts()
 # 5. chain_nums: dictionary - the third
 def writeResContacts(path, file_name, numbers, residues, chain_nums):
 	output = open(path+file_name, 'w')
