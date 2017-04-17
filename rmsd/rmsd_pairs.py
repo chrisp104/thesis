@@ -1,8 +1,11 @@
 import os
 
+# ******* use this when chain letters MUST be the same as well - for finding
+# rmsd between models of the same Ag
+
 # FUNCTIONS
-# 1. rmsd
-# 2. rmsdMultiple
+# 1. rmsdPair
+# 2. rmsdPairMultiple
 
 # 1.
 # rmsd()
@@ -17,12 +20,11 @@ import os
 # f1: string - file name of first pdb
 # f2: string - file name of second pdb
 # chains: array - containing Ag chain letters in crystal structure
-# ag: array - containing chain letters for the Ag in the non crystal structure files
 # NOTE: chain and ag should be same if just comparing two homologous structures
 #
 # RETURNS 
 # 	1. the rmsd between the designated chain between the two structures
-def rmsd(f1, f2, chains, ag):
+def rmsdPair(f1, f2, chains):
 
 	## FILES
 
@@ -56,83 +58,81 @@ def rmsd(f1, f2, chains, ag):
 			##********************** CHECK THIS
 			if (m_line[0:3] == "TER"): continue
 			if (m_line[0:1] == "\n" or m_line[0:3] == "END" or m_line[0:8] == "CDR_SASA"): break
-			if not (m_line[21] in ag and m_line[0:4] == "ATOM"): continue
+			if not (m_line[21] in chains and m_line[0:4] == "ATOM"): continue
 			if not ((m_line[17:20].strip() == "GLY" and m_line[13:15].strip() == "CA") or 
 				(m_line[13:15].strip() == "CB")): continue
 			if m_line[16:20].strip() == "BMET": continue
 
-			if (c_line[23:27].strip() == m_line[23:27].strip()):
-				if (c_line[17:20] == m_line[17:20]):
-					print c_line
-					print m_line
+			if (c_line[23:27].strip() == m_line[23:27].strip() and c_line[17:20] == m_line[17:20]
+				and c_line[21] == m_line[21]):
+				# print c_line
+				# print m_line
 
-					## PUT A PRINT HERE TO MAKE SURE COMPARING CORRECT THINGS
-
-					xsq = (float(c_line[30:38].strip()) - float(m_line[30:38].strip()))**2
-					ysq = (float(c_line[38:46].strip()) - float(m_line[38:46].strip()))**2
-					zsq = (float(c_line[46:54].strip()) - float(m_line[46:54].strip()))**2
-				
-					squared = xsq + ysq + zsq
-					rmsd_squared += squared
-					print squared
-					print rmsd_squared
-					n += 1
-					break
+				xsq = (float(c_line[30:38].strip()) - float(m_line[30:38].strip()))**2
+				ysq = (float(c_line[38:46].strip()) - float(m_line[38:46].strip()))**2
+				zsq = (float(c_line[46:54].strip()) - float(m_line[46:54].strip()))**2
+			
+				squared = xsq + ysq + zsq
+				rmsd_squared += squared
+				# print squared
+				# print rmsd_squared
+				n += 1
+				break
 
 	rmsd_s_mean = rmsd_squared / n
 	rmsd = rmsd_s_mean**(0.5)
 	print f2 + ": " + str(rmsd)
-	print n
+
 	return rmsd
 
 	# close files
 	file_1.close()
 	file_2.close()
-	
+
+
 
 
 
 
 # 2.
-# rmsdMultiple()
-# calculates rmsds between a target file and many model files against it
+# rmsdPairMultiple()
+# calculates rmsds between 10 models in a directory
 #
 # ARGUMENTS
-# target: string - file name of target pdb
-# chain: string - letter of chain to compare to in crystal structure
-# ag: array - containing chain letters for the Ag in the non crystal structure files
+# directory: string - directory with pdb files to pairwise compare
+# chains: array - containing chain letters for the chains to compare
 # out: string - path of the output file to write all rmsds to
 #
 # RESULT 
 # 	1. prints rmsds
 #		2. outputs file with rmsds
-def rmsdMultiple(target, chain, ag, out):
+def rmsdPairMultiple(directory, chains, out):
+	print directory
 
 	output = open(out, 'w')
+	rmsd_dict = {}
+	
+	for i in range(1, 11):
+		for j in range(i+1, 11):
 
-	# Calculate rmsd for each of the model files
-	for fn in os.listdir('.'):
-		if not (fn[0:1] == 'D'): continue
-		try:
-			file = open(fn, 'r')
-		except IOError as e:
-			break
+			f1 = directory+"model.0_"+str(i).zfill(4)+".pdb"
+			f2 = directory+"model.0_"+str(j).zfill(4)+".pdb"
 
-		result = rmsd(target, fn, chain, ag)
+			try:
+				file1 = open(f1, 'r')
+			except IOError as e:
+				continue
 
-		# Put stars by the models with RMSD lower than THRESHOLD
-		THRESHOLD = 10
-		output.write(fn+'\n')
+			try:
+				file2 = open(f2, 'r')
+			except IOError as e:
+				continue
 
-		if result < THRESHOLD:
-			output.write("*** rmsd = "+str(result)+'\n')
-		else:
-			output.write("rmsd = "+str(result)+'\n')
-		file.close()
+			result = rmsdPair(f1, f2, chains)
+
+			rmsd_dict[result] = str(i)+ " & "+str(j)
+
+	for key in sorted(rmsd_dict):
+		output.write(rmsd_dict[key]+": "+str(key)+"\n\n")
 	output.close()
-
-
-
-
-
 
