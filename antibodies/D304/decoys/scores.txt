@@ -2,6 +2,8 @@ model.0_0004: -319.843
 model.0_0006: -313.205
 model.0_0009: -312.974
 model.0_0001: -311.486
+
+Following energies are too high
 model.0_0002: -308.089
 model.0_0005: -307.237
 model.0_0001: -305.464

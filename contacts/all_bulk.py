@@ -35,9 +35,14 @@ import os
 # bulkAllContacts("/Users/Chris/GitHub/thesis/contacts/all_bulk_test/", "D410m5d", ['O', 'R', 'T'], 8, normalized=False)
 # os.chdir("/Users/Chris/GitHub/thesis/antibodies/D410/2MRD")
 # bulkAllContacts("/Users/Chris/GitHub/thesis/contacts/all_bulk_test/", "D410mRd", ['O', 'R', 'T'], 8, normalized=False)
-os.chdir("/Users/Chris/GitHub/thesis/antibodies/D430/MR_m165")
-bulkAllContacts("/Users/Chris/GitHub/thesis/contacts/all_bulk_test/", "D430mut165d", ['O', 'R', 'T'], 8, normalized=False)
-os.chdir("/Users/Chris/GitHub/thesis/antibodies/D430/MR_m390")
-bulkAllContacts("/Users/Chris/GitHub/thesis/contacts/all_bulk_test/", "D430mut390d", ['O', 'R', 'T'], 8, normalized=False)
-os.chdir("/Users/Chris/GitHub/thesis/antibodies/D430/MR_m435")
-bulkAllContacts("/Users/Chris/GitHub/thesis/contacts/all_bulk_test/", "D430mut435d", ['O', 'R', 'T'], 8, normalized=False)
+# os.chdir("/Users/Chris/GitHub/thesis/antibodies/D430/MR_m165")
+# bulkAllContacts("/Users/Chris/GitHub/thesis/contacts/all_bulk_test/", "D430mut165d", ['O', 'R', 'T'], 8, normalized=False)
+# os.chdir("/Users/Chris/GitHub/thesis/antibodies/D430/MR_m390")
+# bulkAllContacts("/Users/Chris/GitHub/thesis/contacts/all_bulk_test/", "D430mut390d", ['O', 'R', 'T'], 8, normalized=False)
+# os.chdir("/Users/Chris/GitHub/thesis/antibodies/D430/MR_m435")
+# bulkAllContacts("/Users/Chris/GitHub/thesis/contacts/all_bulk_test/", "D430mut435d", ['O', 'R', 'T'], 8, normalized=False)
+
+
+# *********** percentContacts() for all pairs in directory ***********
+os.chdir("/Users/Chris/GitHub/thesis/contacts/pairs/")
+percentContact(['I', 'E', 'O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/pairs/percent_pairs.txt")

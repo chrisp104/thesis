@@ -36,22 +36,20 @@ def allContacts(pdb, ag, dist, binary=True):
 		num_contacts = 0		# the number of Ab residues this Ag residue is contacting
 
 		# skip if not the CB atom, CA and Gly, or BMET ** Comment out if wanna commpare all atoms
-		if not (agen[21] in ag):
-			continue
+		if (agen[0:3] == "TER"): continue
+		if agen[0:3] == "END": continue
+		if not (agen[21] in ag): continue
 		if not ((agen[17:20].strip() == "GLY" and agen[13:15].strip() == "CA") or 
-			(agen[13:15].strip() == "CB")):
-			continue
-		if agen[16:20].strip() == "BMET":
-			continue
+			(agen[13:15].strip() == "CB")): continue
+		if agen[16:20].strip() == "BMET": continue
 
 		# loop through Ab residues (!Ag residues)
 		for abody in lines:
 			# skip if not the CB atom, CA and Gly, or if part of Ag
+			if (abody[0:3] == "TER"): continue
 			if not ((abody[17:20].strip() == "GLY" and abody[13:15].strip() == "CA") or 
-				(abody[13:15].strip() == "CB")):
-				continue
-			if (abody[16:20].strip() == "BMET" or abody[21] in ag):
-				continue
+				(abody[13:15].strip() == "CB")): continue
+			if (abody[16:20].strip() == "BMET" or abody[21] in ag): continue
 
 			# else calculate the rmsd between the Ag residue and Ab residue
 			xsq = (float(agen[30:38].strip()) - float(abody[30:38].strip()))**2
@@ -180,6 +178,95 @@ def bulkAllContacts(path, model_pre, chains, dist, normalized=True):
 		output.write("Res #" + key+": "+str(num_contacts)+"\n")
 
 
+
+
+
+# 4.
+# percentContact()
+#
+# take two outputs of residue contacts (second return value of res_contacts first function)
+# to be compared for % contacts similarity
+#
+# PERCENT SAME CONTACT is calculated as the following numerator / denominator
+# numerator = sum - smaller number of Ab residues in contact from either dock
+# denominator = sum - larger number
+#
+# INCORECT " is same idea???
+#
+# ARGUMENTS
+# 1. chains: array containing characters of chains of Ag
+#					e.g. ['O', 'R', 'T']
+# 2. dist: num - angstrom threshold for determining 'contact'
+# 3. output: str - path to write outpu file to
+#
+# RETURNS 
+# 	outputs one file containing percent correct contact for each non-crystal model
+def percentContact(chains, dist, output):
+	out = open(output, 'w')
+	
+	# store the contacts data for each docking model in an array of tuples:
+	# [(file name, [data]), (...), ...]
+	data = []
+
+	for fn in os.listdir('.'):
+		if fn[0:1] == '.' or fn[-3:] != "pdb": continue
+		print "Reading in "+fn
+		try:
+			file = open(fn, 'r')
+		except IOError as e:
+			break
+
+		num_contacts = allContacts(fn, chains, dist, False)
+		file.close()
+		data.append((fn, num_contacts))
+
+
+	# write out the contact information in a file in case
+	contact_out = open("contacts.txt", 'w')
+	for i in range(len(data)):
+		contact_out.write("**** "+data[i][0]+"\n")
+		num_contacts = data[i][1]
+		for resi in num_contacts:
+
+			# header information
+			if resi[1] != 0:
+				contact_out.write("Ag res: "+str(resi[0])+"\n")
+				contact_out.write("Contacts in Ab:"+str(resi[1])+"\n")
+				contacts = resi[1]
+
+
+	# loop through pairs and calculate % contact
+	for i in range(len(data)):
+		for j in range(i, len(data)):
+			print "Comparing "+data[i][0]+" & "+data[j][0]
+
+			num_correct = 0
+			total = 0
+			c1 = data[i][1]
+			c2 = data[j][1]
+
+			for k in range(len(c1)):
+
+				con1 = int(c1[k][1])
+				con2 = int(c2[k][1])
+
+				# now we have the number of Ab contact residues for each so just do the math
+				num_correct += min(con1, con2)
+				total += max(con1, con2)
+
+			print num_correct, total
+
+			if total == 0:
+				percent_correct = 0
+			else:
+				percent_correct = round(float(num_correct)/total, 4)
+
+			print i, j, data
+			out.write(data[i][0]+" & "+data[j][0]+": "+ str(percent_correct*100)+"% similar\n\n")
+
+
+	contact_out.close()
+	out.close()
 
 
 

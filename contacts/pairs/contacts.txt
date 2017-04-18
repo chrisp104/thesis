@@ -1,1985 +1,593 @@
-**** 5d1q.pdb
-Ag res: 362
-Contacts in Ab: 
-53 ILE B
-54 PHE B
-55 GLY B
-
-Ag res: 365
-Contacts in Ab: 
-30 SER B
-31 THR B
-53 ILE B
-
-Ag res: 366
-Contacts in Ab: 
-31 THR B
-
-Ag res: 387
-Contacts in Ab: 
-31 THR B
-
-Ag res: 388
-Contacts in Ab: 
-31 THR B
-32 ARG B
-97 PRO B
-
-Ag res: 389
-Contacts in Ab: 
-97 PRO B
-
-Ag res: 390
-Contacts in Ab: 
-97 PRO B
-98 PRO B
-99 GLY B
-
-Ag res: 412
-Contacts in Ab: 
-97 PRO B
-
-Ag res: 433
-Contacts in Ab: 
-54 PHE B
-
-Ag res: 435
-Contacts in Ab: 
-33 THR B
-52 SER B
-54 PHE B
-56 ALA B
-99 GLY B
-
-Ag res: 436
-Contacts in Ab: 
-91 ALA A
-98 PRO B
-99 GLY B
-100 ALA B
-
-Ag res: 437
-Contacts in Ab: 
-96 TRP A
-33 THR B
-35 SER B
-50 GLY B
-95 ASP B
-99 GLY B
-100 ALA B
-
-Ag res: 438
-Contacts in Ab: 
-94 PHE A
-33 THR B
-49 GLY B
-50 GLY B
-51 ILE B
-52 SER B
-56 ALA B
-57 ALA B
-58 ASN B
-
-Ag res: 439
-Contacts in Ab: 
-94 PHE A
-58 ASN B
-
-Ag res: 440
-Contacts in Ab: 
-52 SER B
-54 PHE B
-56 ALA B
-58 ASN B
-
-Ag res: 442
-Contacts in Ab: 
-54 PHE B
-
-**** 5d1x.pdb
-Ag res: 362
-Contacts in Ab: 
-53 ILE B
-54 PHE B
-
-Ag res: 365
-Contacts in Ab: 
-30 ASN B
-31 THR B
-53 ILE B
-
-Ag res: 366
-Contacts in Ab: 
-31 THR B
-
-Ag res: 388
-Contacts in Ab: 
-31 THR B
-
-Ag res: 390
-Contacts in Ab: 
-98 GLY B
-
-Ag res: 433
-Contacts in Ab: 
-54 PHE B
-
-Ag res: 435
-Contacts in Ab: 
-33 THR B
-52 MET B
-54 PHE B
-56 ALA B
-
-Ag res: 436
-Contacts in Ab: 
-91 ALA A
-94 TRP A
-99 ALA B
-
-Ag res: 437
-Contacts in Ab: 
-91 ALA A
-94 TRP A
-96 TYR A
-33 THR B
-35 SER B
-50 GLY B
-95 ASP B
-99 ALA B
-100 LEU B
-
-Ag res: 438
-Contacts in Ab: 
-94 TRP A
-33 THR B
-50 GLY B
-51 ILE B
-52 MET B
-56 ALA B
-57 SER B
-58 LYS B
-
-Ag res: 439
-Contacts in Ab: 
-94 TRP A
-58 LYS B
-
-Ag res: 440
-Contacts in Ab: 
-52 MET B
-54 PHE B
-56 ALA B
-58 LYS B
-
-Ag res: 442
-Contacts in Ab: 
-54 PHE B
-56 ALA B
-
-**** 5d1z.pdb
-Ag res: 159
-Contacts in Ab: 
-31 ARG C
-
-Ag res: 161
-Contacts in Ab: 
-93 ASN C
-94 THR C
-
-Ag res: 162
-Contacts in Ab: 
-94 THR C
-95 TYR C
-
-Ag res: 164
-Contacts in Ab: 
-95 TYR C
-52 ILE D
-60 TYR D
-110 ASP D
-112 TYR D
-
-Ag res: 165
-Contacts in Ab: 
-54 TYR D
-58 THR D
-110 ASP D
-
-Ag res: 167
-Contacts in Ab: 
-60 TYR D
-
-Ag res: 168
-Contacts in Ab: 
-52 ILE D
-54 TYR D
-58 THR D
-59 THR D
-60 TYR D
-
-Ag res: 169
-Contacts in Ab: 
-54 TYR D
-56 SER D
-58 THR D
-
-Ag res: 190
-Contacts in Ab: 
-56 SER D
-58 THR D
-
-Ag res: 191
-Contacts in Ab: 
-54 TYR D
-56 SER D
-57 GLY D
-58 THR D
-
-Ag res: 194
-Contacts in Ab: 
-55 PHE D
-56 SER D
-
-Ag res: 240
-Contacts in Ab: 
-56 SER D
-
-Ag res: 242
-Contacts in Ab: 
-31 SER D
-34 TYR D
-55 PHE D
-56 SER D
-108 PRO D
-109 GLY D
-
-Ag res: 243
-Contacts in Ab: 
-31 SER D
-55 PHE D
-107 GLY D
-108 PRO D
-109 GLY D
-
-Ag res: 247
-Contacts in Ab: 
-34 TYR D
-109 GLY D
-110 ASP D
-
-Ag res: 249
-Contacts in Ab: 
-110 ASP D
-
 **** D206mRd00.pdb
 Ag res: 362
-Contacts in Ab: 
-53 ILE B
-54 PHE B
-
+Contacts in Ab:2
 Ag res: 365
-Contacts in Ab: 
-28 SER B
-30 SER B
-31 THR B
-53 ILE B
-
+Contacts in Ab:4
 Ag res: 366
-Contacts in Ab: 
-31 THR B
-53 ILE B
-
+Contacts in Ab:2
 Ag res: 387
-Contacts in Ab: 
-31 THR B
-
+Contacts in Ab:1
 Ag res: 388
-Contacts in Ab: 
-31 THR B
-32 ARG B
-97 PRO B
-
+Contacts in Ab:3
 Ag res: 389
-Contacts in Ab: 
-97 PRO B
-
+Contacts in Ab:1
 Ag res: 390
-Contacts in Ab: 
-97 PRO B
-98 PRO B
-99 GLY B
-
+Contacts in Ab:3
 Ag res: 412
-Contacts in Ab: 
-97 PRO B
-
+Contacts in Ab:1
 Ag res: 433
-Contacts in Ab: 
-54 PHE B
-
+Contacts in Ab:1
 Ag res: 435
-Contacts in Ab: 
-33 THR B
-52 SER B
-54 PHE B
-56 ALA B
-99 GLY B
-
+Contacts in Ab:5
 Ag res: 436
-Contacts in Ab: 
-91 ALA A
-98 PRO B
-99 GLY B
-100 ALA B
-
+Contacts in Ab:4
 Ag res: 437
-Contacts in Ab: 
-32 ARG B
-33 THR B
-35 SER B
-50 GLY B
-95 ASP B
-99 GLY B
-100 ALA B
-
+Contacts in Ab:7
 Ag res: 438
-Contacts in Ab: 
-94 PHE A
-33 THR B
-35 SER B
-49 GLY B
-50 GLY B
-51 ILE B
-52 SER B
-56 ALA B
-57 ALA B
-58 ASN B
-
+Contacts in Ab:10
 Ag res: 439
-Contacts in Ab: 
-93 THR A
-94 PHE A
-58 ASN B
-100 ALA B
-
+Contacts in Ab:4
 Ag res: 440
-Contacts in Ab: 
-52 SER B
-54 PHE B
-56 ALA B
-58 ASN B
-
+Contacts in Ab:4
 Ag res: 442
-Contacts in Ab: 
-54 PHE B
-56 ALA B
-
+Contacts in Ab:2
 Ag res: 444
-Contacts in Ab: 
-54 PHE B
-
+Contacts in Ab:1
 **** D206mut165d00.pdb
 Ag res: 362
-Contacts in Ab: 
-53 ILE B
-54 PHE B
-
+Contacts in Ab:2
 Ag res: 365
-Contacts in Ab: 
-28 SER B
-30 SER B
-31 THR B
-53 ILE B
-
+Contacts in Ab:4
 Ag res: 366
-Contacts in Ab: 
-31 THR B
-53 ILE B
-
+Contacts in Ab:2
 Ag res: 387
-Contacts in Ab: 
-31 THR B
-
+Contacts in Ab:1
 Ag res: 388
-Contacts in Ab: 
-31 THR B
-32 ARG B
-97 PRO B
-
+Contacts in Ab:3
 Ag res: 389
-Contacts in Ab: 
-97 PRO B
-
+Contacts in Ab:1
 Ag res: 390
-Contacts in Ab: 
-97 PRO B
-98 PRO B
-99 GLY B
-
+Contacts in Ab:3
 Ag res: 409
-Contacts in Ab: 
-97 PRO B
-
+Contacts in Ab:1
 Ag res: 412
-Contacts in Ab: 
-97 PRO B
-
+Contacts in Ab:1
 Ag res: 433
-Contacts in Ab: 
-54 PHE B
-
+Contacts in Ab:1
 Ag res: 435
-Contacts in Ab: 
-33 THR B
-52 SER B
-54 PHE B
-56 ALA B
-
+Contacts in Ab:4
 Ag res: 436
-Contacts in Ab: 
-91 ALA A
-98 PRO B
-99 GLY B
-100 ALA B
-
+Contacts in Ab:4
 Ag res: 437
-Contacts in Ab: 
-32 ARG B
-33 THR B
-35 SER B
-50 GLY B
-95 ASP B
-99 GLY B
-100 ALA B
-
+Contacts in Ab:7
 Ag res: 438
-Contacts in Ab: 
-94 PHE A
-33 THR B
-35 SER B
-49 GLY B
-50 GLY B
-51 ILE B
-52 SER B
-56 ALA B
-57 ALA B
-58 ASN B
-
+Contacts in Ab:10
 Ag res: 439
-Contacts in Ab: 
-93 THR A
-94 PHE A
-58 ASN B
-100 ALA B
-
+Contacts in Ab:4
 Ag res: 440
-Contacts in Ab: 
-52 SER B
-54 PHE B
-56 ALA B
-58 ASN B
-
+Contacts in Ab:4
 Ag res: 442
-Contacts in Ab: 
-54 PHE B
-56 ALA B
-
+Contacts in Ab:2
 Ag res: 444
-Contacts in Ab: 
-54 PHE B
-
+Contacts in Ab:1
 **** D206mut390d09.pdb
 Ag res: 362
-Contacts in Ab: 
-53 ILE B
-54 PHE B
-
+Contacts in Ab:2
 Ag res: 365
-Contacts in Ab: 
-28 SER B
-30 SER B
-31 THR B
-53 ILE B
-
+Contacts in Ab:4
 Ag res: 366
-Contacts in Ab: 
-31 THR B
-
+Contacts in Ab:1
 Ag res: 387
-Contacts in Ab: 
-28 SER B
-31 THR B
-
+Contacts in Ab:2
 Ag res: 388
-Contacts in Ab: 
-28 SER B
-31 THR B
-32 ARG B
-97 PRO B
-
+Contacts in Ab:4
 Ag res: 389
-Contacts in Ab: 
-97 PRO B
-
+Contacts in Ab:1
 Ag res: 390
-Contacts in Ab: 
-95 ASP B
-97 PRO B
-98 PRO B
-99 GLY B
-
+Contacts in Ab:4
 Ag res: 409
-Contacts in Ab: 
-97 PRO B
-
+Contacts in Ab:1
 Ag res: 412
-Contacts in Ab: 
-97 PRO B
-
+Contacts in Ab:1
 Ag res: 433
-Contacts in Ab: 
-54 PHE B
-
+Contacts in Ab:1
 Ag res: 435
-Contacts in Ab: 
-33 THR B
-52 SER B
-54 PHE B
-56 ALA B
-
+Contacts in Ab:4
 Ag res: 436
-Contacts in Ab: 
-91 ALA A
-95 ASP B
-98 PRO B
-99 GLY B
-100 ALA B
-
+Contacts in Ab:5
 Ag res: 437
-Contacts in Ab: 
-96 TRP A
-32 ARG B
-33 THR B
-35 SER B
-50 GLY B
-95 ASP B
-99 GLY B
-100 ALA B
-
+Contacts in Ab:8
 Ag res: 438
-Contacts in Ab: 
-94 PHE A
-33 THR B
-35 SER B
-49 GLY B
-50 GLY B
-51 ILE B
-52 SER B
-56 ALA B
-57 ALA B
-58 ASN B
-
+Contacts in Ab:10
 Ag res: 439
-Contacts in Ab: 
-94 PHE A
-58 ASN B
-
+Contacts in Ab:2
 Ag res: 440
-Contacts in Ab: 
-52 SER B
-54 PHE B
-56 ALA B
-58 ASN B
-
+Contacts in Ab:4
 Ag res: 442
-Contacts in Ab: 
-54 PHE B
-56 ALA B
-
+Contacts in Ab:2
 Ag res: 444
-Contacts in Ab: 
-54 PHE B
-
+Contacts in Ab:1
 **** D206mut435d00.pdb
 Ag res: 362
-Contacts in Ab: 
-53 ILE B
-54 PHE B
-
+Contacts in Ab:2
 Ag res: 365
-Contacts in Ab: 
-30 SER B
-31 THR B
-53 ILE B
-
+Contacts in Ab:3
 Ag res: 366
-Contacts in Ab: 
-31 THR B
-
+Contacts in Ab:1
 Ag res: 388
-Contacts in Ab: 
-31 THR B
-97 PRO B
-
+Contacts in Ab:2
 Ag res: 390
-Contacts in Ab: 
-97 PRO B
-98 PRO B
-99 GLY B
-
+Contacts in Ab:3
 Ag res: 412
-Contacts in Ab: 
-97 PRO B
-98 PRO B
-
+Contacts in Ab:2
 Ag res: 433
-Contacts in Ab: 
-54 PHE B
-
+Contacts in Ab:1
 Ag res: 435
-Contacts in Ab: 
-33 THR B
-52 SER B
-54 PHE B
-56 ALA B
-99 GLY B
-
+Contacts in Ab:5
 Ag res: 436
-Contacts in Ab: 
-91 ALA A
-98 PRO B
-99 GLY B
-100 ALA B
-
+Contacts in Ab:4
 Ag res: 437
-Contacts in Ab: 
-32 ARG B
-33 THR B
-35 SER B
-50 GLY B
-95 ASP B
-99 GLY B
-100 ALA B
-
+Contacts in Ab:7
 Ag res: 438
-Contacts in Ab: 
-94 PHE A
-33 THR B
-35 SER B
-49 GLY B
-50 GLY B
-51 ILE B
-52 SER B
-56 ALA B
-57 ALA B
-58 ASN B
-
+Contacts in Ab:10
 Ag res: 439
-Contacts in Ab: 
-94 PHE A
-58 ASN B
-
+Contacts in Ab:2
 Ag res: 440
-Contacts in Ab: 
-52 SER B
-54 PHE B
-56 ALA B
-58 ASN B
-
+Contacts in Ab:4
 Ag res: 442
-Contacts in Ab: 
-54 PHE B
-
+Contacts in Ab:1
 **** D206mut54d00.pdb
 Ag res: 362
-Contacts in Ab: 
-53 ILE B
-54 ALA B
-
+Contacts in Ab:2
 Ag res: 363
-Contacts in Ab: 
-53 ILE B
-
+Contacts in Ab:1
 Ag res: 365
-Contacts in Ab: 
-28 SER B
-30 SER B
-31 THR B
-53 ILE B
-
+Contacts in Ab:4
 Ag res: 366
-Contacts in Ab: 
-31 THR B
-53 ILE B
-
+Contacts in Ab:2
 Ag res: 387
-Contacts in Ab: 
-31 THR B
-
+Contacts in Ab:1
 Ag res: 388
-Contacts in Ab: 
-31 THR B
-32 ARG B
-97 PRO B
-
+Contacts in Ab:3
 Ag res: 389
-Contacts in Ab: 
-97 PRO B
-
+Contacts in Ab:1
 Ag res: 390
-Contacts in Ab: 
-97 PRO B
-98 PRO B
-99 GLY B
-
+Contacts in Ab:3
 Ag res: 409
-Contacts in Ab: 
-97 PRO B
-
+Contacts in Ab:1
 Ag res: 412
-Contacts in Ab: 
-97 PRO B
-
+Contacts in Ab:1
 Ag res: 433
-Contacts in Ab: 
-54 ALA B
-
+Contacts in Ab:1
 Ag res: 435
-Contacts in Ab: 
-33 THR B
-52 SER B
-54 ALA B
-56 ALA B
-
+Contacts in Ab:4
 Ag res: 436
-Contacts in Ab: 
-91 ALA A
-98 PRO B
-99 GLY B
-100 ALA B
-
+Contacts in Ab:4
 Ag res: 437
-Contacts in Ab: 
-32 ARG B
-33 THR B
-35 SER B
-50 GLY B
-95 ASP B
-99 GLY B
-100 ALA B
-
+Contacts in Ab:7
 Ag res: 438
-Contacts in Ab: 
-94 PHE A
-33 THR B
-35 SER B
-49 GLY B
-50 GLY B
-51 ILE B
-52 SER B
-56 ALA B
-57 ALA B
-58 ASN B
-
+Contacts in Ab:10
 Ag res: 439
-Contacts in Ab: 
-93 THR A
-94 PHE A
-58 ASN B
-100 ALA B
-
+Contacts in Ab:4
 Ag res: 440
-Contacts in Ab: 
-52 SER B
-54 ALA B
-56 ALA B
-58 ASN B
-
+Contacts in Ab:4
 Ag res: 442
-Contacts in Ab: 
-54 ALA B
-56 ALA B
-
+Contacts in Ab:2
 Ag res: 444
-Contacts in Ab: 
-54 ALA B
-
+Contacts in Ab:1
 **** D410mRd14.pdb
 Ag res: 159
-Contacts in Ab: 
-31 ARG C
-
+Contacts in Ab:1
 Ag res: 161
-Contacts in Ab: 
-93 ASN C
-94 THR C
-
+Contacts in Ab:2
 Ag res: 163
-Contacts in Ab: 
-110 ASP D
-
+Contacts in Ab:1
 Ag res: 164
-Contacts in Ab: 
-95 TYR C
-35 TYR D
-52 ILE D
-60 TYR D
-110 ASP D
-112 TYR D
-
+Contacts in Ab:6
 Ag res: 165
-Contacts in Ab: 
-34 TYR D
-35 TYR D
-54 TYR D
-56 SER D
-58 THR D
-110 ASP D
-
+Contacts in Ab:6
 Ag res: 166
-Contacts in Ab: 
-110 ASP D
-
+Contacts in Ab:1
 Ag res: 168
-Contacts in Ab: 
-54 TYR D
-56 SER D
-58 THR D
-59 THR D
-60 TYR D
-
+Contacts in Ab:5
 Ag res: 169
-Contacts in Ab: 
-54 TYR D
-56 SER D
-58 THR D
-
+Contacts in Ab:3
 Ag res: 190
-Contacts in Ab: 
-56 SER D
-58 THR D
-
+Contacts in Ab:2
 Ag res: 191
-Contacts in Ab: 
-56 SER D
-58 THR D
-
+Contacts in Ab:2
 Ag res: 194
-Contacts in Ab: 
-56 SER D
-
+Contacts in Ab:1
 Ag res: 240
-Contacts in Ab: 
-110 ASP D
-
+Contacts in Ab:1
 Ag res: 242
-Contacts in Ab: 
-31 SER D
-34 TYR D
-55 PHE D
-107 GLY D
-108 PRO D
-109 GLY D
-110 ASP D
-
+Contacts in Ab:7
 Ag res: 243
-Contacts in Ab: 
-31 SER D
-32 SER D
-107 GLY D
-108 PRO D
-109 GLY D
-
+Contacts in Ab:5
 Ag res: 245
-Contacts in Ab: 
-106 GLY D
-107 GLY D
-109 GLY D
-
+Contacts in Ab:3
 Ag res: 247
-Contacts in Ab: 
-34 TYR D
-109 GLY D
-110 ASP D
-
+Contacts in Ab:3
 Ag res: 249
-Contacts in Ab: 
-110 ASP D
-
+Contacts in Ab:1
 Ag res: 354
-Contacts in Ab: 
-64 SER D
-
+Contacts in Ab:1
 Ag res: 357
-Contacts in Ab: 
-2 ASP C
-63 PRO D
-64 SER D
-
+Contacts in Ab:3
 Ag res: 358
-Contacts in Ab: 
-2 ASP C
-4 GLN C
-
+Contacts in Ab:2
 Ag res: 359
-Contacts in Ab: 
-2 ASP C
-64 SER D
-
+Contacts in Ab:2
 Ag res: 362
-Contacts in Ab: 
-90 ALA D
-
+Contacts in Ab:1
 Ag res: 438
-Contacts in Ab: 
-14 PRO D
-
+Contacts in Ab:1
 Ag res: 440
-Contacts in Ab: 
-88 THR D
-
+Contacts in Ab:1
 **** D410mut165d11.pdb
 Ag res: 130
-Contacts in Ab: 
-110 ASP D
-
+Contacts in Ab:1
 Ag res: 133
-Contacts in Ab: 
-58 THR D
-
+Contacts in Ab:1
 Ag res: 134
-Contacts in Ab: 
-54 TYR D
-56 SER D
-58 THR D
-
+Contacts in Ab:3
 Ag res: 165
-Contacts in Ab: 
-94 THR C
-
+Contacts in Ab:1
 Ag res: 168
-Contacts in Ab: 
-94 THR C
-
+Contacts in Ab:1
 Ag res: 191
-Contacts in Ab: 
-95 TYR C
-60 TYR D
-
+Contacts in Ab:2
 Ag res: 193
-Contacts in Ab: 
-54 TYR D
-58 THR D
-60 TYR D
-
+Contacts in Ab:3
 Ag res: 194
-Contacts in Ab: 
-95 TYR C
-
+Contacts in Ab:1
 Ag res: 214
-Contacts in Ab: 
-58 THR D
-
+Contacts in Ab:1
 Ag res: 216
-Contacts in Ab: 
-57 GLY D
-58 THR D
-59 THR D
-
+Contacts in Ab:3
 Ag res: 217
-Contacts in Ab: 
-59 THR D
-61 TYR D
-70 SER D
-
+Contacts in Ab:3
 Ag res: 218
-Contacts in Ab: 
-60 TYR D
-61 TYR D
-66 GLN D
-
+Contacts in Ab:3
 Ag res: 219
-Contacts in Ab: 
-58 THR D
-59 THR D
-60 TYR D
-
+Contacts in Ab:3
 Ag res: 241
-Contacts in Ab: 
-110 ASP D
-112 TYR D
-
+Contacts in Ab:2
 Ag res: 242
-Contacts in Ab: 
-31 ARG C
-33 SER C
-93 ASN C
-112 TYR D
-
+Contacts in Ab:4
 Ag res: 243
-Contacts in Ab: 
-31 ARG C
-32 SER C
-33 SER C
-51 SER C
-92 LEU C
-93 ASN C
-111 ASP D
-112 TYR D
-113 PHE D
-
+Contacts in Ab:9
 Ag res: 244
-Contacts in Ab: 
-103 ARG D
-109 GLY D
-110 ASP D
-111 ASP D
-112 TYR D
-
+Contacts in Ab:5
 **** D410mut390d13.pdb
-Ag res: 159
-Contacts in Ab: 
-31 ARG C
-
-Ag res: 161
-Contacts in Ab: 
-93 ASN C
-94 THR C
-
-Ag res: 163
-Contacts in Ab: 
-110 ASP D
-
-Ag res: 164
-Contacts in Ab: 
-95 TYR C
-52 ILE D
-60 TYR D
-112 TYR D
-
-Ag res: 165
-Contacts in Ab: 
-34 TYR D
-35 TYR D
-54 TYR D
-56 SER D
-58 THR D
-60 TYR D
-110 ASP D
-
-Ag res: 167
-Contacts in Ab: 
-60 TYR D
-
-Ag res: 168
-Contacts in Ab: 
-54 TYR D
-58 THR D
-59 THR D
-60 TYR D
-
-Ag res: 169
-Contacts in Ab: 
-54 TYR D
-56 SER D
-58 THR D
-
-Ag res: 190
-Contacts in Ab: 
-56 SER D
-58 THR D
-
-Ag res: 191
-Contacts in Ab: 
-54 TYR D
-56 SER D
-57 GLY D
-58 THR D
-
-Ag res: 194
-Contacts in Ab: 
-55 PHE D
-56 SER D
-
-Ag res: 240
-Contacts in Ab: 
-34 TYR D
-55 PHE D
-56 SER D
-110 ASP D
-
-Ag res: 242
-Contacts in Ab: 
-31 SER D
-34 TYR D
-55 PHE D
-108 PRO D
-109 GLY D
-110 ASP D
-
-Ag res: 243
-Contacts in Ab: 
-31 SER D
-32 SER D
-34 TYR D
-107 GLY D
-108 PRO D
-109 GLY D
-
-Ag res: 245
-Contacts in Ab: 
-106 GLY D
-107 GLY D
-109 GLY D
-
-Ag res: 247
-Contacts in Ab: 
-34 TYR D
-109 GLY D
-110 ASP D
-
-Ag res: 249
-Contacts in Ab: 
-110 ASP D
-
 Ag res: 356
-Contacts in Ab: 
-2 ASP C
-63 PRO D
-
+Contacts in Ab:2
 Ag res: 357
-Contacts in Ab: 
-2 ASP C
-3 ILE C
-4 GLN C
-27 SER C
-
+Contacts in Ab:4
 Ag res: 358
-Contacts in Ab: 
-4 GLN C
-27 SER C
-
+Contacts in Ab:2
 Ag res: 359
-Contacts in Ab: 
-2 ASP C
-4 GLN C
-
+Contacts in Ab:2
 Ag res: 438
-Contacts in Ab: 
-89 ALA D
-
+Contacts in Ab:1
+Ag res: 159
+Contacts in Ab:1
+Ag res: 161
+Contacts in Ab:2
+Ag res: 163
+Contacts in Ab:1
+Ag res: 164
+Contacts in Ab:4
+Ag res: 165
+Contacts in Ab:7
+Ag res: 167
+Contacts in Ab:1
+Ag res: 168
+Contacts in Ab:4
+Ag res: 169
+Contacts in Ab:3
+Ag res: 190
+Contacts in Ab:2
+Ag res: 191
+Contacts in Ab:4
+Ag res: 194
+Contacts in Ab:2
+Ag res: 240
+Contacts in Ab:4
+Ag res: 242
+Contacts in Ab:6
+Ag res: 243
+Contacts in Ab:6
+Ag res: 245
+Contacts in Ab:3
+Ag res: 247
+Contacts in Ab:3
+Ag res: 249
+Contacts in Ab:1
 **** D410mut435d14.pdb
 Ag res: 159
-Contacts in Ab: 
-31 ARG C
-
+Contacts in Ab:1
 Ag res: 161
-Contacts in Ab: 
-93 ASN C
-94 THR C
-
+Contacts in Ab:2
 Ag res: 162
-Contacts in Ab: 
-95 TYR C
-
+Contacts in Ab:1
 Ag res: 163
-Contacts in Ab: 
-110 ASP D
-
+Contacts in Ab:1
 Ag res: 164
-Contacts in Ab: 
-95 TYR C
-35 TYR D
-52 ILE D
-60 TYR D
-110 ASP D
-112 TYR D
-
+Contacts in Ab:6
 Ag res: 165
-Contacts in Ab: 
-34 TYR D
-35 TYR D
-54 TYR D
-56 SER D
-58 THR D
-110 ASP D
-
+Contacts in Ab:6
 Ag res: 167
-Contacts in Ab: 
-60 TYR D
-
+Contacts in Ab:1
 Ag res: 168
-Contacts in Ab: 
-54 TYR D
-56 SER D
-58 THR D
-59 THR D
-60 TYR D
-
+Contacts in Ab:5
 Ag res: 169
-Contacts in Ab: 
-54 TYR D
-56 SER D
-58 THR D
-
+Contacts in Ab:3
 Ag res: 190
-Contacts in Ab: 
-56 SER D
-58 THR D
-
+Contacts in Ab:2
 Ag res: 191
-Contacts in Ab: 
-56 SER D
-57 GLY D
-58 THR D
-
+Contacts in Ab:3
 Ag res: 194
-Contacts in Ab: 
-55 PHE D
-56 SER D
-
+Contacts in Ab:2
 Ag res: 240
-Contacts in Ab: 
-56 SER D
-110 ASP D
-
+Contacts in Ab:2
 Ag res: 242
-Contacts in Ab: 
-31 SER D
-34 TYR D
-55 PHE D
-108 PRO D
-109 GLY D
-110 ASP D
-
+Contacts in Ab:6
 Ag res: 243
-Contacts in Ab: 
-31 SER D
-32 SER D
-108 PRO D
-
+Contacts in Ab:3
 Ag res: 245
-Contacts in Ab: 
-106 GLY D
-107 GLY D
-109 GLY D
-
+Contacts in Ab:3
 Ag res: 247
-Contacts in Ab: 
-34 TYR D
-109 GLY D
-110 ASP D
-
+Contacts in Ab:3
 Ag res: 249
-Contacts in Ab: 
-110 ASP D
-
+Contacts in Ab:1
 Ag res: 356
-Contacts in Ab: 
-63 PRO D
-
+Contacts in Ab:1
 Ag res: 357
-Contacts in Ab: 
-2 ASP C
-63 PRO D
-64 SER D
-
+Contacts in Ab:3
 Ag res: 358
-Contacts in Ab: 
-2 ASP C
-4 GLN C
-27 SER C
-
+Contacts in Ab:3
 Ag res: 359
-Contacts in Ab: 
-2 ASP C
-
+Contacts in Ab:1
 Ag res: 362
-Contacts in Ab: 
-90 ALA D
-
+Contacts in Ab:1
 Ag res: 438
-Contacts in Ab: 
-14 PRO D
-89 ALA D
-127 SER D
-
+Contacts in Ab:3
 Ag res: 440
-Contacts in Ab: 
-14 PRO D
-88 THR D
-89 ALA D
-
+Contacts in Ab:3
 **** D410mut52d00.pdb
 Ag res: 133
-Contacts in Ab: 
-58 THR D
-
+Contacts in Ab:1
 Ag res: 134
-Contacts in Ab: 
-56 SER D
-58 THR D
-
+Contacts in Ab:2
 Ag res: 165
-Contacts in Ab: 
-94 THR C
-
+Contacts in Ab:1
 Ag res: 168
-Contacts in Ab: 
-63 PRO D
-
+Contacts in Ab:1
 Ag res: 190
-Contacts in Ab: 
-63 PRO D
-
+Contacts in Ab:1
 Ag res: 191
-Contacts in Ab: 
-95 TYR C
-60 TYR D
-
+Contacts in Ab:2
 Ag res: 192
-Contacts in Ab: 
-60 TYR D
-
+Contacts in Ab:1
 Ag res: 193
-Contacts in Ab: 
-54 ALA D
-58 THR D
-60 TYR D
-
+Contacts in Ab:3
 Ag res: 194
-Contacts in Ab: 
-95 TYR C
-60 TYR D
-
+Contacts in Ab:2
 Ag res: 216
-Contacts in Ab: 
-57 GLY D
-58 THR D
-59 THR D
-
+Contacts in Ab:3
 Ag res: 217
-Contacts in Ab: 
-59 THR D
-70 SER D
-71 MET D
-
+Contacts in Ab:3
 Ag res: 218
-Contacts in Ab: 
-59 THR D
-61 TYR D
-66 GLN D
-
+Contacts in Ab:3
 Ag res: 219
-Contacts in Ab: 
-58 THR D
-59 THR D
-60 TYR D
-61 TYR D
-
+Contacts in Ab:4
 Ag res: 241
-Contacts in Ab: 
-110 ASP D
-
+Contacts in Ab:1
 Ag res: 242
-Contacts in Ab: 
-93 ASN C
-112 TYR D
-
+Contacts in Ab:2
 Ag res: 243
-Contacts in Ab: 
-33 SER C
-92 LEU C
-111 ASP D
-112 TYR D
-113 PHE D
-
+Contacts in Ab:5
 Ag res: 244
-Contacts in Ab: 
-109 GLY D
-110 ASP D
-111 ASP D
-112 TYR D
-
+Contacts in Ab:4
 **** D430mRd01.pdb
 Ag res: 329
-Contacts in Ab: 
-30 SER A
-
+Contacts in Ab:1
 Ag res: 333
-Contacts in Ab: 
-30 SER A
-30 ASP A
-30 GLY A
-
+Contacts in Ab:3
 Ag res: 334
-Contacts in Ab: 
-30 SER A
-30 GLY A
-
+Contacts in Ab:2
 Ag res: 362
-Contacts in Ab: 
-53 ILE B
-
+Contacts in Ab:1
 Ag res: 365
-Contacts in Ab: 
-28 THR B
-31 THR B
-53 ILE B
-
+Contacts in Ab:3
 Ag res: 366
-Contacts in Ab: 
-31 THR B
-
+Contacts in Ab:1
 Ag res: 388
-Contacts in Ab: 
-32 HIS B
-95 ASP B
-96 GLY B
-
+Contacts in Ab:3
 Ag res: 390
-Contacts in Ab: 
-30 ASP A
-30 ASP A
-32 TYR A
-98 GLY B
-99 ALA B
-
+Contacts in Ab:5
 Ag res: 391
-Contacts in Ab: 
-33 THR B
-
+Contacts in Ab:1
 Ag res: 409
-Contacts in Ab: 
-30 ASP A
-50 LYS A
-53 ILE A
-
+Contacts in Ab:3
 Ag res: 410
-Contacts in Ab: 
-50 LYS A
-53 ILE A
-97 ARG B
-
+Contacts in Ab:3
 Ag res: 411
-Contacts in Ab: 
-97 ARG B
-
+Contacts in Ab:1
 Ag res: 412
-Contacts in Ab: 
-97 ARG B
-98 GLY B
-
+Contacts in Ab:2
 Ag res: 433
-Contacts in Ab: 
-54 PHE B
-
+Contacts in Ab:1
 Ag res: 435
-Contacts in Ab: 
-33 THR B
-52 MET B
-54 PHE B
-56 ALA B
-
+Contacts in Ab:4
 Ag res: 436
-Contacts in Ab: 
-91 ALA A
-99 ALA B
-
+Contacts in Ab:2
 Ag res: 437
-Contacts in Ab: 
-91 ALA A
-96 TYR A
-33 THR B
-35 SER B
-50 GLY B
-95 ASP B
-99 ALA B
-100 LEU B
-
+Contacts in Ab:8
 Ag res: 438
-Contacts in Ab: 
-94 TRP A
-33 THR B
-49 GLY B
-50 GLY B
-51 ILE B
-52 MET B
-56 ALA B
-57 SER B
-58 LYS B
-
+Contacts in Ab:9
 Ag res: 439
-Contacts in Ab: 
-94 TRP A
-58 LYS B
-
+Contacts in Ab:2
 Ag res: 440
-Contacts in Ab: 
-52 MET B
-54 PHE B
-56 ALA B
-58 LYS B
-
+Contacts in Ab:4
 Ag res: 442
-Contacts in Ab: 
-54 PHE B
-
+Contacts in Ab:1
 **** D430mut165d00.pdb
 Ag res: 329
-Contacts in Ab: 
-30 SER A
-
+Contacts in Ab:1
 Ag res: 333
-Contacts in Ab: 
-30 SER A
-30 ASP A
-30 GLY A
-
+Contacts in Ab:3
 Ag res: 334
-Contacts in Ab: 
-30 SER A
-30 ASP A
-30 GLY A
-
+Contacts in Ab:3
 Ag res: 362
-Contacts in Ab: 
-53 ILE B
-
+Contacts in Ab:1
 Ag res: 365
-Contacts in Ab: 
-28 THR B
-31 THR B
-53 ILE B
-
+Contacts in Ab:3
 Ag res: 366
-Contacts in Ab: 
-31 THR B
-
+Contacts in Ab:1
 Ag res: 388
-Contacts in Ab: 
-32 HIS B
-95 ASP B
-96 GLY B
-
+Contacts in Ab:3
 Ag res: 390
-Contacts in Ab: 
-30 ASP A
-30 ASP A
-32 TYR A
-98 GLY B
-99 ALA B
-
+Contacts in Ab:5
 Ag res: 409
-Contacts in Ab: 
-30 ASP A
-50 LYS A
-53 ILE A
-
+Contacts in Ab:3
 Ag res: 410
-Contacts in Ab: 
-50 LYS A
-53 ILE A
-97 ARG B
-
+Contacts in Ab:3
 Ag res: 411
-Contacts in Ab: 
-97 ARG B
-
+Contacts in Ab:1
 Ag res: 412
-Contacts in Ab: 
-97 ARG B
-98 GLY B
-
+Contacts in Ab:2
 Ag res: 433
-Contacts in Ab: 
-54 PHE B
-
+Contacts in Ab:1
 Ag res: 435
-Contacts in Ab: 
-33 THR B
-52 MET B
-54 PHE B
-56 ALA B
-
+Contacts in Ab:4
 Ag res: 436
-Contacts in Ab: 
-91 ALA A
-99 ALA B
-
+Contacts in Ab:2
 Ag res: 437
-Contacts in Ab: 
-91 ALA A
-96 TYR A
-33 THR B
-35 SER B
-50 GLY B
-95 ASP B
-99 ALA B
-100 LEU B
-
+Contacts in Ab:8
 Ag res: 438
-Contacts in Ab: 
-94 TRP A
-33 THR B
-49 GLY B
-50 GLY B
-51 ILE B
-52 MET B
-56 ALA B
-57 SER B
-58 LYS B
-
+Contacts in Ab:9
 Ag res: 439
-Contacts in Ab: 
-94 TRP A
-58 LYS B
-
+Contacts in Ab:2
 Ag res: 440
-Contacts in Ab: 
-52 MET B
-54 PHE B
-56 ALA B
-58 LYS B
-
+Contacts in Ab:4
 Ag res: 442
-Contacts in Ab: 
-54 PHE B
-
+Contacts in Ab:1
 **** D430mut390d01.pdb
-Ag res: 329
-Contacts in Ab: 
-30 SER A
-30 ASP A
-
-Ag res: 333
-Contacts in Ab: 
-30 ASP A
-
-Ag res: 334
-Contacts in Ab: 
-30 ASP A
-30 GLY A
-
 Ag res: 362
-Contacts in Ab: 
-30 ASN B
-53 ILE B
-54 PHE B
-
+Contacts in Ab:3
 Ag res: 363
-Contacts in Ab: 
-53 ILE B
-
+Contacts in Ab:1
 Ag res: 365
-Contacts in Ab: 
-28 THR B
-30 ASN B
-31 THR B
-53 ILE B
-
+Contacts in Ab:4
 Ag res: 366
-Contacts in Ab: 
-31 THR B
-
+Contacts in Ab:1
 Ag res: 387
-Contacts in Ab: 
-31 THR B
-
+Contacts in Ab:1
 Ag res: 388
-Contacts in Ab: 
-31 THR B
-
+Contacts in Ab:1
 Ag res: 390
-Contacts in Ab: 
-95 ASP B
-96 GLY B
-98 GLY B
-
+Contacts in Ab:3
 Ag res: 412
-Contacts in Ab: 
-97 ARG B
-
+Contacts in Ab:1
 Ag res: 433
-Contacts in Ab: 
-54 PHE B
-
+Contacts in Ab:1
 Ag res: 435
-Contacts in Ab: 
-33 THR B
-52 MET B
-54 PHE B
-56 ALA B
-
+Contacts in Ab:4
 Ag res: 436
-Contacts in Ab: 
-91 ALA A
-33 THR B
-95 ASP B
-99 ALA B
-
+Contacts in Ab:4
 Ag res: 437
-Contacts in Ab: 
-91 ALA A
-96 TYR A
-33 THR B
-35 SER B
-50 GLY B
-95 ASP B
-99 ALA B
-100 LEU B
-
+Contacts in Ab:8
 Ag res: 438
-Contacts in Ab: 
-94 TRP A
-33 THR B
-49 GLY B
-50 GLY B
-51 ILE B
-52 MET B
-56 ALA B
-57 SER B
-58 LYS B
-
+Contacts in Ab:9
 Ag res: 439
-Contacts in Ab: 
-94 TRP A
-58 LYS B
-
+Contacts in Ab:2
 Ag res: 440
-Contacts in Ab: 
-52 MET B
-54 PHE B
-56 ALA B
-58 LYS B
-
+Contacts in Ab:4
 Ag res: 442
-Contacts in Ab: 
-54 PHE B
-56 ALA B
-
+Contacts in Ab:2
+Ag res: 329
+Contacts in Ab:2
+Ag res: 333
+Contacts in Ab:1
+Ag res: 334
+Contacts in Ab:2
 **** D430mut435d05.pdb
 Ag res: 329
-Contacts in Ab: 
-30 SER A
-
+Contacts in Ab:1
 Ag res: 333
-Contacts in Ab: 
-30 HIS A
-30 SER A
-30 ASP A
-30 GLY A
-
+Contacts in Ab:4
 Ag res: 334
-Contacts in Ab: 
-30 SER A
-30 ASP A
-30 GLY A
-
+Contacts in Ab:3
 Ag res: 362
-Contacts in Ab: 
-53 ILE B
-
+Contacts in Ab:1
 Ag res: 365
-Contacts in Ab: 
-28 THR B
-31 THR B
-53 ILE B
-
+Contacts in Ab:3
 Ag res: 366
-Contacts in Ab: 
-31 THR B
-
+Contacts in Ab:1
 Ag res: 388
-Contacts in Ab: 
-95 ASP B
-
+Contacts in Ab:1
 Ag res: 390
-Contacts in Ab: 
-30 ASP A
-98 GLY B
-99 ALA B
-
+Contacts in Ab:3
 Ag res: 409
-Contacts in Ab: 
-30 ASP A
-50 LYS A
-53 ILE A
-
+Contacts in Ab:3
 Ag res: 410
-Contacts in Ab: 
-53 ILE A
-97 ARG B
-
+Contacts in Ab:2
 Ag res: 411
-Contacts in Ab: 
-97 ARG B
-
+Contacts in Ab:1
 Ag res: 412
-Contacts in Ab: 
-97 ARG B
-98 GLY B
-
+Contacts in Ab:2
 Ag res: 433
-Contacts in Ab: 
-54 PHE B
-
+Contacts in Ab:1
 Ag res: 435
-Contacts in Ab: 
-33 THR B
-52 MET B
-54 PHE B
-56 ALA B
-
+Contacts in Ab:4
 Ag res: 436
-Contacts in Ab: 
-91 ALA A
-94 TRP A
-
+Contacts in Ab:2
 Ag res: 437
-Contacts in Ab: 
-91 ALA A
-94 TRP A
-96 TYR A
-33 THR B
-35 SER B
-50 GLY B
-95 ASP B
-99 ALA B
-100 LEU B
-
+Contacts in Ab:9
 Ag res: 438
-Contacts in Ab: 
-33 THR B
-49 GLY B
-50 GLY B
-51 ILE B
-52 MET B
-56 ALA B
-57 SER B
-58 LYS B
-
+Contacts in Ab:8
 Ag res: 439
-Contacts in Ab: 
-94 TRP A
-58 LYS B
-
+Contacts in Ab:2
 Ag res: 440
-Contacts in Ab: 
-52 MET B
-54 PHE B
-56 ALA B
-58 LYS B
-
+Contacts in Ab:4
 Ag res: 442
-Contacts in Ab: 
-54 PHE B
-
+Contacts in Ab:1
 **** D430mut54d00.pdb
 Ag res: 329
-Contacts in Ab: 
-30 SER A
-
+Contacts in Ab:1
 Ag res: 333
-Contacts in Ab: 
-30 SER A
-30 ASP A
-
+Contacts in Ab:2
 Ag res: 334
-Contacts in Ab: 
-30 SER A
-30 ASP A
-30 GLY A
-
+Contacts in Ab:3
 Ag res: 362
-Contacts in Ab: 
-53 ILE B
-54 ALA B
-55 ALA B
-
+Contacts in Ab:3
 Ag res: 363
-Contacts in Ab: 
-53 ILE B
-
+Contacts in Ab:1
 Ag res: 365
-Contacts in Ab: 
-30 ASN B
-31 THR B
-53 ILE B
-
+Contacts in Ab:3
 Ag res: 366
-Contacts in Ab: 
-31 THR B
-53 ILE B
-
+Contacts in Ab:2
 Ag res: 387
-Contacts in Ab: 
-31 THR B
-
+Contacts in Ab:1
 Ag res: 388
-Contacts in Ab: 
-31 THR B
-
+Contacts in Ab:1
 Ag res: 390
-Contacts in Ab: 
-95 ASP B
-98 GLY B
-
+Contacts in Ab:2
 Ag res: 433
-Contacts in Ab: 
-54 ALA B
-
+Contacts in Ab:1
 Ag res: 435
-Contacts in Ab: 
-33 THR B
-52 MET B
-54 ALA B
-56 ALA B
-
+Contacts in Ab:4
 Ag res: 436
-Contacts in Ab: 
-91 ALA A
-94 TRP A
-99 ALA B
-
+Contacts in Ab:3
 Ag res: 437
-Contacts in Ab: 
-91 ALA A
-96 TYR A
-33 THR B
-35 SER B
-50 GLY B
-95 ASP B
-99 ALA B
-100 LEU B
-
+Contacts in Ab:8
 Ag res: 438
-Contacts in Ab: 
-94 TRP A
-33 THR B
-49 GLY B
-50 GLY B
-51 ILE B
-52 MET B
-56 ALA B
-57 SER B
-58 LYS B
-
+Contacts in Ab:9
 Ag res: 439
-Contacts in Ab: 
-94 TRP A
-58 LYS B
-
+Contacts in Ab:2
 Ag res: 440
-Contacts in Ab: 
-52 MET B
-54 ALA B
-56 ALA B
-58 LYS B
-
+Contacts in Ab:4
 Ag res: 442
-Contacts in Ab: 
-54 ALA B
-56 ALA B
-
+Contacts in Ab:2

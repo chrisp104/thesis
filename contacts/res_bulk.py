@@ -92,9 +92,7 @@ import os
 # percentContact("5d1q.pdb", ['I', 'E', 'O', 'R', 'T'], 8, "/Users/cpark/thesis/antibodies/D206/MR_m435/percent_to_crystal.txt")
 
 
-# *********** percentContacts() for all pairs in directory ***********
-os.chdir("/Users/cpark/thesis/contacts/pairs/")
-percentContact(['I', 'E', 'O', 'R', 'T'], 8, "/Users/cpark/thesis/contacts/pairs/percent_pairs.txt")
+
 
 
 

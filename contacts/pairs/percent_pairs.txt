@@ -1,268 +1,166 @@
-5d1q.pdb & 5d1q.pdb: 100.0% similar
-
-5d1q.pdb & 5d1x.pdb: 44.9% similar
-
-5d1q.pdb & 5d1z.pdb: 0% similar
-
-5d1q.pdb & D206mRd00.pdb: 95.92% similar
-
-5d1q.pdb & D206mut165d00.pdb: 93.88% similar
-
-5d1q.pdb & D206mut390d09.pdb: 95.92% similar
-
-5d1q.pdb & D206mut435d00.pdb: 89.8% similar
-
-5d1q.pdb & D206mut54d00.pdb: 83.67% similar
-
-5d1q.pdb & D410mRd14.pdb: 0.0% similar
-
-5d1q.pdb & D410mut165d11.pdb: 0.0% similar
-
-5d1q.pdb & D410mut390d13.pdb: 0.0% similar
-
-5d1q.pdb & D410mut435d14.pdb: 0.0% similar
-
-5d1q.pdb & D410mut52d00.pdb: 0.0% similar
-
-5d1q.pdb & D430mRd01.pdb: 42.86% similar
-
-5d1q.pdb & D430mut165d00.pdb: 42.86% similar
-
-5d1q.pdb & D430mut390d01.pdb: 48.98% similar
-
-5d1q.pdb & D430mut435d05.pdb: 42.86% similar
-
-5d1q.pdb & D430mut54d00.pdb: 38.78% similar
-
-5d1x.pdb & 5d1x.pdb: 100.0% similar
-
-5d1x.pdb & 5d1z.pdb: 0% similar
-
-5d1x.pdb & D206mRd00.pdb: 56.1% similar
-
-5d1x.pdb & D206mut165d00.pdb: 56.1% similar
-
-5d1x.pdb & D206mut390d09.pdb: 56.1% similar
-
-5d1x.pdb & D206mut435d00.pdb: 53.66% similar
-
-5d1x.pdb & D206mut54d00.pdb: 43.9% similar
-
-5d1x.pdb & D410mRd14.pdb: 0.0% similar
-
-5d1x.pdb & D410mut165d11.pdb: 0.0% similar
-
-5d1x.pdb & D410mut390d13.pdb: 0.0% similar
-
-5d1x.pdb & D410mut435d14.pdb: 0.0% similar
-
-5d1x.pdb & D410mut52d00.pdb: 0.0% similar
-
-5d1x.pdb & D430mRd01.pdb: 85.37% similar
-
-5d1x.pdb & D430mut165d00.pdb: 85.37% similar
-
-5d1x.pdb & D430mut390d01.pdb: 95.12% similar
-
-5d1x.pdb & D430mut435d05.pdb: 85.37% similar
-
-5d1x.pdb & D430mut54d00.pdb: 85.37% similar
-
-5d1z.pdb & 5d1z.pdb: 100.0% similar
-
-5d1z.pdb & D206mRd00.pdb: 0.0% similar
-
-5d1z.pdb & D206mut165d00.pdb: 0.0% similar
-
-5d1z.pdb & D206mut390d09.pdb: 0.0% similar
-
-5d1z.pdb & D206mut435d00.pdb: 0.0% similar
-
-5d1z.pdb & D206mut54d00.pdb: 0.0% similar
-
-5d1z.pdb & D410mRd14.pdb: 78.26% similar
-
-5d1z.pdb & D410mut165d11.pdb: 0.0% similar
-
-5d1z.pdb & D410mut390d13.pdb: 86.96% similar
-
-5d1z.pdb & D410mut435d14.pdb: 84.78% similar
-
-5d1z.pdb & D410mut52d00.pdb: 0.0% similar
-
-5d1z.pdb & D430mRd01.pdb: 0.0% similar
-
-5d1z.pdb & D430mut165d00.pdb: 0.0% similar
-
-5d1z.pdb & D430mut390d01.pdb: 0.0% similar
-
-5d1z.pdb & D430mut435d05.pdb: 0.0% similar
-
-5d1z.pdb & D430mut54d00.pdb: 0.0% similar
-
 D206mRd00.pdb & D206mRd00.pdb: 100.0% similar
 
-D206mRd00.pdb & D206mut165d00.pdb: 98.18% similar
+D206mRd00.pdb & D206mut165d00.pdb: 96.43% similar
 
-D206mRd00.pdb & D206mut390d09.pdb: 92.73% similar
+D206mRd00.pdb & D206mut390d09.pdb: 0.0% similar
 
-D206mRd00.pdb & D206mut435d00.pdb: 83.64% similar
+D206mRd00.pdb & D206mut435d00.pdb: 82.14% similar
 
-D206mRd00.pdb & D206mut54d00.pdb: 87.27% similar
+D206mRd00.pdb & D206mut54d00.pdb: 94.74% similar
 
-D206mRd00.pdb & D410mRd14.pdb: 0.0% similar
+D206mRd00.pdb & D410mRd14.pdb: 2.65% similar
 
 D206mRd00.pdb & D410mut165d11.pdb: 0.0% similar
 
-D206mRd00.pdb & D410mut390d13.pdb: 0.0% similar
+D206mRd00.pdb & D410mut390d13.pdb: 29.03% similar
 
-D206mRd00.pdb & D410mut435d14.pdb: 0.0% similar
+D206mRd00.pdb & D410mut435d14.pdb: 6.14% similar
 
 D206mRd00.pdb & D410mut52d00.pdb: 0.0% similar
 
-D206mRd00.pdb & D430mRd01.pdb: 38.18% similar
+D206mRd00.pdb & D430mRd01.pdb: 57.53% similar
 
-D206mRd00.pdb & D430mut165d00.pdb: 38.18% similar
+D206mRd00.pdb & D430mut165d00.pdb: 57.53% similar
 
-D206mRd00.pdb & D430mut390d01.pdb: 45.45% similar
+D206mRd00.pdb & D430mut390d01.pdb: 0.0% similar
 
-D206mRd00.pdb & D430mut435d05.pdb: 38.18% similar
+D206mRd00.pdb & D430mut435d05.pdb: 54.17% similar
 
-D206mRd00.pdb & D430mut54d00.pdb: 38.18% similar
+D206mRd00.pdb & D430mut54d00.pdb: 67.19% similar
 
 D206mut165d00.pdb & D206mut165d00.pdb: 100.0% similar
 
-D206mut165d00.pdb & D206mut390d09.pdb: 94.55% similar
+D206mut165d00.pdb & D206mut390d09.pdb: 0.0% similar
 
-D206mut165d00.pdb & D206mut435d00.pdb: 81.82% similar
+D206mut165d00.pdb & D206mut435d00.pdb: 78.95% similar
 
-D206mut165d00.pdb & D206mut54d00.pdb: 89.09% similar
+D206mut165d00.pdb & D206mut54d00.pdb: 98.21% similar
 
-D206mut165d00.pdb & D410mRd14.pdb: 0.0% similar
+D206mut165d00.pdb & D410mRd14.pdb: 2.65% similar
 
 D206mut165d00.pdb & D410mut165d11.pdb: 0.0% similar
 
-D206mut165d00.pdb & D410mut390d13.pdb: 0.0% similar
+D206mut165d00.pdb & D410mut390d13.pdb: 29.03% similar
 
-D206mut165d00.pdb & D410mut435d14.pdb: 0.0% similar
+D206mut165d00.pdb & D410mut435d14.pdb: 6.14% similar
 
 D206mut165d00.pdb & D410mut52d00.pdb: 0.0% similar
 
-D206mut165d00.pdb & D430mRd01.pdb: 38.18% similar
+D206mut165d00.pdb & D430mRd01.pdb: 59.72% similar
 
-D206mut165d00.pdb & D430mut165d00.pdb: 38.18% similar
+D206mut165d00.pdb & D430mut165d00.pdb: 59.72% similar
 
-D206mut165d00.pdb & D430mut390d01.pdb: 45.45% similar
+D206mut165d00.pdb & D430mut390d01.pdb: 0.0% similar
 
-D206mut165d00.pdb & D430mut435d05.pdb: 38.18% similar
+D206mut165d00.pdb & D430mut435d05.pdb: 56.34% similar
 
-D206mut165d00.pdb & D430mut54d00.pdb: 38.18% similar
+D206mut165d00.pdb & D430mut54d00.pdb: 67.19% similar
 
 D206mut390d09.pdb & D206mut390d09.pdb: 100.0% similar
 
-D206mut390d09.pdb & D206mut435d00.pdb: 78.95% similar
+D206mut390d09.pdb & D206mut435d00.pdb: 0.0% similar
 
-D206mut390d09.pdb & D206mut54d00.pdb: 80.7% similar
+D206mut390d09.pdb & D206mut54d00.pdb: 0.0% similar
 
-D206mut390d09.pdb & D410mRd14.pdb: 0.0% similar
+D206mut390d09.pdb & D410mRd14.pdb: 6.31% similar
 
-D206mut390d09.pdb & D410mut165d11.pdb: 0.0% similar
+D206mut390d09.pdb & D410mut165d11.pdb: 9.57% similar
 
-D206mut390d09.pdb & D410mut390d13.pdb: 0.0% similar
+D206mut390d09.pdb & D410mut390d13.pdb: 0.83% similar
 
-D206mut390d09.pdb & D410mut435d14.pdb: 0.0% similar
+D206mut390d09.pdb & D410mut435d14.pdb: 6.03% similar
 
-D206mut390d09.pdb & D410mut52d00.pdb: 0.0% similar
+D206mut390d09.pdb & D410mut52d00.pdb: 9.09% similar
 
-D206mut390d09.pdb & D430mRd01.pdb: 36.84% similar
+D206mut390d09.pdb & D430mRd01.pdb: 0.0% similar
 
-D206mut390d09.pdb & D430mut165d00.pdb: 36.84% similar
+D206mut390d09.pdb & D430mut165d00.pdb: 0.0% similar
 
-D206mut390d09.pdb & D430mut390d01.pdb: 47.37% similar
+D206mut390d09.pdb & D430mut390d01.pdb: 73.44% similar
 
-D206mut390d09.pdb & D430mut435d05.pdb: 36.84% similar
+D206mut390d09.pdb & D430mut435d05.pdb: 0.0% similar
 
-D206mut390d09.pdb & D430mut54d00.pdb: 36.84% similar
+D206mut390d09.pdb & D430mut54d00.pdb: 0.0% similar
 
 D206mut435d00.pdb & D206mut435d00.pdb: 100.0% similar
 
-D206mut435d00.pdb & D206mut54d00.pdb: 85.11% similar
+D206mut435d00.pdb & D206mut54d00.pdb: 77.59% similar
 
-D206mut435d00.pdb & D410mRd14.pdb: 0.0% similar
+D206mut435d00.pdb & D410mRd14.pdb: 2.86% similar
 
 D206mut435d00.pdb & D410mut165d11.pdb: 0.0% similar
 
-D206mut435d00.pdb & D410mut390d13.pdb: 0.0% similar
+D206mut435d00.pdb & D410mut390d13.pdb: 20.43% similar
 
-D206mut435d00.pdb & D410mut435d14.pdb: 0.0% similar
+D206mut435d00.pdb & D410mut435d14.pdb: 6.6% similar
 
 D206mut435d00.pdb & D410mut52d00.pdb: 0.0% similar
 
-D206mut435d00.pdb & D430mRd01.pdb: 44.68% similar
+D206mut435d00.pdb & D430mRd01.pdb: 64.62% similar
 
-D206mut435d00.pdb & D430mut165d00.pdb: 44.68% similar
+D206mut435d00.pdb & D430mut165d00.pdb: 64.62% similar
 
-D206mut435d00.pdb & D430mut390d01.pdb: 48.94% similar
+D206mut435d00.pdb & D430mut390d01.pdb: 0.0% similar
 
-D206mut435d00.pdb & D430mut435d05.pdb: 44.68% similar
+D206mut435d00.pdb & D430mut435d05.pdb: 63.49% similar
 
-D206mut435d00.pdb & D430mut54d00.pdb: 38.3% similar
+D206mut435d00.pdb & D430mut54d00.pdb: 67.8% similar
 
 D206mut54d00.pdb & D206mut54d00.pdb: 100.0% similar
 
-D206mut54d00.pdb & D410mRd14.pdb: 0.0% similar
+D206mut54d00.pdb & D410mRd14.pdb: 2.63% similar
 
 D206mut54d00.pdb & D410mut165d11.pdb: 0.0% similar
 
-D206mut54d00.pdb & D410mut390d13.pdb: 0.0% similar
+D206mut54d00.pdb & D410mut390d13.pdb: 28.72% similar
 
-D206mut54d00.pdb & D410mut435d14.pdb: 0.0% similar
+D206mut54d00.pdb & D410mut435d14.pdb: 6.09% similar
 
 D206mut54d00.pdb & D410mut52d00.pdb: 0.0% similar
 
-D206mut54d00.pdb & D430mRd01.pdb: 30.36% similar
+D206mut54d00.pdb & D430mRd01.pdb: 58.9% similar
 
-D206mut54d00.pdb & D430mut165d00.pdb: 30.36% similar
+D206mut54d00.pdb & D430mut165d00.pdb: 58.9% similar
 
-D206mut54d00.pdb & D430mut390d01.pdb: 37.5% similar
+D206mut54d00.pdb & D430mut390d01.pdb: 0.0% similar
 
-D206mut54d00.pdb & D430mut435d05.pdb: 30.36% similar
+D206mut54d00.pdb & D430mut435d05.pdb: 55.56% similar
 
-D206mut54d00.pdb & D430mut54d00.pdb: 48.21% similar
+D206mut54d00.pdb & D430mut54d00.pdb: 68.75% similar
 
 D410mRd14.pdb & D410mRd14.pdb: 100.0% similar
 
-D410mRd14.pdb & D410mut165d11.pdb: 0.0% similar
+D410mRd14.pdb & D410mut165d11.pdb: 15.05% similar
 
-D410mRd14.pdb & D410mut390d13.pdb: 78.69% similar
+D410mRd14.pdb & D410mut390d13.pdb: 3.28% similar
 
-D410mRd14.pdb & D410mut435d14.pdb: 90.16% similar
+D410mRd14.pdb & D410mut435d14.pdb: 76.39% similar
 
-D410mRd14.pdb & D410mut52d00.pdb: 0.0% similar
+D410mRd14.pdb & D410mut52d00.pdb: 14.94% similar
 
-D410mRd14.pdb & D430mRd01.pdb: 0.0% similar
+D410mRd14.pdb & D430mRd01.pdb: 2.54% similar
 
-D410mRd14.pdb & D430mut165d00.pdb: 0.0% similar
+D410mRd14.pdb & D430mut165d00.pdb: 2.54% similar
 
-D410mRd14.pdb & D430mut390d01.pdb: 0.0% similar
+D410mRd14.pdb & D430mut390d01.pdb: 1.77% similar
 
-D410mRd14.pdb & D430mut435d05.pdb: 0.0% similar
+D410mRd14.pdb & D430mut435d05.pdb: 2.63% similar
 
-D410mRd14.pdb & D430mut54d00.pdb: 0.0% similar
+D410mRd14.pdb & D430mut54d00.pdb: 2.73% similar
 
 D410mut165d11.pdb & D410mut165d11.pdb: 100.0% similar
 
-D410mut165d11.pdb & D410mut390d13.pdb: 0.0% similar
+D410mut165d11.pdb & D410mut390d13.pdb: 3.74% similar
 
-D410mut165d11.pdb & D410mut435d14.pdb: 0.0% similar
+D410mut165d11.pdb & D410mut435d14.pdb: 12.0% similar
 
-D410mut165d11.pdb & D410mut52d00.pdb: 67.39% similar
+D410mut165d11.pdb & D410mut52d00.pdb: 70.0% similar
 
 D410mut165d11.pdb & D430mRd01.pdb: 0.0% similar
 
 D410mut165d11.pdb & D430mut165d00.pdb: 0.0% similar
 
-D410mut165d11.pdb & D430mut390d01.pdb: 0.0% similar
+D410mut165d11.pdb & D430mut390d01.pdb: 9.89% similar
 
 D410mut165d11.pdb & D430mut435d05.pdb: 0.0% similar
 
@@ -270,33 +168,33 @@ D410mut165d11.pdb & D430mut54d00.pdb: 0.0% similar
 
 D410mut390d13.pdb & D410mut390d13.pdb: 100.0% similar
 
-D410mut390d13.pdb & D410mut435d14.pdb: 81.54% similar
+D410mut390d13.pdb & D410mut435d14.pdb: 5.65% similar
 
-D410mut390d13.pdb & D410mut52d00.pdb: 0.0% similar
+D410mut390d13.pdb & D410mut52d00.pdb: 2.97% similar
 
-D410mut390d13.pdb & D430mRd01.pdb: 0.0% similar
+D410mut390d13.pdb & D430mRd01.pdb: 19.05% similar
 
-D410mut390d13.pdb & D430mut165d00.pdb: 0.0% similar
+D410mut390d13.pdb & D430mut165d00.pdb: 17.92% similar
 
-D410mut390d13.pdb & D430mut390d01.pdb: 0.0% similar
+D410mut390d13.pdb & D430mut390d01.pdb: 0.85% similar
 
-D410mut390d13.pdb & D430mut435d05.pdb: 0.0% similar
+D410mut390d13.pdb & D430mut435d05.pdb: 16.35% similar
 
-D410mut390d13.pdb & D430mut54d00.pdb: 0.0% similar
+D410mut390d13.pdb & D430mut54d00.pdb: 23.16% similar
 
 D410mut435d14.pdb & D410mut435d14.pdb: 100.0% similar
 
-D410mut435d14.pdb & D410mut52d00.pdb: 0.0% similar
+D410mut435d14.pdb & D410mut52d00.pdb: 12.9% similar
 
-D410mut435d14.pdb & D430mRd01.pdb: 0.0% similar
+D410mut435d14.pdb & D430mRd01.pdb: 5.88% similar
 
-D410mut435d14.pdb & D430mut165d00.pdb: 0.0% similar
+D410mut435d14.pdb & D430mut165d00.pdb: 5.88% similar
 
-D410mut435d14.pdb & D430mut390d01.pdb: 0.0% similar
+D410mut435d14.pdb & D430mut390d01.pdb: 2.56% similar
 
-D410mut435d14.pdb & D430mut435d05.pdb: 0.0% similar
+D410mut435d14.pdb & D430mut435d05.pdb: 6.09% similar
 
-D410mut435d14.pdb & D430mut54d00.pdb: 0.0% similar
+D410mut435d14.pdb & D430mut54d00.pdb: 6.31% similar
 
 D410mut52d00.pdb & D410mut52d00.pdb: 100.0% similar
 
@@ -304,7 +202,7 @@ D410mut52d00.pdb & D430mRd01.pdb: 0.0% similar
 
 D410mut52d00.pdb & D430mut165d00.pdb: 0.0% similar
 
-D410mut52d00.pdb & D430mut390d01.pdb: 0.0% similar
+D410mut52d00.pdb & D430mut390d01.pdb: 9.41% similar
 
 D410mut52d00.pdb & D430mut435d05.pdb: 0.0% similar
 
@@ -312,31 +210,31 @@ D410mut52d00.pdb & D430mut54d00.pdb: 0.0% similar
 
 D430mRd01.pdb & D430mRd01.pdb: 100.0% similar
 
-D430mRd01.pdb & D430mut165d00.pdb: 98.33% similar
+D430mRd01.pdb & D430mut165d00.pdb: 96.72% similar
 
-D430mRd01.pdb & D430mut390d01.pdb: 68.33% similar
+D430mRd01.pdb & D430mut390d01.pdb: 0.0% similar
 
-D430mRd01.pdb & D430mut435d05.pdb: 88.33% similar
+D430mRd01.pdb & D430mut435d05.pdb: 84.13% similar
 
-D430mRd01.pdb & D430mut54d00.pdb: 61.67% similar
+D430mRd01.pdb & D430mut54d00.pdb: 64.71% similar
 
 D430mut165d00.pdb & D430mut165d00.pdb: 100.0% similar
 
-D430mut165d00.pdb & D430mut390d01.pdb: 70.0% similar
+D430mut165d00.pdb & D430mut390d01.pdb: 0.0% similar
 
-D430mut165d00.pdb & D430mut435d05.pdb: 90.0% similar
+D430mut165d00.pdb & D430mut435d05.pdb: 87.1% similar
 
-D430mut165d00.pdb & D430mut54d00.pdb: 63.33% similar
+D430mut165d00.pdb & D430mut54d00.pdb: 67.16% similar
 
 D430mut390d01.pdb & D430mut390d01.pdb: 100.0% similar
 
-D430mut390d01.pdb & D430mut435d05.pdb: 74.07% similar
+D430mut390d01.pdb & D430mut435d05.pdb: 0.0% similar
 
-D430mut390d01.pdb & D430mut54d00.pdb: 77.78% similar
+D430mut390d01.pdb & D430mut54d00.pdb: 0.0% similar
 
 D430mut435d05.pdb & D430mut435d05.pdb: 100.0% similar
 
-D430mut435d05.pdb & D430mut54d00.pdb: 66.07% similar
+D430mut435d05.pdb & D430mut54d00.pdb: 68.75% similar
 
 D430mut54d00.pdb & D430mut54d00.pdb: 100.0% similar
 

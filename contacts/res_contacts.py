@@ -48,23 +48,20 @@ def resContacts(pdb, ag, dist, res_num_only=False):
 		res_contacts = []		# to hold the Ab contact residues for second return value
 
 		# skip if not the CB atom, CA and Gly, or BMET ** Comment out if wanna commpare all atoms
+		if (agen[0:3] == "TER"): continue
 		if agen[0:3] == "END": continue
-		if not (agen[21] in ag):
-			continue
+		if not (agen[21] in ag): continue
 		if not ((agen[17:20].strip() == "GLY" and agen[13:15].strip() == "CA") or 
-			(agen[13:15].strip() == "CB")):
-			continue
-		if agen[16:20].strip() == "BMET":
-			continue
+			(agen[13:15].strip() == "CB")): continue
+		if agen[16:20].strip() == "BMET": continue
 
 		# loop through Ab residues (!Ag residues)
 		for abody in lines:
 			# skip if not the CB atom, CA and Gly, or if part of Ag
+			if (abody[0:3] == "TER"): continue
 			if not ((abody[17:20].strip() == "GLY" and abody[13:15].strip() == "CA") or 
-				(abody[13:15].strip() == "CB")):
-				continue
-			if (abody[16:20].strip() == "BMET" or abody[21] in ag):
-				continue
+				(abody[13:15].strip() == "CB")): continue
+			if (abody[16:20].strip() == "BMET" or abody[21] in ag): continue
 
 			# else calculate the rmsd between the Ag residue and Ab residue
 			xsq = (float(agen[30:38].strip()) - float(abody[30:38].strip()))**2
