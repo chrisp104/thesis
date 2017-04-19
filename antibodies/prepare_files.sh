@@ -2,6 +2,7 @@
 
 # loop through each Ab directory
 for ab in */ ; do
+
 	cd "$ab"
 
 	# IN Ab DIRECTORY

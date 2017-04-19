@@ -7,6 +7,8 @@ import os
 # 1. allContacts
 # 2. writeAllContacts
 # 3. bulkAllContacts
+# 4. totalAllContacts
+# 5. percentContactFromPDB
 #
 # functions to return an array with residues within dist angstroms
 # for each residue's beta carbon 
@@ -110,44 +112,34 @@ def writeAllContacts(path, file_name, numbers):
 # bulkAllContacts()
 #
 # bulk writeAllContacts for each docking model
+# must be in working directory of the models you want to total
 #
 # ARGUMENTS
 # 1. path: str - the directory to write the output files to
-# 2. model_pre: string - file name prefix (before number) of second model pdb files
-# 3. chains: array containing characters of chains of Ag
+# 2. chains: array containing characters of chains of Ag
 #					e.g. ['O', 'R', 'T']
-# 4. dist: num - angstrom threshold for determining 'contact'
-# 5. normalized: boolean - set to True to account for varying numbers of dock models for a given 
+# 3. dist: num - angstrom threshold for determining 'contact'
+# 4. normalized: boolean - set to True to account for varying numbers of dock models for a given 
 # 												 Ab. Will set absolute parameter to True as well for allContacts()
 #
 # RETURNS 
 # 	outputs a file for each docking model and prints the total number of Ab 
 #			residues contacting each Ag res
 #		ouptuts one file for Ag contacts accumulated over all docking models
-def bulkAllContacts(path, model_pre, chains, dist, normalized=True):
-
-	if not os.path.exists("./contact_num_output"):
-		os.makedirs("./contact_num_output", 0777)
+def bulkAllContacts(path, chains, dist, normalized=True):
 
 	# dictionary to hold Ag res contact totals over all models
 	contact_totals = {}
 
 	# Find contacts for each Ag chain for each of the model files
 	counter = 0		# to keep track of how many dock files there are to normalize totals
-	for i in range(40):
-		if i < 10:
-			i = "0" + str(i)
-		name = model_pre + str(i)
-		pdb_name = name+".pdb"
-		try:
-			file = open(pdb_name, 'r')
-		except IOError as e:
-			break
+	for fn in os.listdir("./"):
+		if fn[0] != 'D': continue
 
 		counter += 1
 
-		numbers = allContacts(pdb_name, chains, dist, normalized)
-		writeAllContacts(path, name+"_contacts.txt", numbers)
+		numbers = allContacts(fn, chains, dist, normalized)
+		#writeAllContacts(path, fn[0:6]+"_contacts.txt", numbers)
 
 		# increment Ag contacts in contact_totals
 		for i in range(len(numbers)):
@@ -159,15 +151,13 @@ def bulkAllContacts(path, model_pre, chains, dist, normalized=True):
 			else:
 				contact_totals[res_num] = num_contacts
 
-		file.close()
-
 	# now contact_totals holds NON NORMALIZED contact totals for each Ag res
 
 	# write the contact totals to one file
-	if model_pre[4:7] == "mut":
-		output = open("./contact_num_output/totals_"+model_pre[0:10]+".txt", 'w')
+	if fn[4:7] == "mut":
+		output = open(path+"/c_"+fn[0:10]+".txt", 'w')
 	else:
-		output = open("./contact_num_output/totals_"+model_pre[0:6]+".txt", 'w')
+		output = open(path+"c_"+fn[0:6]+".txt", 'w')
 	for key in sorted(contact_totals):
 		num_contacts = contact_totals[key]
 
@@ -182,7 +172,29 @@ def bulkAllContacts(path, model_pre, chains, dist, normalized=True):
 
 
 # 4.
-# percentContact()
+# totalAllContacts()
+#
+# for the docking models in a given directory, total the Ab contact residues for a given
+# Ag residue across all of the docking files and then aggregate data into one histogram
+#
+# ARGUMENTS
+# 1. out: str - the directory to write the output file to
+# 2. chains: array containing characters of chains of Ag
+#					e.g. ['O', 'R', 'T']
+# 3. dist: num - angstrom threshold for determining 'contact'
+# 4. normalized: boolean - set to True to account for varying numbers of dock models for a given 
+# 												 Ab. Will set absolute parameter to True as well for allContacts()
+#
+# RETURNS 
+# 	outputs a file for ALL docking models and prints the total number of Ab 
+#			residues contacting each Ag res
+#		ouptuts one file for Ag contacts accumulated over all docking models
+
+
+
+
+# 5.
+# percentContactFromPDB()
 #
 # take two outputs of residue contacts (second return value of res_contacts first function)
 # to be compared for % contacts similarity
@@ -201,7 +213,7 @@ def bulkAllContacts(path, model_pre, chains, dist, normalized=True):
 #
 # RETURNS 
 # 	outputs one file containing percent correct contact for each non-crystal model
-def percentContact(chains, dist, output):
+def percentContactFromPDB(chains, dist, output):
 	out = open(output, 'w')
 	
 	# store the contacts data for each docking model in an array of tuples:

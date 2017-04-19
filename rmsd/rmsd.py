@@ -53,7 +53,6 @@ def rmsd(f1, f2, chains, ag):
 
 		for m_line in struct_2:
 			# make sure that we are looking at the right AA in an Ag chain and find the right atom
-			##********************** CHECK THIS
 			if (m_line[0:3] == "TER"): continue
 			if (m_line[0:1] == "\n" or m_line[0:3] == "END" or m_line[0:8] == "CDR_SASA"): break
 			if not (m_line[21] in ag and m_line[0:4] == "ATOM"): continue
@@ -63,8 +62,6 @@ def rmsd(f1, f2, chains, ag):
 
 			if (c_line[23:27].strip() == m_line[23:27].strip()):
 				if (c_line[17:20] == m_line[17:20]):
-					print c_line
-					print m_line
 
 					## PUT A PRINT HERE TO MAKE SURE COMPARING CORRECT THINGS
 
@@ -74,8 +71,6 @@ def rmsd(f1, f2, chains, ag):
 				
 					squared = xsq + ysq + zsq
 					rmsd_squared += squared
-					print squared
-					print rmsd_squared
 					n += 1
 					break
 
