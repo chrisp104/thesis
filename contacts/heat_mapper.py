@@ -14,7 +14,7 @@ import plotly.graph_objs as go
 #		labels - the labels corresponding to the order of the matrix entries
 
 def makeArray(file, x):
-	HIGH = 0.65
+	HIGH = 0.75
 	
 	# MAKING THE MATRIX
 	matrix = []
@@ -31,7 +31,7 @@ def makeArray(file, x):
 
 		line = lines[i]
 		print line
-		num = float(line[17:])
+		num = float(line[13:])
 		if num > HIGH:
 			arr.append(HIGH)
 		else:
@@ -63,13 +63,13 @@ def makeArray(file, x):
 	return matrix, labels
 
 
-matrix, labels = makeArray("/Users/Chris/GitHub/thesis/contacts/all_models/percents.txt", 142)
+matrix, labels = makeArray("/Users/Chris/GitHub/thesis/contacts/all_models/percents_aggr_ordered.txt", 71)
 
 trace = go.Heatmap(
 	z=matrix,
 	x=labels,
 	y=labels)
 data=[trace]
-py.offline.plot(data, filename='heatmap_all.html')
+py.offline.plot(data, filename='aggr_ordered.html')
 
 
