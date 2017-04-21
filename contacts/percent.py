@@ -13,7 +13,7 @@ import os
 # denominator = sum - larger number
 #
 # ARGUMENTS
-# 1. output: str - path to write outpu file to
+# 1. output: str - path to write output file to
 # 2. order_file: str - file that contains the order of the Abs we should sort the matrix in
 # 3. ignore_models: bool - will aggregate data across models for a given Ab
 #
