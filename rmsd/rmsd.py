@@ -76,8 +76,7 @@ def rmsd(f1, f2, chains, ag):
 
 	rmsd_s_mean = rmsd_squared / n
 	rmsd = rmsd_s_mean**(0.5)
-	print f2 + ": " + str(rmsd)
-	print n
+	print str(rmsd)
 	return rmsd
 
 	# close files
