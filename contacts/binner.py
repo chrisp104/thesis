@@ -25,28 +25,27 @@ def binByPercent(bin_dir, output):
 	data = {}
 
 	# read in all of the files and store into data first
-	for ab_dir in os.listdir("./"):
+	for ab_dir in os.listdir(bin_dir):
 		if ab_dir[0] != 'D': continue
-		os.chdir(ab_dir)
+		os.chdir(bin_dir+"/"+ab_dir)
 		for model_dir in os.listdir("./"):
 			if model_dir[0] != 'm': continue
+			os.chdir(model_dir)
 			for fn in os.listdir("./"):
 
 				file = open(fn, 'r')
 				info = file.readlines()
-				data.append((fn[:-4], info))
+				data[fn[:-4]]=info
 				file.close()
-
-
-# **** START HERE ******
 
 
 	# compute pairwise percent similarities
 	for m1 in data:
 		for m2 in data:
-			# print m1[0], m2[0]
-			cont1 = m1[1]
-			cont2 = m2[1]
+			print m1, m2
+			if m1[0:4] == m2[0:4]: continue
+			cont1 = data[m1]
+			cont2 = data[m2]
 
 			numerator = 0
 			denominator = 0
@@ -76,9 +75,9 @@ def binByPercent(bin_dir, output):
 	out.close()
 
 
-os.chdir("/Users/Chris/GitHub/thesis/contacts/all_models/")
-percentContactFromNums("/Users/Chris/GitHub/thesis/contacts/all_models/percents_aggr_ordered.txt", 
-	"/Users/Chris/GitHub/thesis/contacts/ab_order.txt", True)
+os.chdir("/Users/Chris/GitHub/thesis/contacts/bin_c/")
+binByPercent("/Users/Chris/GitHub/thesis/contacts/bin_c/", 
+	"/Users/Chris/GitHub/thesis/contacts/bin_c/output.txt")
 
 
 
