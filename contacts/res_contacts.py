@@ -24,7 +24,7 @@ import os
 # res_num_only: boolean - set to true if key in return_contacts should just be residue number
 #
 # RETURNS 
-# 	1. an array of tuples corresponding to the number of Fv residues in contact
+# 1. an array of tuples corresponding to the number of Fv residues in contact
 #		with the nth residue in the Ag - (Ag chain, Ag res #, number of residues in contact)
 #	2. an dictionary of arrays, key = Ag res # and key =  array of
 #		tuples with (Ab contact residue #, AA abbreviation, chain letter)
@@ -109,22 +109,28 @@ def resContacts(pdb, ag, dist, res_num_only=False):
 # 4. residues: dictionary - the second return value from resContacts()
 # 5. chain_nums: dictionary - the third
 def writeResContacts(path, file_name, numbers, residues, chain_nums):
+	if not os.path.exists(path):
+		os.makedirs(path)
 	output = open(path+file_name, 'w')
+
+	output.write("Ag#,resi:Ab#,chain,resi-Ab#2,chain,resi-etc.\n")
+
 	for key in sorted(residues):
 
 		# header information
-		output.write("Ag res: "+str(key)+"\n")
-		output.write("Contacts in Ab: \n")
+		output.write(key[0]+","+key[1]+":")
 		contacts = residues[key]
 		
 		# contact information
 		for contact in contacts:
-			output.write(contact[0]+' '+contact[1]+' '+contact[2]+"\n")
+			output.write(contact[0]+','+contact[1]+','+contact[2]+"-")
 		output.write("\n")
 
 	# chain contact numbers
 	for key in chain_nums:
 		output.write(key + ": " + str(chain_nums[key]) + "\n")
+
+
 
 
 
@@ -269,7 +275,7 @@ def percentContact(crystal, chains, dist, output):
 
 
 # 6.
-# percentContact()
+# percentPairs()
 #
 # take two outputs of residue contacts (second return value of res_contacts first function)
 # to be compared for % contacts similarity
@@ -288,7 +294,7 @@ def percentContact(crystal, chains, dist, output):
 #
 # RETURNS 
 # 	outputs one file containing percent correct contact for each non-crystal model
-def percentContact(chains, dist, output):
+def percentPairs(chains, dist, output):
 	out = open(output, 'w')
 	
 	# store the contacts data for each docking model in an array of tuples:
