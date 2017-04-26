@@ -54,7 +54,15 @@ def rankMutations(directory, out_path):
 				key = (ag_num, mut_aa)
 
 				# dictionary stuff
-				if key in ranked_mutations:
+
+				# if the mutation has negative score for this model, don't add and make note
+				if float(mut_score) < 0:
+					ranked_mutations[key] = [0, 0, 0]
+					continue
+				# if this mutation was not disruptive for another model, then don't bother
+				elif key in ranked_mutations and ranked_mutations[key][1] == 0:
+					continue
+				elif key in ranked_mutations:
 					ranked_mutations[key][0].append(fn[-17:-15])
 					ranked_mutations[key][1] += 1
 					ranked_mutations[key][2] += float(mut_score)
@@ -69,6 +77,10 @@ def rankMutations(directory, out_path):
 	for mutation in ranked_mutations:
 		ag = mutation[0]
 		ab = mutation[1]
+
+		# if this mutation was not disruptive then don't print
+		if ab[1] == 0:
+			continue
 
 		models = ab[0]
 		num_models = ab[1]
@@ -151,10 +163,13 @@ def analyzePairs(data, out_path):
 	keys = sorted(pairs)
 
 	for key in keys:
-		if pairs[key] == 0: continue
+		# if pairs[key] == 0: continue
 		out.write(key+": "+str(pairs[key])+"\n")
 
 	return pairs
+
+# data = rankMutations("/Users/Chris/GitHub/thesis/mutagenesis/mutations/D102/m0/", "/Users/Chris/GitHub/thesis/mutagenesis/mutations/D102/m0/ranked.txt")
+# analyzePairs("/Users/Chris/GitHub/thesis/mutagenesis/mutations/D102/m0/ranked.txt", "/Users/Chris/GitHub/thesis/mutagenesis/mutations/D102/m0/pairs.txt")
 
 
 
