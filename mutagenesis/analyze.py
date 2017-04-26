@@ -6,6 +6,8 @@ from collections import OrderedDict
 #
 # FUNCTIONS
 # 1. rankMutations - orders Ag mutations by prevalence among docking models
+# 2. analyzePairs - take output from function 1 and count for each docking model pair how many similar
+# disruptive mutations they have in common
 
 
 
