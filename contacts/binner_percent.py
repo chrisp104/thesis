@@ -24,7 +24,7 @@ import random
 #		
 #		returns an array of tuples: (model names that "cross-block", total summed % similarity score)
 def binByPercent(bin_dir, output):
-	THRESHOLD = 0.60
+	THRESHOLD = 0.35
 	out = open(output, 'w')
 	data = {}		# to just hold file information
 	antibodies = []		# to hold the antibody model names, e.g., D206m1
@@ -99,8 +99,8 @@ def binByPercent(bin_dir, output):
 						num1 = int(line1[10:])
 						num2 = int(line2[10:])
 
-						numerator += 2*min(num1, num2)
-						denominator += (max(num1, num2) + min(num1, num2))
+						numerator += min(num1, num2)
+						denominator += (max(num1, num2))
 					
 					if denominator == 0:
 						percent = 0
@@ -134,7 +134,7 @@ def binByPercent(bin_dir, output):
 
 os.chdir("/Users/Chris/GitHub/thesis/contacts/bin_c/")
 binByPercent("/Users/Chris/GitHub/thesis/contacts/bin_c/", 
-	"/Users/Chris/GitHub/thesis/contacts/bin_c/output2.txt")
+	"/Users/Chris/GitHub/thesis/contacts/bin_c/output.txt")
 
 
 

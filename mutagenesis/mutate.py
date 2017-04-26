@@ -27,6 +27,8 @@ def findMutations(matrix, file):
 	AA = ['ARG', 'LYS', 'ASN', 'ASP', 'GLN', 'GLU', 'HIS', 'PRO', 'TYR', 'TRP',
 	'SER', 'THR', 'GLY', 'ALA', 'MET', 'CYS', 'PHE', 'LEU', 'VAL', 'ILE']
 
+	THRESHOLD = 0		# net disruption score for Ag residue above which counts as good
+
 	f = open(file, 'r')
 	data = f.readlines()
 	f.close()
@@ -46,8 +48,6 @@ def findMutations(matrix, file):
 			continue
 
 		# loop through the Ag resi lines
-		if len(line) == 7: 
-			continue
 		split_line = line.split(':')
 		ag = split_line[0]
 		ab = split_line[1]
@@ -56,9 +56,12 @@ def findMutations(matrix, file):
 		ag_num = ag_split[0]
 		ag_res = ag_split[1]
 
-		print ag_num
-
 		ab_resis = ab.split('-')
+
+		# if no contacts then just set to null, effectively
+		if len(line) == 9: 
+			mut_data[ag_num] = 0
+			continue
 
 		# loop through all 19 possible mutations for Ag res
 		aa_scores = []
@@ -83,14 +86,14 @@ def findMutations(matrix, file):
 
 				difference = mut_score - cur_score
 
-				print current_pair, cur_score
-				print mutated_pair, mut_score
-				print difference
+				# print current_pair, cur_score
+				# print mutated_pair, mut_score
+				# print difference
 				net_score += difference
 
 			# now write in data for this mutation
-			if net_score > 0:		# only append if score is net disruptive
-				aa_scores.append((aa, net_score))
+			# if net_score > THRESHOLD:		# only append if score is net disruptive
+			aa_scores.append((aa, net_score))
 
 		# now write in data for all mutations for this Ag res
 		aa_scores = sorted(aa_scores, key=lambda tup: tup[1], reverse=True)
@@ -121,13 +124,18 @@ def writeMutations(data, out_dir, out_name):
 	for key in sorted(data):
 		output.write(key+": ")
 
+		# if no contacts
+		if data[key] == 0:
+			output.write('\n')
+			continue
+
 		first = True
 		for mutation in data[key]:
 			if first:
-				output.write(mutation[0]+'-'+str(mutation[1]))
+				output.write(mutation[0]+'|'+str(mutation[1]))
 				first = False
 				continue
-			output.write(','+mutation[0]+'-'+str(mutation[1]))
+			output.write(','+mutation[0]+'|'+str(mutation[1]))
 		output.write('\n')
 
 	output.close()
