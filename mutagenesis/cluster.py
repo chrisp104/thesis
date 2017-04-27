@@ -32,62 +32,131 @@ def kMedCluster(rankedFile, isdb, k):
 	mutations = []
 	for line in rlines:
 		mutPosition = line[:3]
-		if not mutPosition in mutations:
-			mutations.append(mutPosition)
-
+		# mutNumber = int(line.split('|')[1])		# number of docking models some sort of mutation at
+		# 																			# this point will disrupt
+		# for i in range(mutNumber):
+		# 	mutations.append(mutPosition)
+		mutations.append(mutPosition)
 
 	# create distance matrix (dictionary)
 	distances = rmsdFromPDB(isdb)
 
+
+
 	# *** K-MEDOIDS ALGORITHM ***
 
+	# 1. Choose k entities to become the medoids
 	# select k random medoids from the data
-	medoids = []
-	while len(medoids) != k:
+	clusters = {}
+	while len(clusters) != k:
 		randomMut = random.choice(mutations)
-		if not randomMut in medoids:
-			medoids.append(randomMut)
+		if not randomMut in clusters:
+			clusters[randomMut] = [[], 0]
 
-	prevCost = 1000000000
-	curCost = 100000000
+	# initialize some variables for the loop
+	firstTime = True
+	new_medoid_found = True
+	
 
-	# while cost of configuration decreases
-	while curCost < prevCost:
-		print medoids
-		print curCost
-		prevCost = curCost
+	# THE LOOP UNTIL MEDOIDS DO NOT CHANGE (CONVERGENCE)
+	while new_medoid_found:
+		print clusters.keys()
 
-		# for each medoid m
-		for i in range(len(medoids)):
-			print i
+		# 2. Assign every entity to its closest medoid
+		# remove the medoids from the list
+		non_medoids = list(mutations)
+		for key in clusters:
+			non_medoids.remove(key)
 
-			# for each non-medoid data point o
-			for o in mutations:
+		# assign each data point to a medoid
+		for mutation in non_medoids:
+			closest = 0				# the closest medoid
+			dist = 100000000	# the shortest distance to a medoid
+			for medoid in clusters:
+				key = mutation+':'+medoid
+				if closest == 0 or distances[key] < dist:
+					closest = medoid
+					dist = distances[key]
+			clusters[closest][0].append(mutation)
+			clusters[closest][1] += dist
+
+		# # IF FIRST ITERATION calculate average distance total (per cluster)
+		# if firstTime:
+		# 	prevCost = 0
+		# 	for medoid in cluster:
+		# 		points = cluster[medoid]
+		# 		for point in points:
+		# 			key = medoid+':'+point
+		# 			dist = distances[key]
+		# 			prevCost += dist
+		# 	prevCost /= float(k)
+		# 	firstTime = False
+		
+		
+		# 3. For each cluster search if any of the entities of the cluster lower the average 
+		# distance total, if it does select the entity that lowers this coefficient the most 
+		# as the medoid for this cluster
+		new_medoid_found = False
+		new_clusters = {}
+
+		for m in clusters:
+			prevCost = clusters[m][1]
+			curCluster = list(clusters[m][0])		# all the data points in this cluster
+			curCluster.append(m)
+
+			# find if any points lower the average total distance
+			best_point = m
+			for o in curCluster:													# o is the new temp medoid
 				curCost = 0
+				placeholder = list(curCluster)
+				placeholder.remove(o)												# the new cluster with the temp medoid removed
 
-				# swap m and o, using placeholder in case we need to revert
-				placeholder = medoids[i]
-				medoids[i] = o
-
-				# *** recompute the cost (sum of dist of points to their medoid)
-				# for each non-medoid, compare with each medoid, and add lowest score to curCost
-				for mutation in mutations:
-					low_dist = 0
-					for medoid in medoids:
-						key = mutation+':'+medoid
-						if low_dist == 0:
-							low_dist = distances[key]
-						elif distances[key] < low_dist:
-							low_dist = distances[key]
-
-					curCost += low_dist
+				# *** recompute the cost (sum of dist of points to the new medoid o)
+				for p in placeholder:
+					key = p+':'+o
+					dist = distances[key]
+					curCost += dist
 
 				# if the total cost increased revert back, else do nothing
-				if curCost > prevCost:
-					medoids[i] = placeholder
+
+				if float(curCost) < float(prevCost):
+					best_point = o
+					prevCost = curCost
+
+			if best_point != m:
+				new_medoid_found = True
+				new_clusters[best_point] = [[], prevCost]
+			else:
+				new_clusters[m] = [[], prevCost]
+
+		clusters = new_clusters
+
+
+
+	# ***** CLUSTERING DONE *********
+
+
+	# Assign every entity to its closest medoid
+	# remove the medoids from the list
+	non_medoids = list(mutations)
+	for key in clusters:
+		non_medoids.remove(key)
+
+	# assign each data point to a medoid
+	for mutation in non_medoids:
+		closest = 0				# the closest medoid
+		dist = 100000000	# the shortest distance to a medoid
+		for medoid in clusters:
+			key = mutation+':'+medoid
+			if closest == 0 or distances[key] < dist:
+				closest = medoid
+				dist = distances[key]
+		clusters[closest][0].append(mutation)
+		clusters[closest][1] += dist
 
 	# return medoid set
-	return medoids
+	print clusters.keys()
+	return clusters
 
 
 
@@ -137,7 +206,7 @@ def rmsdFromPDB(pdb):
 
 
 kMedCluster("/Users/Chris/GitHub/thesis/mutagenesis/ranked_mutations/D102m0.txt", 
-	"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb", 1)
+	"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb", 9)
 
 
 
