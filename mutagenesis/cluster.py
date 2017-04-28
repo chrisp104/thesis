@@ -6,7 +6,9 @@ import random
 #
 # FUNCTIONS
 # 1. kMedCluster() - cluster mutations using k-medoids algorithm
-# 2. rmsdFromPDB()
+# 2. checkCoverage() - check to see if medoid mutations cover all docking models
+# 3. rmsdFromPDB()
+
 
 
 
@@ -19,10 +21,12 @@ import random
 # ARGUMENTS
 # 1. rankedFile: str - path of the ranked mutations file
 # 2. isdb: str - path of isdb Ag pdb file
+# 3. k: num - number of clusters to use
+# 4. out_path: str - output file path 
 #
 # RETURNS 
 # 	clusters - returns set of k mutations representing the cluster medoids
-def kMedCluster(rankedFile, isdb, k):
+def kMedCluster(rankedFile, isdb, k, out_path):
 
 	# read in rankedFile and store mutations into array
 	rFile = open(rankedFile, 'r')
@@ -32,14 +36,14 @@ def kMedCluster(rankedFile, isdb, k):
 	mutations = []
 	for line in rlines:
 		mutPosition = line[:3]
-		# mutNumber = int(line.split('|')[1])		# number of docking models some sort of mutation at
-		# 																			# this point will disrupt
-		# for i in range(mutNumber):
-		# 	mutations.append(mutPosition)
-		mutations.append(mutPosition)
+		mutNumber = int(line.split('|')[1])		# number of docking models some sort of mutation at
+																					# this point will disrupt
+		for i in range(mutNumber):
+			mutations.append(mutPosition)
 
 	# create distance matrix (dictionary)
 	distances = rmsdFromPDB(isdb)
+	# print sorted(mutations)
 
 
 
@@ -60,7 +64,7 @@ def kMedCluster(rankedFile, isdb, k):
 
 	# THE LOOP UNTIL MEDOIDS DO NOT CHANGE (CONVERGENCE)
 	while new_medoid_found:
-		print clusters.keys()
+		# print clusters.keys()
 
 		# 2. Assign every entity to its closest medoid
 		# remove the medoids from the list
@@ -79,18 +83,6 @@ def kMedCluster(rankedFile, isdb, k):
 					dist = distances[key]
 			clusters[closest][0].append(mutation)
 			clusters[closest][1] += dist
-
-		# # IF FIRST ITERATION calculate average distance total (per cluster)
-		# if firstTime:
-		# 	prevCost = 0
-		# 	for medoid in cluster:
-		# 		points = cluster[medoid]
-		# 		for point in points:
-		# 			key = medoid+':'+point
-		# 			dist = distances[key]
-		# 			prevCost += dist
-		# 	prevCost /= float(k)
-		# 	firstTime = False
 		
 		
 		# 3. For each cluster search if any of the entities of the cluster lower the average 
@@ -144,8 +136,8 @@ def kMedCluster(rankedFile, isdb, k):
 
 	# assign each data point to a medoid
 	for mutation in non_medoids:
-		closest = 0				# the closest medoid
-		dist = 100000000	# the shortest distance to a medoid
+		closest = 0					# the closest medoid
+		dist = 100000000		# the shortest distance to a medoid
 		for medoid in clusters:
 			key = mutation+':'+medoid
 			if closest == 0 or distances[key] < dist:
@@ -154,13 +146,69 @@ def kMedCluster(rankedFile, isdb, k):
 		clusters[closest][0].append(mutation)
 		clusters[closest][1] += dist
 
+
+	# print results to output
+	out = open(out_path, 'w')
+	for key in clusters:
+		out.write("M = "+key+":\n")
+		for p in clusters[key][0]:
+			out.write(p+" ")
+		out.write("\n\n")
+	out.close()
+
+
 	# return medoid set
-	print clusters.keys()
+	print sorted(clusters.keys())
 	return clusters
 
 
 
 # 2.
+# checkCoverage()
+#
+# take the medoids from function 1 and check to see if (they) mutations cover all docking models
+# 
+# ARGUMENTS
+# 1. medoids: array - array containing the k Ag residue medoids
+# 2. rankedFile: str - path of the ranked mutations file
+#
+# RETURNS 
+# 	(True, 0) if covers all models, (False, [n1, n2, ...]) if some missing with an array of the 
+# 	missing models
+def checkCoverage(medoids, rankedFile):
+	covered = []
+
+	# read in rankedFile and store mutations into array
+	rFile = open(rankedFile, 'r')
+	rlines = rFile.readlines()
+	rFile.close()
+
+	for medoid in medoids:
+		for line in rlines:
+			# if the this line corresponds to a medoid, then parse data
+			if medoid != line[:3]: continue
+
+			# if the mutation is one that happens on a medoid, then note which models it covers
+			models = line.split(':')[1].strip().split('|')[0].split(',')
+			for model in models:
+				num = int(model)
+				if not (num in covered):
+					covered.append(num)
+
+	not_covered = []
+	for i in range(30):
+		if not (i in covered):
+			not_covered.append(i)
+
+	if len(not_covered) == 0:
+		return (True, 0)
+	else:
+		return (False, not_covered)
+
+
+
+
+# 3.
 # rmsdFromPDB()
 #
 # take pdb file lines and create distance matrix (dictionary) for pairwise CA atoms of every residue
@@ -204,11 +252,11 @@ def rmsdFromPDB(pdb):
 	return distances
 
 
+# clusters = kMedCluster("/Users/Chris/GitHub/thesis/mutagenesis/ranked_mutations/D110m2.txt", 
+# 		"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb", 8, 
+# 		"/Users/Chris/GitHub/thesis/mutagenesis/results.txt")
 
-kMedCluster("/Users/Chris/GitHub/thesis/mutagenesis/ranked_mutations/D102m0.txt", 
-	"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb", 9)
-
-
+# print checkCoverage(clusters, "/Users/Chris/GitHub/thesis/mutagenesis/ranked_mutations/D110m2.txt")
 
 
 

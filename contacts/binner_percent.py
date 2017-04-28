@@ -48,7 +48,6 @@ def binByPercent(bin_dir, output):
 	results = []
 	# populate with one model's contact files
 	start = random.choice(data.keys())
-	print start
 
 	antibodies.remove(start[:-3])
 	for key in data:
@@ -112,6 +111,7 @@ def binByPercent(bin_dir, output):
 						set_removed = True
 						break
 
+					print percent
 					score += percent
 
 				# don't add if one of the scores was too low
