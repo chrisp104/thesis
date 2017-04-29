@@ -6,7 +6,8 @@ from collections import OrderedDict
 #
 # FUNCTIONS
 # 1. rankMutations - orders Ag mutations by prevalence among docking models
-# 2. analyzePairs - take output from function 1 and count for each docking model pair how many similar
+# 2. createTrupleMuts - take the ranked mutations and create sets of triple mutations
+# 3. analyzePairs - take output from function 1 and count for each docking model pair how many similar
 # disruptive mutations they have in common
 
 
@@ -88,9 +89,15 @@ def rankMutations(directory, out_path):
 		num_models = ab[1]
 		score = ab[2]
 
-		# skip if mutation only affects one model
-		if num_models == 1:
-			continue
+		# *** SKIP SWITCHES
+
+		# # skip if mutation only affects one model
+		# if num_models == 1:
+		# 	continue
+
+		# # skip if mutation score is not above 0.1
+		# if score < 0.1:
+		# 	continue
 
 		out.write(ag[0] + "m" + ag[1]+': ')
 		
