@@ -5,7 +5,7 @@ import random
 # affected docking models) and run K-MEDOIDS (1-dimensional) clustering on them
 #
 # FUNCTIONS
-# 1. kMedCluster() - cluster mutations using k-medoids algorithm
+# 1. clusterSingles() - cluster mutations using k-medoids algorithm
 # 2. checkCoverage() - check to see if medoid mutations cover all docking models
 # 3. rmsdFromPDB()
 
@@ -13,7 +13,7 @@ import random
 
 
 # 1.
-# kMedCluster()
+# clusterSingles()
 #
 # take a ranked mutation file that covers mutations aggregated for all 30 docking models
 # and cluster them into k group based on k-medoids
@@ -26,7 +26,7 @@ import random
 #
 # RETURNS 
 # 	clusters - returns set of k mutations representing the cluster medoids
-def kMedCluster(rankedFile, isdb, k, out_path):
+def clusterSingles(rankedFile, isdb, k, out_path):
 
 	# read in rankedFile and store mutations into array
 	rFile = open(rankedFile, 'r')
@@ -252,7 +252,7 @@ def rmsdFromPDB(pdb):
 	return distances
 
 
-# clusters = kMedCluster("/Users/Chris/GitHub/thesis/mutagenesis/ranked_mutations/D110m2.txt", 
+# clusters = clusterSingles("/Users/Chris/GitHub/thesis/mutagenesis/ranked_mutations/D110m2.txt", 
 # 		"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb", 8, 
 # 		"/Users/Chris/GitHub/thesis/mutagenesis/results.txt")
 

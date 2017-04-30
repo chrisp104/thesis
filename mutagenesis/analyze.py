@@ -95,9 +95,9 @@ def rankMutations(directory, out_path):
 		# if num_models == 1:
 		# 	continue
 
-		# # skip if mutation score is not above 0.1
-		# if score < 0.1:
-		# 	continue
+		# skip if mutation score is not above 0.1
+		if score < 1:
+			continue
 
 		out.write(ag[0] + "m" + ag[1]+': ')
 		

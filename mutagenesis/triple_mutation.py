@@ -38,7 +38,8 @@ def createVariant(ranked_file, isdb, k, out_file):
 	for line in rlines:
 		if line == '\n': continue
 		mutation = line[:7]
-		mutation_list.append(mutation)
+		score = float(line.split('|')[2])
+		mutation_list.append((mutation, score))
 
 	# create the variants
 	variants = []
@@ -49,16 +50,20 @@ def createVariant(ranked_file, isdb, k, out_file):
 	# are all within 12 angstroms. Or else, remove.
 	final_variants = []
 	for variant in variants:
-		print variant
+		#print variant
 		remove = False
 		for i in range(len(variant)):
 			if remove:
 				break
 			for j in range(i+1, len(variant)):
-				m1 = variant[i]
+				m1 = variant[i][0]
 				res1 = m1[:3]
-				m2 = variant[j]
+				m2 = variant[j][0]
 				res2 = m2[:3]
+
+				# if the mutations are at same resiude, remove
+				if res1 == res2:
+					remove = True
 
 				# look up distance
 				key = res1+":"+res2
@@ -72,20 +77,28 @@ def createVariant(ranked_file, isdb, k, out_file):
 
 	# write output
 	out = open(out_file, 'w')
-	for variant in variants:
+	for variant in final_variants:
 		for i in range(k):
-			out.write(variant[i]+' ')
+			out.write(variant[i][0]+' ')
+
+		# calculate total disruption score and also write
+		score = 0
+		for mutation in variant:
+			s = mutation[1]
+			score += s
+		out.write("| "+str(score))
+
 		out.write('\n')
 
 	out.close()
 
 
-	print final_variants
-	print len(final_variants)
+	#print final_variants
+	#print len(final_variants)
 	return final_variants
 
-createVariant("/Users/Chris/GitHub/thesis/mutagenesis/ranked_mutations/D102m0.txt", 
-	"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb", 3, "/Users/Chris/GitHub/thesis/mutagenesis/variants/D102m2.txt")
+# createVariant("/Users/Chris/GitHub/thesis/mutagenesis/ranked_mutations/D102m0.txt", 
+# 	"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb", 3, "/Users/Chris/GitHub/thesis/mutagenesis/variants/D102m2.txt")
 
 
 
