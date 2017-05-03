@@ -475,10 +475,10 @@ def hausdorff(v1, v2, distances):
 # distances = rmsdFromPDB("/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb")
 # hausdorff(("440mGLU", "438mALA", "434mCYS"), ("293mGLY", "297mGLU", "281mASP"), distances)
 
-clusters = clusterVariants("/Users/Chris/GitHub/thesis/mutagenesis/variants_one/D102m2.txt", 
-	"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb", 4, 
-	"/Users/Chris/GitHub/thesis/mutagenesis/results.txt")
-findBestVariants(clusters, "/Users/Chris/GitHub/thesis/mutagenesis/ranked_mutations_one/D102m2.txt")
+# clusters = clusterVariants("/Users/Chris/GitHub/thesis/mutagenesis/variants_one/D102m2.txt", 
+# 	"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb", 4, 
+# 	"/Users/Chris/GitHub/thesis/mutagenesis/results.txt")
+# findBestVariants(clusters, "/Users/Chris/GitHub/thesis/mutagenesis/ranked_mutations_one/D102m2.txt")
 
 # print checkCoverage(clusters.keys(), "/Users/Chris/GitHub/thesis/mutagenesis/ranked_mutations/D102m0.txt")
 
