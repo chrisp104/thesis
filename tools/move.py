@@ -14,5 +14,5 @@ for antibody in os.listdir("/Users/Chris/GitHub/thesis/antibodies/"):
 	model = 'm'+best
 	os.makedirs("/Users/Chris/GitHub/thesis/mutagenesis/one_models/"+antibody+"/")
 	# os.makedirs("/Users/Chris/GitHub/thesis/mutagenesis/one_models/"+antibody+"/"+model+"/")
-	shutil.copytree("/Users/Chris/GitHub/thesis/contacts/all_indiv/"+antibody+"/"+model+"/", 
+	shutil.copytree("/Users/Chris/GitHub/thesis/mutagenesis/two_models/"+antibody+"/"+model+"/", 
 		"/Users/Chris/GitHub/thesis/mutagenesis/one_models/"+antibody+"/"+model+"/")

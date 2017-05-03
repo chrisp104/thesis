@@ -182,6 +182,7 @@ def bulkDirMutations(out_dir):
 		print fn
 
 		mut_data = findMutations(matrix, fn)
+		print mut_data
 
 		writeMutations(mut_data, out_dir, fn[:-12]+"_mutations.txt")
 
