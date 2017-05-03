@@ -1,14 +1,19 @@
 import os
 import random
+import itertools
 
 # scripts to take output of triple_mutation.py (ranked k-mutation variants that disrupt binding in all
 # affected docking models) and run K-MEDOIDS (k-dimensional) clustering on them
 #
 # FUNCTIONS
 # 1. clusterVariants() - cluster mutations using k-medoids algorithm
-# 2. checkCoverage() - check to see if medoid mutations cover all docking models
-# 3. rmsdFromPDB()
-# 4. hausdorff()
+# 2. findBestVariants() - takes the clusters from function 1 and then selects a set of variants
+#			 										covers all docking models and is most disruptive
+# 3. checkCoverage() - check to see if medoid mutations cover all docking models
+# 4. rmsdFromPDB()
+# 5. hausdorff()
+
+
 
 
 
@@ -27,7 +32,7 @@ import random
 #
 # RETURNS 
 # 	clusters - returns set of k mutations representing the cluster medoids
-def clusterVariants(variantsFile, rankedFile, isdb, k, out_path):
+def clusterVariants(variantsFile, isdb, k, out_path):
 	# read in variants and store into an array
 	vFile = open(variantsFile,'r')
 	vlines = vFile.readlines()
@@ -35,7 +40,7 @@ def clusterVariants(variantsFile, rankedFile, isdb, k, out_path):
 
 	variants = []
 	for line in vlines:
-		mutations = line.split('|')[0].strip().split(' ')
+		mutations = line.strip().split(' ')
 		variant = []
 		for mutation in mutations:
 			variant.append(mutation)
@@ -65,7 +70,7 @@ def clusterVariants(variantsFile, rankedFile, isdb, k, out_path):
 
 	# THE LOOP UNTIL MEDOIDS DO NOT CHANGE (CONVERGENCE)
 	while new_medoid_found:
-		# print clusters.keys()
+		print clusters.keys()
 
 		# 2. Assign every entity to its closest medoid
 		# remove the medoids from the list
@@ -80,7 +85,7 @@ def clusterVariants(variantsFile, rankedFile, isdb, k, out_path):
 			closest = 0				# the closest medoid
 			dist = 100000000	# the shortest distance to a medoid
 			for medoid in clusters:
-				hausD = hausdorff(variant, medoid)
+				hausD = hausdorff(variant, medoid, distances)
 				if closest == 0 or hausD < dist:
 					closest = medoid
 					dist = hausD
@@ -108,13 +113,13 @@ def clusterVariants(variantsFile, rankedFile, isdb, k, out_path):
 
 				# *** recompute the cost (sum of dist of points to the new medoid o)
 				for p in placeholder:
-					key = p+':'+o
-					dist = distances[key]
+					dist = hausdorff(p, o, distances)
 					curCost += dist
 
 				# if the total cost increased revert back, else do nothing
 
-				if float(curCost) < float(prevCost):
+				if float(curCost) < float(prevCost)+0.000005:	 	# the addition is to deal with identical costs
+					#print prevCost, curCost
 					best_point = o
 					prevCost = curCost
 
@@ -133,31 +138,49 @@ def clusterVariants(variantsFile, rankedFile, isdb, k, out_path):
 
 	# Assign every entity to its closest medoid
 	# remove the medoids from the list
-	non_medoids = list(mutations)
-	for key in clusters:
-		non_medoids.remove(key)
+	non_medoids = []
+	for variant in variants:
+		if variant in clusters.keys():
+			continue
+		non_medoids.append(variant)
 
-	# assign each data point to a medoid
-	for mutation in non_medoids:
-		closest = 0					# the closest medoid
-		dist = 100000000		# the shortest distance to a medoid
+	# assign each data point to a medoid using the Hausdorff distance
+	for variant in non_medoids:
+		closest = 0				# the closest medoid
+		dist = 100000000	# the shortest distance to a medoid
 		for medoid in clusters:
-			key = mutation+':'+medoid
-			if closest == 0 or distances[key] < dist:
+			hausD = hausdorff(variant, medoid, distances)
+			if closest == 0 or hausD < dist:
 				closest = medoid
-				dist = distances[key]
-		clusters[closest][0].append(mutation)
+				dist = hausD
+		clusters[closest][0].append(variant)
 		clusters[closest][1] += dist
 
 
 	# print results to output
 	out = open(out_path, 'w')
 	for key in clusters:
-		out.write("M = "+key+":\n")
+		out.write("M = ")
+		for m in key:
+			out.write(m+' ')
+		out.write("\n")
 		for p in clusters[key][0]:
-			out.write(p+" ")
+			for n in p:
+				out.write(n+' ')
+			out.write('| ')
 		out.write("\n\n")
 	out.close()
+
+
+	# print just the medoids of all Abs to one file
+	medoids_out = open("/Users/Chris/GitHub/thesis/mutagenesis/variant_clusters.txt", 'a')
+	medoids_out.write(variantsFile[-10:] + '\n')
+	for key in clusters:
+		for m in key:
+			medoids_out.write(m+',')
+		medoids_out.write("|")
+	medoids_out.write('\n')
+	medoids_out.close()
 
 
 	# return medoid set
@@ -166,7 +189,135 @@ def clusterVariants(variantsFile, rankedFile, isdb, k, out_path):
 
 
 
+
+
 # 2.
+# findBestVariants()
+#
+# takes the clusters from function 1 and then selects a set of variants covers all 
+# docking models and is most disruptive
+# 
+# ARGUMENTS
+# 1. clusters: dict - return value from function 1
+# 2. rankedFile: str - path of the ranked mutations file
+#
+# RETURNS 
+#		tuple (variant set, score)
+# 	NOT variantSet: array - set of variants with highest disruption score that cover all docking models
+def findBestVariants(clusters, rankedFile):
+
+	# read in rankedFile and store mutations into array
+	rFile = open(rankedFile, 'r')
+	rlines = rFile.readlines()
+	rFile.close()
+
+	# create data structure for each mutation point being
+	# key = mutation point
+	# value = array of tuples: (mutation resi, [affected models], total disruption score)
+	mutations = {}
+	for line in rlines:
+		number = line[:3]
+		data = line.split(' ')[1].split('|')
+
+		mutRes = line[4:7]
+		affected = data[0].split(',')
+		score = float(data[2][:-1])
+		entry = (mutRes, affected, score)
+
+		if number in mutations.keys():
+			mutations[number].append(entry)
+		else:
+			mutations[number] = [entry]
+
+	for key in mutations:
+		mutations[key] = sorted(mutations[key], key=lambda x: x[2], reverse=True)
+
+	# add the medoids to the cluster arrays
+	clusterArray = []						# create array to hold the clusters
+	for medoid in clusters:
+		points = clusters[medoid][0]
+		points.append(medoid)
+		clusters[medoid] = points
+		clusterArray.append(points)
+
+	
+	# find all variant sets, one from each cluster, that CAN cover all docking models
+	# ******************* CHANGE HERE TO MAKE SURE ALL ARE THERE *****************
+	x_count = 0
+	covered_count = 0
+	coveringSets = []
+	for x in itertools.product(clusterArray[0], clusterArray[1], clusterArray[2], clusterArray[3]):
+		x_count += 1
+
+		# check if the mutations cover all docking models
+		# make array of affected points
+		covered = []
+		points = []
+		for variant in x:
+			for p in variant:
+				points.append(p)
+
+		# for each mutation point in the set
+		for p in points:
+			info = mutations[p]
+			# just take the models of the first possible mutation
+			models = info[0][1]
+			for model in models:
+				if not model in covered:
+					covered.append(model)
+
+		# add to coveringSets if it covers all docking models
+		if len(covered) == 30:
+			coveringSets.append(x)
+			covered_count += 1
+
+	print covered_count
+	print x_count
+
+
+	# *** FIND BEST SCORING MODEL ****
+	# loop through sets that cover all Abs
+	candidateSets = []		# to hold array of tuples (set, score)
+	for variantSet in coveringSets:
+		# make array of affected points
+		covered = []
+		points = []
+		for variant in variantSet:
+			for p in variant:
+				points.append(p)
+
+		total_score = 0
+		for p in points:
+			info = mutations[p]
+			best = info[0]
+
+			residue = best[0]
+			models = best[1]
+			score = best[2]
+
+			total_score += score
+
+			# check
+			for model in models:
+				if not model in covered:
+					covered.append(model)
+
+		if len(covered) == 30:
+			candidateSets.append((variantSet, total_score))
+
+	candidateSets = sorted(candidateSets, key=lambda x: x[1])
+	bestCandidate = candidateSets[-1]
+	print bestCandidate
+	return bestCandidate
+
+
+
+
+
+
+
+
+# 3.
 # checkCoverage()
 #
 # take the medoids from function 1 and check to see if (they) mutations cover all docking models
@@ -186,7 +337,14 @@ def checkCoverage(medoids, rankedFile):
 	rlines = rFile.readlines()
 	rFile.close()
 
-	for medoid in medoids:
+	# put single points into medoids
+	single_medoids = []
+	for m in medoids:
+		for m1 in m:
+			single_medoids.append(m1)
+	print single_medoids	
+
+	for medoid in single_medoids:
 		for line in rlines:
 			# if the this line corresponds to a medoid, then parse data
 			if medoid != line[:3]: continue
@@ -211,7 +369,10 @@ def checkCoverage(medoids, rankedFile):
 
 
 
-# 3.
+
+
+
+# 4.
 # rmsdFromPDB()
 #
 # take pdb file lines and create distance matrix (dictionary) for pairwise CA atoms of every residue
@@ -256,7 +417,11 @@ def rmsdFromPDB(pdb):
 
 
 
-# 4.
+
+
+
+
+# 5.
 # hausdorff()
 #
 # calculate the hausdorff distance between two medoids - basically the maximum distance two points
@@ -284,13 +449,11 @@ def hausdorff(v1, v2, distances):
 				low = dist
 		dist_array.append(low)
 	hausD = max(dist_array)
-	print hausD
 	return hausD
 
 
 
-distances = rmsdFromPDB("/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb")
-hausdorff(("440mGLU", "438mALA", "434mCYS"), ("293mGLY", "297mGLU", "281mASP"), distances)
+
 
 
 
@@ -309,7 +472,15 @@ hausdorff(("440mGLU", "438mALA", "434mCYS"), ("293mGLY", "297mGLU", "281mASP"), 
 
 # print checkCoverage(clusters, "/Users/Chris/GitHub/thesis/mutagenesis/ranked_mutations/D110m2.txt")
 
+# distances = rmsdFromPDB("/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb")
+# hausdorff(("440mGLU", "438mALA", "434mCYS"), ("293mGLY", "297mGLU", "281mASP"), distances)
 
+clusters = clusterVariants("/Users/Chris/GitHub/thesis/mutagenesis/variants_one/D102m2.txt", 
+	"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb", 4, 
+	"/Users/Chris/GitHub/thesis/mutagenesis/results.txt")
+findBestVariants(clusters, "/Users/Chris/GitHub/thesis/mutagenesis/ranked_mutations_one/D102m2.txt")
+
+# print checkCoverage(clusters.keys(), "/Users/Chris/GitHub/thesis/mutagenesis/ranked_mutations/D102m0.txt")
 
 
 

@@ -68,7 +68,7 @@ def createVariant(ranked_file, isdb, k, out_file):
 				# look up distance
 				key = res1+":"+res2
 				distance = distances[key]
-				if float(distance) > 12:
+				if float(distance) > 12 or float(distance) < 3:
 					remove = True
 					break
 
