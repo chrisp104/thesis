@@ -1,0 +1,20 @@
+dir intersection
+
+This was previously in the "binning" directory and has been merged into intersection
+
+
+BINNING 
+
+	is a generic algorithm for determining which chains in the Ag
+	are in closest contact with the Ab. It uses an algorithm identical to
+	that in dir contacts to determine which residues in the antibody are within
+	a given distance, and counts the number of residues in the Ab in contact
+	with each Ag residue and accumulates them into a total number of contact
+	residues for each Ag chain. 
+
+
+INTERSECTION
+
+	is an algorithm to take the NUMBER of Ab contact residues along the Ag residues
+	and compute percent similarity in those (intersection / union) across
+	different models

@@ -1,3 +1,4 @@
+# take the best variant set output file and order them according to expected bins
 import os
 
 bestVariants = open("/Users/Chris/GitHub/thesis/mutagenesis/bestVariants_3.txt", 'r')

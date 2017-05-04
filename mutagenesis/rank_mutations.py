@@ -12,6 +12,8 @@ from collections import OrderedDict
 
 
 
+
+
 # 1.
 # rankMutations()
 #
@@ -126,6 +128,7 @@ def rankMutations(directory, out_path):
 
 
 
+
 # 2.
 # analyzePairs()
 #
@@ -181,24 +184,6 @@ def analyzePairs(data, out_path):
 # analyzePairs("/Users/Chris/GitHub/thesis/mutagenesis/mutations/D102/m0/ranked.txt", "/Users/Chris/GitHub/thesis/mutagenesis/mutations/D102/m0/pairs.txt")
 
 
-
-
-
-
-# 3.
-# clusterFromPairs()
-#
-# take output from function 2 and cluster docking models into groups based on
-# how many mutations would be disruptive for all models in cluster
-# 
-# ARGUMENTS
-# 1. data: str - path of output file from function1
-# 2. out_path: str - path of output file 
-#
-# RETURNS 
-# 	dictionary:
-#			key: str - "Docking model #: docking model #"
-#			value: int - number of mutations in common
 
 
 

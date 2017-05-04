@@ -1,0 +1,25 @@
+dir mutagenesis
+
+The overall purpose here is to look at which Ab residues each Ag residue is
+in contact with (within 8 angstroms) and create mutations on the Ag at those points
+that are disruptive to the model(s) - takes output of res_contacts from *contacts*
+directory
+
+All one_* directories contain just the top scoring Ab design data and 
+two_* directories contain top two = top scoring, and then the Ab design within
+10 REUs with the highest RMSD to the top scoring.
+
+
+All the run_* python scripts are numbered in order of use
+
+mutate.py - create disruptive mutations from a _contacts.txt file for a docking model
+
+rank_mutations.py - rank a given mutation across all docking models, eliminating
+	mutations that are not disruptive to an affected model
+
+create_triple.py - create triple mutation variants - mutations must be within 12 angstroms of each other
+
+cluster_triple.py - cluster what we made from above
+
+
+count_models.py - to count the number of mutations needed to cover all models

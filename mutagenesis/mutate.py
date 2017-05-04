@@ -103,6 +103,9 @@ def findMutations(matrix, file):
 
 
 
+
+
+
 # 2.
 # writeMutations()
 #
@@ -139,6 +142,8 @@ def writeMutations(data, out_dir, out_name):
 		output.write('\n')
 
 	output.close()
+
+
 
 
 
