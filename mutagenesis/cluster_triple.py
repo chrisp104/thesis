@@ -9,9 +9,10 @@ import itertools
 # 1. clusterVariants() - cluster mutations using k-medoids algorithm
 # 2. findBestVariants() - takes the clusters from function 1 and then selects a set of variants
 #			 										covers all docking models and is most disruptive
-# 3. checkCoverage() - check to see if medoid mutations cover all docking models
-# 4. rmsdFromPDB()
-# 5. hausdorff()
+# 3. createHeatMapData()
+# 4. checkCoverage() - check to see if medoid mutations cover all docking models
+# 5. rmsdFromPDB()
+# 6. hausdorff()
 
 
 
@@ -205,6 +206,8 @@ def clusterVariants(variantsFile, isdb, k, out_path):
 #		tuple (variant set, score)
 # 	NOT variantSet: array - set of variants with highest disruption score that cover all docking models
 def findBestVariants(clusters, rankedFile):
+	# affected number of models
+	affectedNumber = 0
 
 	# read in rankedFile and store mutations into array
 	rFile = open(rankedFile, 'r')
@@ -214,6 +217,7 @@ def findBestVariants(clusters, rankedFile):
 	# create data structure for each mutation point being
 	# key = mutation point
 	# value = array of tuples: (mutation resi, [affected models], total disruption score)
+	covered = []
 	mutations = {}
 	for line in rlines:
 		number = line[:3]
@@ -224,11 +228,18 @@ def findBestVariants(clusters, rankedFile):
 		score = float(data[2][:-1])
 		entry = (mutRes, affected, score)
 
+		# find how many models are affected
+		for model in affected:
+			if not model in covered:
+				covered.append(model)
+		affectedNumber = len(covered)
+
 		if number in mutations.keys():
 			mutations[number].append(entry)
 		else:
 			mutations[number] = [entry]
 
+	print "affected: "+str(affectedNumber)
 	for key in mutations:
 		mutations[key] = sorted(mutations[key], key=lambda x: x[2], reverse=True)
 
@@ -245,6 +256,7 @@ def findBestVariants(clusters, rankedFile):
 	# ******************* CHANGE HERE TO MAKE SURE ALL ARE THERE *****************
 	x_count = 0
 	covered_count = 0
+	max_covered = 0
 	coveringSets = []
 	for x in itertools.product(clusterArray[0], clusterArray[1], clusterArray[2], clusterArray[3]):
 		x_count += 1
@@ -260,19 +272,23 @@ def findBestVariants(clusters, rankedFile):
 		# for each mutation point in the set
 		for p in points:
 			info = mutations[p]
-			# just take the models of the first possible mutation
+			# for info in mutationList:
 			models = info[0][1]
 			for model in models:
 				if not model in covered:
 					covered.append(model)
 
 		# add to coveringSets if it covers all docking models
-		if len(covered) == 30:
+		if len(covered) > max_covered:
+			max_covered = len(covered)
+			coveringSets = [x]
+		if len(covered) == max_covered:
 			coveringSets.append(x)
 			covered_count += 1
 
-	print covered_count
-	print x_count
+	print "Number of candidate sets: " + str(covered_count)
+	print "Number of models covered: " + str(max_covered)
+	#print x_count
 
 
 	# *** FIND BEST SCORING MODEL ****
@@ -302,14 +318,15 @@ def findBestVariants(clusters, rankedFile):
 				if not model in covered:
 					covered.append(model)
 
-		if len(covered) == 30:
+		if len(covered) == max_covered:
 			candidateSets.append((variantSet, total_score))
 
 	candidateSets = sorted(candidateSets, key=lambda x: x[1])
+	if len(candidateSets) == 0:
+		return 0
 	bestCandidate = candidateSets[-1]
 	print bestCandidate
-	return bestCandidate
-
+	return bestCandidate, max_covered
 
 
 
@@ -318,6 +335,89 @@ def findBestVariants(clusters, rankedFile):
 
 
 # 3.
+# createHeatMapData()
+#
+# take written data output from bulk running function 2 and create data file for heat_mapper.py
+# 
+# ARGUMENTS
+# 1. setFile: str - path of the file containing each model's variant set
+# 2. orderFile: str - path of the file containing order of antibodies
+# 3. isdb: str - path of isdb Ag pdb file
+#
+# RETURNS 
+# 	outputs a file containing all pairwise average Hausdorff distances for the pairwise variant sets
+def createHeatMapData(setFile, orderFile, isdb):
+	out = open("/Users/Chris/GitHub/thesis/mutagenesis/heat_data.txt", 'w')
+
+	# create distance matrix (dictionary)
+	distances = rmsdFromPDB(isdb)
+
+	initial_data = {}
+	sFile = open(setFile, 'r')
+	for line in sFile:
+		if line == "\n": continue
+		ab = line[:4]
+		print ab
+		variants = line.split(',')[2].strip()[1:-1].split('|')
+		new_variants = []
+		for variant in variants:
+			variant = variant.strip().split(' ')
+			new_variants.append(variant)
+		initial_data[ab] = new_variants
+
+	# order the data according to the order file
+	data = []		# will be 2 element array of Ab name and data
+	order = open(orderFile, 'r')
+	for name in order.readlines():
+		data.append([name[:4], initial_data[name[:4]]])
+
+	order.close()
+
+	# loop through pairwise and compute average hausdorff distance and write out to file
+	k = len(data[0][1])
+	print k
+
+	# pairwise variant sets
+	for m1 in data:
+		for m2 in data:
+			# pairwise variants
+			d1 = m1[1]
+			d2 = m2[1]
+			total_dist = 0
+			used_j = []
+			for i in range(len(d1)):
+				low = 10000000		# to only sum the lowest hausdorff distance for a given variant
+				cur_j = -1
+				for j in range(len(d2)):
+					v1 = d1[i]
+					v2 = d2[j]
+					dist = hausdorff(v1, v2, distances)
+					if dist < low and not cur_j in used_j:
+						low = dist
+						cur_j = j
+				used_j.append(cur_j)
+				total_dist += dist
+
+			average_dist = total_dist / (k)
+			if average_dist > 40:
+				average_dist = 40
+			print average_dist
+			out.write(m1[0]+" & "+m2[0]+": "+str(average_dist)+"\n")
+
+	# now write the sorted names of the Ab models
+	out.write("\n***\n")
+	for model in data:
+		out.write(model[0]+"\n")
+
+	out.close()
+
+
+
+
+
+
+
+# 4.
 # checkCoverage()
 #
 # take the medoids from function 1 and check to see if (they) mutations cover all docking models
@@ -372,7 +472,7 @@ def checkCoverage(medoids, rankedFile):
 
 
 
-# 4.
+# 5.
 # rmsdFromPDB()
 #
 # take pdb file lines and create distance matrix (dictionary) for pairwise CA atoms of every residue
@@ -421,7 +521,7 @@ def rmsdFromPDB(pdb):
 
 
 
-# 5.
+# 6.
 # hausdorff()
 #
 # calculate the hausdorff distance between two medoids - basically the maximum distance two points
@@ -483,7 +583,8 @@ def hausdorff(v1, v2, distances):
 # print checkCoverage(clusters.keys(), "/Users/Chris/GitHub/thesis/mutagenesis/ranked_mutations/D102m0.txt")
 
 
-
+# createHeatMapData("/Users/Chris/GitHub/thesis/mutagenesis/bestVariants.txt",
+# 	"/Users/Chris/GitHub/thesis/mutagenesis/ab_order.txt", "/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb")
 
 
 

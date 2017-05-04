@@ -31,7 +31,7 @@ def makeArray(file, x):
 
 		line = lines[i]
 		print line
-		num = float(line[7:])
+		num = float(line[13:])
 		if num > HIGH:
 			arr.append(HIGH)
 		else:
@@ -48,21 +48,29 @@ def makeArray(file, x):
 
 	# MAKING THE LABEL ARRAY
 	labels = []
-	for i in range(30):
-		labels.append(str(i).zfill(2))
+	labels_found = False
+	for line in lines:
+		if line == "***\n":
+			labels_found = True
+			continue
+		if labels_found == False:
+			continue
+		
+		labels.append(line[:-1])
 
 	print labels
+
 	return matrix, labels
 
 
 
-matrix, labels = makeArray("/Users/Chris/GitHub/thesis/mutagenesis/results/pairs.txt", 30)
+matrix, labels = makeArray("/Users/Chris/GitHub/thesis/mutagenesis/heat_data.txt", 70)
 
 trace = go.Heatmap(
 	z=matrix,
 	x=labels,
 	y=labels)
 data=[trace]
-py.offline.plot(data, filename='pairs.html')
+py.offline.plot(data, filename='variants.html')
 
 
