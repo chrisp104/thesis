@@ -93,12 +93,12 @@ def rankMutations(directory, out_path):
 
 		# *** SKIP SWITCHES
 
-		# skip if mutation only affects one model
-		if num_models <= 2:
+		# skip if mutation only affects N models
+		if num_models <= 1:
 			continue
 
-		# skip if mutation score is not above 0.1
-		if score < 1:
+		# skip if mutation score is not above N
+		if score < 0:
 			continue
 
 		out.write(ag[0] + "m" + ag[1]+': ')

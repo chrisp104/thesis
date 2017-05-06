@@ -1,4 +1,4 @@
-from cluster import *
+from cluster_triple import *
 # to use rmsdFromPDB for isdb
 
 import itertools
@@ -37,9 +37,11 @@ def createVariant(ranked_file, isdb, k, out_file):
 	mutation_list = []
 	for line in rlines:
 		if line == '\n': continue
-		mutation = line[:7]
-		score = float(line.split('|')[2])
-		mutation_list.append((mutation, score))
+		mutation = line[:3]
+		#score = float(line.split('|')[2])
+		if not mutation in mutation_list:
+			# mutation_list.append((mutation, score))
+			mutation_list.append(mutation)
 
 	# create the variants
 	variants = []
@@ -56,9 +58,11 @@ def createVariant(ranked_file, isdb, k, out_file):
 			if remove:
 				break
 			for j in range(i+1, len(variant)):
-				m1 = variant[i][0]
+				#m1 = variant[i][0]
+				m1 = variant[i]
 				res1 = m1[:3]
-				m2 = variant[j][0]
+				#m2 = variant[j][0]
+				m2 = variant[j]
 				res2 = m2[:3]
 
 				# if the mutations are at same resiude, remove
@@ -79,14 +83,15 @@ def createVariant(ranked_file, isdb, k, out_file):
 	out = open(out_file, 'w')
 	for variant in final_variants:
 		for i in range(k):
-			out.write(variant[i][0]+' ')
+			#out.write(variant[i][0]+' ')
+			out.write(variant[i]+' ')
 
 		# calculate total disruption score and also write
-		score = 0
-		for mutation in variant:
-			s = mutation[1]
-			score += s
-		out.write("| "+str(score))
+		# score = 0
+		# for mutation in variant:
+		# 	s = mutation[1]
+		# 	score += s
+		# out.write("| "+str(score))
 
 		out.write('\n')
 

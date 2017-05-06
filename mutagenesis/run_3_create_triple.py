@@ -1,4 +1,4 @@
-from triple_mutation import *
+from create_triple import *
 import os
 
 

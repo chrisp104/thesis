@@ -64,13 +64,13 @@ def makeArray(file, x):
 
 
 
-matrix, labels = makeArray("/Users/Chris/GitHub/thesis/mutagenesis/heat_data.txt", 70)
+matrix, labels = makeArray("/Users/Chris/GitHub/thesis/mutagenesis/heatmaps/variants_4_final_2.txt", 70)
 
 trace = go.Heatmap(
 	z=matrix,
 	x=labels,
 	y=labels)
 data=[trace]
-py.offline.plot(data, filename='variants.html')
+py.offline.plot(data, filename='./heatmaps/variants_4_2.html')
 
 

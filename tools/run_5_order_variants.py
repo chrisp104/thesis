@@ -1,10 +1,10 @@
 # take the best variant set output file and order them according to expected bins
 import os
 
-bestVariants = open("/Users/Chris/GitHub/thesis/mutagenesis/bestVariants_3.txt", 'r')
+bestVariants = open("/Users/Chris/GitHub/thesis/mutagenesis/heat_maps/variants_4.txt", 'r')
 order = open("/Users/Chris/GitHub/thesis/mutagenesis/ab_order.txt", 'r')
 
-out = open("/Users/Chris/GitHub/thesis/mutagenesis/bestVariants_3_ordered.txt", 'w')
+out = open("/Users/Chris/GitHub/thesis/mutagenesis/heat_maps/variants_4_ordered.txt", 'w')
 
 data = []
 for line in bestVariants.readlines():

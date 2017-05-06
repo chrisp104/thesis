@@ -41,7 +41,7 @@ def clusterVariants(variantsFile, isdb, k, out_path):
 
 	variants = []
 	for line in vlines:
-		mutations = line.strip().split(' ')
+		mutations = line.strip().split(' ')[:3]
 		variant = []
 		for mutation in mutations:
 			variant.append(mutation)
@@ -253,12 +253,12 @@ def findBestVariants(clusters, rankedFile):
 
 	
 	# find all variant sets, one from each cluster, that CAN cover all docking models
-	# ******************* CHANGE HERE TO MAKE SURE ALL ARE THERE *****************
+	# ******************* CHANGE HERE TO MAKE SURE ALL ARE THERE ********************************************************
 	x_count = 0
 	covered_count = 0
 	max_covered = 0
 	coveringSets = []
-	for x in itertools.product(clusterArray[0], clusterArray[1], clusterArray[2], clusterArray[3]):
+	for x in itertools.product(clusterArray[0], clusterArray[1], clusterArray[2]):
 		x_count += 1
 
 		# check if the mutations cover all docking models
@@ -343,11 +343,12 @@ def findBestVariants(clusters, rankedFile):
 # 1. setFile: str - path of the file containing each model's variant set
 # 2. orderFile: str - path of the file containing order of antibodies
 # 3. isdb: str - path of isdb Ag pdb file
+# 4. outFile: str - path of output file
 #
 # RETURNS 
 # 	outputs a file containing all pairwise average Hausdorff distances for the pairwise variant sets
-def createHeatMapData(setFile, orderFile, isdb):
-	out = open("/Users/Chris/GitHub/thesis/mutagenesis/heat_data.txt", 'w')
+def createHeatMapData(setFile, orderFile, isdb, outFile):
+	out = open(outFile, 'w')
 
 	# create distance matrix (dictionary)
 	distances = rmsdFromPDB(isdb)
@@ -387,20 +388,23 @@ def createHeatMapData(setFile, orderFile, isdb):
 			used_j = []
 			for i in range(len(d1)):
 				low = 10000000		# to only sum the lowest hausdorff distance for a given variant
-				cur_j = -1
+				cur_j = 0
 				for j in range(len(d2)):
 					v1 = d1[i]
 					v2 = d2[j]
 					dist = hausdorff(v1, v2, distances)
-					if dist < low and not cur_j in used_j:
+					if dist < low and not j in used_j:
 						low = dist
 						cur_j = j
+					if m1 == m2:
+						print v1
+						print v2
+						print low
+						print cur_j
 				used_j.append(cur_j)
-				total_dist += dist
+				total_dist += low
 
 			average_dist = total_dist / (k)
-			if average_dist > 40:
-				average_dist = 40
 			print average_dist
 			out.write(m1[0]+" & "+m2[0]+": "+str(average_dist)+"\n")
 
@@ -584,7 +588,9 @@ def hausdorff(v1, v2, distances):
 
 
 # createHeatMapData("/Users/Chris/GitHub/thesis/mutagenesis/bestVariants.txt",
-# 	"/Users/Chris/GitHub/thesis/mutagenesis/ab_order.txt", "/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb")
+# 	"/Users/Chris/GitHub/thesis/mutagenesis/ab_order.txt",
+# 	"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb",
+# 	"/Users/Chris/GitHub/thesis/mutagenesis/heat_data.txt")
 
 
 
