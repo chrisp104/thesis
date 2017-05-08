@@ -19,7 +19,7 @@ for model in os.listdir("."):
 		# FIND MEDOIDS AND CLUSTERS
 		clusters = clusterVariants("/Users/Chris/GitHub/thesis/mutagenesis/one_variants/"+model, 
 			"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb", 3, 
-			"/Users/Chris/GitHub/thesis/mutagenesis/one_clusters/"+model[:-4]+"_cluster.txt")
+			"/Users/Chris/GitHub/thesis/mutagenesis/one_clusters_k3/"+model[:-4]+"_cluster.txt")
 		
 		# FIND BEST CANDIDATE
 		best_candidate, max_covered = findBestVariants(clusters, "/Users/Chris/GitHub/thesis/mutagenesis/one_ranked_mutations/"+model)

@@ -46,6 +46,7 @@ def createVariant(ranked_file, isdb, k, out_file):
 	# create the variants
 	variants = []
 	for comb in itertools.combinations(mutation_list, k):
+		comb = sorted(comb)
 		variants.append(comb)
 
 	# now for each k-mutation variant, check pairwise distances and make sure they

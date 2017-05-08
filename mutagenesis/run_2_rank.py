@@ -10,5 +10,8 @@ for directory in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_mutation
 		print directory
 		print model
 		os.chdir("/Users/Chris/GitHub/thesis/mutagenesis/one_models/"+directory+"/"+model)
-		rankMutations("/Users/Chris/GitHub/thesis/mutagenesis/one_mutations/"+directory+'/'+model+'/',
-			"/Users/Chris/GitHub/thesis/mutagenesis/one_ranked_mutations/"+directory+model+".txt")
+		rankForAb("/Users/Chris/GitHub/thesis/mutagenesis/one_mutations/"+directory+'/'+model+'/',
+			"/Users/Chris/GitHub/thesis/mutagenesis/one_ranked_mutations/"+directory+model+".txt", 2, 1)
+
+rankForAll("/Users/Chris/GitHub/thesis/mutagenesis/one_mutations/",
+			"/Users/Chris/GitHub/thesis/mutagenesis/one_ranked_mutations/all.txt", 2, 1)

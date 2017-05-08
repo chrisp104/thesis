@@ -5,8 +5,8 @@ from collections import OrderedDict
 # disrupt binding for all docking models
 #
 # FUNCTIONS
-# 1. rankMutations - orders Ag mutations by prevalence among docking models
-# 2. createTrupleMuts - take the ranked mutations and create sets of triple mutations
+# 1. rankForAb - orders Ag mutations by prevalence among docking models for a given Ab
+# 2. rankForAll - orders Ag mutations by prevalence among docking models for all Abs
 # 3. analyzePairs - take output from function 1 and count for each docking model pair how many similar
 # disruptive mutations they have in common
 
@@ -15,7 +15,7 @@ from collections import OrderedDict
 
 
 # 1.
-# rankMutations()
+# rankForAb()
 #
 # take _mutations.txt output files for all 30 docking models, loop through them
 # and rank the most prevalent mutations
@@ -23,12 +23,15 @@ from collections import OrderedDict
 # ARGUMENTS
 # 1. directory: str - the directory containing the 30 _mutations.txt files
 # 2. out_path: str - directory
+# 3. num_affected: int - the cutoff for number of affected docking models below which 
+#		 a mutation is not counted
+# 4. cutoff_score: float - the cumulative disruption score below which a mutation is not considered
 #
 # RETURNS 
 # 	dictionary:
 #			key: tuple = (Ag res #, mutation)
 #			value: array = [[models], # models, total score)]
-def rankMutations(directory, out_path):
+def rankForAb(directory, out_path, num_affected, cutoff_score):
 	out = open(out_path, 'w')
 	ranked_mutations = {}
 
@@ -94,11 +97,11 @@ def rankMutations(directory, out_path):
 		# *** SKIP SWITCHES
 
 		# skip if mutation only affects N models
-		if num_models <= 1:
+		if num_models <= num_affected:
 			continue
 
 		# skip if mutation score is not above N
-		if score < 0:
+		if score < cutoff_score:
 			continue
 
 		out.write(ag[0] + "m" + ag[1]+': ')
@@ -122,6 +125,118 @@ def rankMutations(directory, out_path):
 	# return and terminate
 	out.close()
 	return ranked_mutations
+
+
+
+
+
+
+
+# 2.
+# rankForAll()
+#
+# take _mutations.txt output files for all 30 docking models for all Abs, loop through them
+# and rank the most prevalent mutations
+# 
+# ARGUMENTS
+# 1. directory: str - the directory containing the Ab directories containing the 30 _mutations.txt files
+# 2. out_path: str - directory
+# 3. num_affected: int - the cutoff for number of affected docking models below which 
+#		 a mutation is not counted
+# 4. cutoff_score: float - the cumulative disruption score below which a mutation is not considered
+#
+# RETURNS 
+# 	dictionary:
+#			key: tuple = (Ag res #, mutation)
+#			value: array = [[models], # models, total score)]
+def rankForAll(directory, out_path, num_affected, cutoff_score):
+	out = open(out_path, 'w')
+	ranked_mutations = {}
+	for antibody in os.listdir(directory):
+		if antibody[0] != 'D': continue
+		for fn in os.listdir(directory+antibody):
+			if fn[0] != 'm': continue
+			for fn2 in os.listdir(directory+antibody+'/'+fn):
+				print fn2
+				if fn2[-13:] != "mutations.txt" and fn2[0] != 'D': continue
+			
+				file = open(directory+antibody+'/'+fn+'/'+fn2, 'r')
+				lines = file.readlines()
+				file.close()
+
+				# for each mutations.txt file
+				for line in lines:
+					if len(line) == 6: 
+						continue
+
+					line_split = line.split(':')
+					ag_num = line_split[0]
+					mutations = line_split[1].strip().split(',')
+
+					# loop through mutations
+					for mutation in mutations:
+						split_mutation = mutation.split('|')
+						mut_aa = split_mutation[0]
+						mut_score = str(split_mutation[1])
+
+						key = (ag_num, mut_aa)
+
+						# dictionary stuff
+
+						# # if the mutation has negative score for this model, don't add and make note
+						# if float(mut_score) < 0:
+						# 	ranked_mutations[key] = [0, 0, 0]
+						# 	continue
+						# if this mutation was not disruptive for another model, then don't bother
+						if key in ranked_mutations and ranked_mutations[key][1] == 0:
+							continue
+						elif key in ranked_mutations:
+							ranked_mutations[key][0].append(fn[-17:-15])
+							ranked_mutations[key][1] += 1
+							ranked_mutations[key][2] += float(mut_score)
+						else:
+							ranked_mutations[key] = [[fn[-17:-15]], 1, float(mut_score)]
+
+	# sort the dictionary by # of models each mutation is disruptive in
+	ranked_mutations = sorted(ranked_mutations.items(), key=lambda e: e[1][1], reverse=True)
+
+
+	# write out results to a file
+	for mutation in ranked_mutations:
+		ag = mutation[0]
+		ab = mutation[1]
+
+		# if this mutation was not disruptive then don't print
+		if ab[1] == 0:
+			continue
+
+		models = ab[0]
+		num_models = ab[1]
+		score = ab[2]
+
+		# *** SKIP SWITCHES
+
+		# skip if mutation only affects N models
+		if num_models <= num_affected:
+			continue
+
+		# skip if mutation score is not above N
+		if score < cutoff_score:
+			continue
+
+		out.write(ag[0] + "m" + ag[1]+': ')
+		
+		# write num_models
+		out.write(str(num_models))
+
+		# write the total score over all models for this mutation
+		out.write('|'+str(score)+"\n")
+
+
+	# return and terminate
+	out.close()
+	return ranked_mutations
+
 
 
 
