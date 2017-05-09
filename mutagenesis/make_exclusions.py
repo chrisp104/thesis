@@ -30,7 +30,7 @@ import os
 #		dictionary: key - Ab model (e.g. D102), value - list of eliminated contact models
 def makeExclusions(clustersFile, binsFile, rankedFile, experimentalFile, isdb):
 	# read in all files and convert to data structures
-	medoids = []
+	variants = []
 	bins = {}
 	mutations = {}
 
@@ -39,8 +39,7 @@ def makeExclusions(clustersFile, binsFile, rankedFile, experimentalFile, isdb):
 	for line in cFile.readlines():
 		if line[0] == 'M':
 			variant = line[4:].strip().split(' ')
-			for m in variant:
-				medoids.append(m)
+			variants.append(variant)
 	cFile.close()
 
 	# bins
@@ -69,38 +68,48 @@ def makeExclusions(clustersFile, binsFile, rankedFile, experimentalFile, isdb):
 	# 1. determine which medoid mutations are experimentally disruptive
 	disrupted = {}		# hold Ab models that are disrupted by each mutation
 	mutagens = []			# hold the mutagens that medoids found to be experimentally disruptive
+	
+	# loop through each mutation in experimental mutagen variant
 	for mutagen in mutations:
-		mutagen_found = True
 		for mutation in mutagen:	# when there are multiple mutations
-			mutation_found = False
-			for medoid in medoids:
-				if medoid == mutation[:3]:
-					mutation_found = True
-			if not mutation_found:
-				mutagen_found = False
-				continue
-		if mutagen_found:
-			mutagens.append(mutagen)
-	print mutagens
+			
+			# loop through each mutation in our generated variant
+			for variant in variants:
+				for medoid in variant:
+					
+					if medoid == mutation[:3] and not variant in mutagens:
+						mutagens.append(variant)
+
 
 	# for each mutagen that produced valid experimental results:
-	for m in mutagens:
+	# for mutagen in mutagens:
+	# 	for m in mutagen:
 
-		# for each mutation within the mutagen
-		m_invalid = False	
-		for aa in m:
-			if aa[-3:] != "ALA":		# SET TO WHAT AA WE WANT TO MUTATE TO
-				m_invalid = True
-		if m_invalid: continue
+	# 		# for each mutation within the mutagen
+	# 		m_invalid = False	
+	# 		for aa in m:
+	# 			if aa[-3:] != "ALA":		# SET TO WHAT AA WE WANT TO MUTATE TO
+	# 				m_invalid = True
+	# 		if m_invalid: continue
+	# for each mutagen that produced valid experimental results LET'S JUST ALA MUTATE FOR NOW:
+	for variant in mutagens:
+		variant = tuple(variant)
+		for mutation in variant:
+			m = mutation+"mALA"
+			m = [m]
+			m = tuple(m)
+			if m in mutations.keys():
+				# add entry to dictionary if valid mutation
+				if not variant in disrupted:
+					disrupted[variant] = []		# array to hold models
 
-		# add entry to dictionary if valid mutation
-		disrupted[m] = []		# array to hold models
+				data = mutations[m]
+				for d in data:
+					# if disruption score is below 50 (on 100 scale), add
+					if int(d[1]) < 50:
+						disrupted[variant].append(d[0])
 
-		data = mutations[m]
-		for d in data:
-			# if disruption score is below 50 (on 100 scale), add
-			if int(d[1]) < 50:
-				disrupted[m].append(d[0])
+	print disrupted
 
 	
 	# 2. add Ab models to disruption dictionary if in same bin as others
@@ -122,6 +131,7 @@ def makeExclusions(clustersFile, binsFile, rankedFile, experimentalFile, isdb):
 	disrupted = new_disrupted
 	
 	exclusions = findExclusions(disrupted, isdb)
+	return exclusions
 
 
 
@@ -144,11 +154,11 @@ def findExclusions(disrupted, isdb):
 	distances = rmsdFromPDB(isdb)
 
 	# loop through all files once per mutation and eliminate
-	for mutagen in disrupted:
+	for variant in disrupted:
 		mutations = []
-		affected = disrupted[mutagen]
+		affected = disrupted[variant]
 		
-		for mutation in mutagen:
+		for mutation in variant:
 			mutations.append(mutation[:3])
 
 		for ab in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_models"):
@@ -159,31 +169,46 @@ def findExclusions(disrupted, isdb):
 			if ab in affected:
 				ab_disrupted = True
 
-			for m in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_models/"+ab):
-				if m[0] != 'm': continue
-				for d in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_models/"+ab+'/'+m):
-					print d
-
-					file = open("/Users/Chris/GitHub/thesis/mutagenesis/one_models/"+ab+'/'+m+'/'+d)
+			for mod in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_models/"+ab):
+				if mod[0] != 'm': continue
+				for d in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_models/"+ab+'/'+mod):
+					file = open("/Users/Chris/GitHub/thesis/mutagenesis/one_models/"+ab+'/'+mod+'/'+d)
+					lines = file.readlines()
 
 					# if disrupted model, then the file SHOULD contain the current mutation residue
 					if ab_disrupted:
-						for line in file.readlines():
-							if line[0] == '\n': break
-							if line[:3] in mutations and not len(line) > 9:
-								exclusions.append(d)
+						# loop through mutations, since at least one of them SHOULD be in here
+						variant_affects = False
+						for m in mutations:
+							for line in lines:
+								if line[0] == '\n': break
+								# variant does affect this model if it has contacts at a mutated residue
+								if line[:3] == m and len(line) > 9:
+									variant_affects = True
+						if not variant_affects and not d[:9] in exclusions:
+							exclusions.append(d[:9])
 
-					# if NOT disrupted model, then the file should NOT contain the current mutation residue
+					# if NOT disrupted model, then the file should NOT contain any of the current mutation residue
+					# so eliminate any that have all three as contacts
 					if not ab_disrupted:
-						for line in file.readlines():
-							if line[0] == '\n': break
-							if line[:3] in mutations and len(line) > 9:
-								exclusions.append(d)
+
+						# loop through mutations, and NONE of them should be in here
+						all_present = True
+						for m in mutations:
+							for line in lines:
+								if line[0] == '\n': break
+								# variant does affect this model if it has contacts at all the mutated residues for the variant
+								if line[:3] == m and len(line) == 9:
+									if d[:4] == "D430":
+										all_present = False
+						if all_present and not d[:9] in exclusions:
+							exclusions.append(d[:9])
 
 					file.close()
 					
 	for e in exclusions:
 		print e
+	print "Ran EXCLUSIONS"
 	return exclusions
 
 
@@ -193,8 +218,8 @@ def findExclusions(disrupted, isdb):
 
 
 
-makeExclusions("/Users/Chris/GitHub/thesis/mutagenesis/final_clusters.txt",
-	"/Users/Chris/GitHub/thesis/mutagenesis/bins.txt", 
-	"/Users/Chris/GitHub/thesis/mutagenesis/all.txt",
-	"/Users/Chris/GitHub/thesis/mutagenesis/confirmed_mutations.txt",
-	"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb")
+# makeExclusions("/Users/Chris/GitHub/thesis/mutagenesis/final_clusters.txt",
+# 	"/Users/Chris/GitHub/thesis/mutagenesis/bins.txt", 
+# 	"/Users/Chris/GitHub/thesis/mutagenesis/all.txt",
+# 	"/Users/Chris/GitHub/thesis/mutagenesis/confirmed_mutations.txt",
+# 	"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb")

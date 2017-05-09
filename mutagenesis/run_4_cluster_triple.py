@@ -3,8 +3,8 @@
 from cluster_triple import *
 import os
 
-out_medoids = open("/Users/Chris/GitHub/thesis/mutagenesis/medoids_3.txt", 'w')
-out_best_variants = open("/Users/Chris/GitHub/thesis/mutagenesis/variants_3.txt", 'w')
+out_medoids = open("/Users/Chris/GitHub/thesis/mutagenesis/medoids_3_2.txt", 'w')
+out_best_variants = open("/Users/Chris/GitHub/thesis/mutagenesis/variants_3_2.txt", 'w')
 
 os.chdir("/Users/Chris/GitHub/thesis/mutagenesis/one_ranked_mutations/")
 for model in os.listdir("."):
@@ -17,12 +17,12 @@ for model in os.listdir("."):
 		tries += 1
 		
 		# FIND MEDOIDS AND CLUSTERS
-		clusters = clusterVariants("/Users/Chris/GitHub/thesis/mutagenesis/one_variants/"+model, 
+		clusters = clusterVariants("/Users/Chris/GitHub/thesis/mutagenesis/one_variants_2/"+model, 
 			"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb", 3, 
-			"/Users/Chris/GitHub/thesis/mutagenesis/one_clusters_k3/"+model[:-4]+"_cluster.txt")
+			"/Users/Chris/GitHub/thesis/mutagenesis/one_clusters_k3_2/"+model[:-4]+"_cluster.txt")
 		
 		# FIND BEST CANDIDATE
-		best_candidate, max_covered = findBestVariants(clusters, "/Users/Chris/GitHub/thesis/mutagenesis/one_ranked_mutations/"+model)
+		best_candidate, max_covered = findBestVariants(clusters, "/Users/Chris/GitHub/thesis/mutagenesis/one_ranked_mutations_2/"+model)
 		if best_candidate == 0:
 			continue
 		else:

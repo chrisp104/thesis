@@ -26,23 +26,28 @@ from collections import OrderedDict
 # 3. num_affected: int - the cutoff for number of affected docking models below which 
 #		 a mutation is not counted
 # 4. cutoff_score: float - the cumulative disruption score below which a mutation is not considered
+# 5. exclusions: array - containing file names to exclude when ranking since they are invalid docking models
 #
 # RETURNS 
 # 	dictionary:
 #			key: tuple = (Ag res #, mutation)
 #			value: array = [[models], # models, total score)]
-def rankForAb(directory, out_path, num_affected, cutoff_score):
+def rankForAb(directory, out_path, num_affected, cutoff_score, exclusions=[]):
 	out = open(out_path, 'w')
 	ranked_mutations = {}
 
 	for fn in os.listdir(directory):
 		if fn[-13:] != "mutations.txt" and fn[0] != 'D': continue
 		
+		# EXCLUSIONS
+		if fn[:9] in exclusions:
+			continue
+
+		print fn
+
 		file = open(directory+fn, 'r')
 		lines = file.readlines()
 		file.close()
-
-		print fn
 
 		# for each mutations.txt file
 		for line in lines:
@@ -144,12 +149,13 @@ def rankForAb(directory, out_path, num_affected, cutoff_score):
 # 3. num_affected: int - the cutoff for number of affected docking models below which 
 #		 a mutation is not counted
 # 4. cutoff_score: float - the cumulative disruption score below which a mutation is not considered
+# 5. exclusions: array - containing file names to exclude when ranking since they are invalid docking models
 #
 # RETURNS 
 # 	dictionary:
 #			key: tuple = (Ag res #, mutation)
 #			value: array = [[models], # models, total score)]
-def rankForAll(directory, out_path, num_affected, cutoff_score):
+def rankForAll(directory, out_path, num_affected, cutoff_score, exclusions=[]):
 	out = open(out_path, 'w')
 	ranked_mutations = {}
 	for antibody in os.listdir(directory):
@@ -157,7 +163,8 @@ def rankForAll(directory, out_path, num_affected, cutoff_score):
 		for fn in os.listdir(directory+antibody):
 			if fn[0] != 'm': continue
 			for fn2 in os.listdir(directory+antibody+'/'+fn):
-				print fn2
+				if fn2[:9] in exclusions: continue
+				#print fn2
 				if fn2[-13:] != "mutations.txt" and fn2[0] != 'D': continue
 			
 				file = open(directory+antibody+'/'+fn+'/'+fn2, 'r')
