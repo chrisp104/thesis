@@ -21,5 +21,8 @@ create_triple.py - create triple mutation variants - mutations must be within 12
 
 cluster_triple.py - cluster what we made from above
 
+cluster_final - run to cluster the best representative medoids
+
+make_exclusions.py - run to eliminate docking models inconsistent with mutagenesis data
 
 count_models.py - to count the number of mutations needed to cover all models

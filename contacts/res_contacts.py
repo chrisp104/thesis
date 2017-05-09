@@ -188,7 +188,7 @@ def bulkDirectory(chains, dist, path):
 
 	# Find contacts for each Ag chain for each of the model files
 	for fn in os.listdir('.'):
-		if fn[0:1] == '.' or fn[-3:] != "pdb": continue
+		if fn[-3:] != "pdb" or fn[0] != 'D': continue
 		try:
 			file = open(fn, 'r')
 		except IOError as e:
@@ -196,7 +196,7 @@ def bulkDirectory(chains, dist, path):
 
 		numbers, residues, chain_nums = resContacts(fn, chains, dist)
 		if fn[0] == 'D':
-			writeResContacts(path, fn[:-7]+"_contacts.txt", numbers, residues, chain_nums)
+			writeResContacts(path, fn[:-4]+"_contacts.txt", numbers, residues, chain_nums)
 		if fn[0] == '5':
 			writeResContacts(path, fn[:-4]+"_contacts.txt", numbers, residues, chain_nums)
 

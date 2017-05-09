@@ -182,7 +182,10 @@ def findExclusions(disrupted, isdb):
 
 					file.close()
 					
+	for e in exclusions:
+		print e
 	return exclusions
+
 
 
 
