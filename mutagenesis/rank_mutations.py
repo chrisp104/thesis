@@ -33,6 +33,10 @@ from collections import OrderedDict
 #			key: tuple = (Ag res #, mutation)
 #			value: array = [[models], # models, total score)]
 def rankForAb(directory, out_path, num_affected, cutoff_score, exclusions=[]):
+	out_dir = out_path[:-10]
+	if not os.path.exists(out_dir):
+		os.makedirs(out_dir)
+
 	out = open(out_path, 'w')
 	ranked_mutations = {}
 
@@ -102,7 +106,7 @@ def rankForAb(directory, out_path, num_affected, cutoff_score, exclusions=[]):
 		# *** SKIP SWITCHES
 
 		# skip if mutation only affects N models
-		if num_models <= num_affected:
+		if num_models < num_affected:
 			continue
 
 		# skip if mutation score is not above N

@@ -1,5 +1,6 @@
 from cluster_triple import rmsdFromPDB
 import os
+import time
 
 # scripts to take the aggregated ranked mutations, the bins of the Abs,
 # the final variant medoids / clusters and "perform" (cross-check with confirmed
@@ -113,7 +114,6 @@ def makeExclusions(clustersFile, binsFile, rankedFile, experimentalFile, isdb):
 
 	
 	# 2. add Ab models to disruption dictionary if in same bin as others
-	print disrupted
 	new_disrupted = {}
 	for mutagen in disrupted:
 		new_disrupted[mutagen] = []
@@ -129,6 +129,7 @@ def makeExclusions(clustersFile, binsFile, rankedFile, experimentalFile, isdb):
 						if ab_model in new_disrupted[mutagen]: continue
 						new_disrupted[mutagen].append(ab_model)
 	disrupted = new_disrupted
+	print disrupted
 	
 	exclusions = findExclusions(disrupted, isdb)
 	return exclusions
@@ -199,9 +200,9 @@ def findExclusions(disrupted, isdb):
 								if line[0] == '\n': break
 								# variant does affect this model if it has contacts at all the mutated residues for the variant
 								if line[:3] == m and len(line) == 9:
-									if d[:4] == "D430":
-										all_present = False
+									all_present = False
 						if all_present and not d[:9] in exclusions:
+							print d
 							exclusions.append(d[:9])
 
 					file.close()
