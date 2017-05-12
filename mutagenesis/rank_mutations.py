@@ -192,16 +192,8 @@ def rankForAll(directory, out_path, num_affected, cutoff_score, exclusions=[]):
 
 						key = (ag_num, mut_aa)
 
-						# dictionary stuff
-
-						# # if the mutation has negative score for this model, don't add and make note
-						# if float(mut_score) < 0:
-						# 	ranked_mutations[key] = [0, 0, 0]
-						# 	continue
-						# if this mutation was not disruptive for another model, then don't bother
-						if key in ranked_mutations and ranked_mutations[key][1] == 0:
-							continue
-						elif key in ranked_mutations:
+						# add to the dictionary
+						if key in ranked_mutations:
 							ranked_mutations[key][0].append(fn[-17:-15])
 							ranked_mutations[key][1] += 1
 							ranked_mutations[key][2] += float(mut_score)

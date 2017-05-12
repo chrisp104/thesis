@@ -1,5 +1,8 @@
-import os
+from cluster_variants import *
 
-out_dir = "/Users/Chris/GitHub/thesis/mutagenesis/one_mutations/hello/anotherdir/"
-if not os.path.exists(out_dir):
-	os.makedirs(out_dir)
+
+final_clusters = clusterBestVariants("/Users/Chris/GitHub/thesis/mutagenesis/variants.txt", 
+	"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb", 3, 
+	"/Users/Chris/GitHub/thesis/mutagenesis/test_out.txt")
+
+findBestFinalVariants(final_clusters, "/Users/Chris/GitHub/thesis/mutagenesis/all.txt")

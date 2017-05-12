@@ -1,4 +1,4 @@
-from cluster_triple import *
+from cluster_variants import *
 # to use rmsdFromPDB for isdb
 
 import itertools

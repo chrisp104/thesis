@@ -13,10 +13,12 @@ import time
 # 3. kMedoids() - the k medoids algorithm
 # 4. findBestVariants() - takes the clusters from function 1 and then selects a set of variants
 #			 										covers all docking models and is most disruptive
-# 5. createHeatMapData()
-# 6. checkCoverage() - check to see if medoid mutations cover all docking models
-# 7. rmsdFromPDB()
-# 8. hausdorff()
+# 5. findBestVariants() - takes the clusters from function 1 and then selects a set of variants
+#			 										covers all docking models and is most disruptive
+# 6. createHeatMapData()
+# 7. checkCoverage() - check to see if medoid mutations cover all docking models
+# 8. rmsdFromPDB()
+# 9. hausdorff()
 
 
 
@@ -37,6 +39,7 @@ import time
 # RETURNS 
 # 	clusters - returns set of k mutations representing the cluster medoids
 def clusterVariants(variantsFile, isdb, k, out_path):
+	clusters = {}
 	out_dir = out_path[:-18]
 	print out_dir
 	if not os.path.exists(out_dir):
@@ -55,6 +58,13 @@ def clusterVariants(variantsFile, isdb, k, out_path):
 			variant.append(mutation)
 		tuple_variant = tuple(variant)
 		variants.append(tuple_variant)
+
+	if len(variants) < k:
+		array = []
+		for variant in variants:
+			array.append(variant)
+			clusters[variant] = [array, 0]
+		return clusters
 
 	# create distance matrix (dictionary)
 	distances = rmsdFromPDB(isdb)
@@ -103,8 +113,10 @@ def clusterVariants(variantsFile, isdb, k, out_path):
 # 	clusters - returns set of k mutations representing the medoids of the variants for all Abs
 #		also writes stats to output
 def clusterBestVariants(variantsFile, isdb, k, out_path):
+	print variantsFile
 	# dictionary to count how many times a mutation at a certain position occurs
 	mutation_counts = {}
+	clusters = {}
 
 	# read in variants and store into an array
 	vFile = open(variantsFile,'r')
@@ -129,6 +141,13 @@ def clusterBestVariants(variantsFile, isdb, k, out_path):
 				variant.append(m)
 			tuple_variant = tuple(variant)
 			variants.append(tuple_variant)
+
+	if len(variants) < k:
+		array = []
+		for variant in variants:
+			array.append(variant)
+			clusters[variant] = [array,0]
+		return clusters
 
 	# create distance matrix (dictionary)
 	distances = rmsdFromPDB(isdb)
@@ -196,7 +215,8 @@ def kMedoids(variants, k, distances):
 	
 
 	# THE LOOP UNTIL MEDOIDS DO NOT CHANGE (CONVERGENCE)
-	while new_medoid_found:
+	iteration = 1
+	while new_medoid_found and iteration < 50:
 		print clusters.keys()
 
 		# 2. Assign every entity to its closest medoid
@@ -260,6 +280,7 @@ def kMedoids(variants, k, distances):
 				new_clusters[m] = [[], 0]
 
 		clusters = new_clusters
+		iteration += 1
 
 
 
@@ -296,8 +317,8 @@ def kMedoids(variants, k, distances):
 # 4.
 # findBestVariants()
 #
-# takes the clusters from function 1 and then selects a set of variants covers all 
-# docking models and is most disruptive
+# takes the clusters from function 1 and then selects a set of variants that covers the maximum 
+# number of docking models and is most disruptive
 # 
 # ARGUMENTS
 # 1. clusters: dict - return value from function 1
@@ -427,6 +448,100 @@ def findBestVariants(clusters, rankedFile):
 	bestCandidate = candidateSets[-1]
 	print bestCandidate
 	return bestCandidate, max_covered
+
+
+
+
+
+
+
+# 5.
+# findBestFinalVariants()
+#
+# takes the clusters from function 2 and then selects a set of variants that covers the maximum 
+# number of docking models and is most disruptive
+# 
+# ARGUMENTS
+# 1. clusters: dict - return value from function 2
+# 2. rankedAllFile: str - path of the ranked mutations file for ALL docking models - "all.txt" in ranked mutations dir
+#
+# RETURNS 
+#		tuple (variant set, score)
+# 	NOT variantSet: array - set of variants with highest disruption score that cover all docking models
+def findBestFinalVariants(clusters, rankedAllFile):
+	# affected number of models
+	affectedNumber = 0
+
+	# read in rankedFile and store mutations into array
+	rFile = open(rankedAllFile, 'r')
+	rlines = rFile.readlines()
+	rFile.close()
+
+	# create data structure for each mutation point being
+	# key = mutation point
+	# value = array of tuples: (mutation resi, [affected models], total disruption score)
+	covered = []
+	mutations = {}
+	for line in rlines:
+		number = line[:3]
+		data = line.split(' ')[1].split('|')
+
+		mutRes = line[4:7]
+		affectedNumber = data[0]
+		score = float(data[1][:-1])
+		entry = (mutRes, affectedNumber, score)
+
+		if number in mutations.keys():
+			mutations[number].append(entry)
+		else:
+			mutations[number] = [entry]
+
+	print "affected: "+str(affectedNumber)
+	for key in mutations:
+		mutations[key] = sorted(mutations[key], key=lambda x: x[2], reverse=True)
+
+	# make each cluster its own array and store in cluster_array
+	cluster_array = []
+	for cluster in clusters:
+		cur_cluster = []
+		cur_cluster.append(cluster)
+		variants = clusters[cluster][0]
+		for v in variants:
+			cur_cluster.append(v)
+		cluster_array.append(cur_cluster)
+
+	# now for each cluster, find the variant with the mutations that disrupts the max docking models
+	clusters_ranked = []
+	for cluster in cluster_array:
+		c_ranked = []
+		for variant in cluster:
+			variant_viable = True 	# to set to False if mutation was not disruptive
+			total_affected = 0
+
+			# check first that all mutations are present in mutations
+			# if not, then across all Ab docking models, the total disruption score was negative
+			for mutation in variant:
+				print mutation
+				if not mutation in mutations.keys():
+					variant_viable = False
+					continue
+
+			# otherwise add 
+			if variant_viable:
+				for mutation in variant:
+					number_affected = mutations[mutation][0][1]
+					total_affected += int(number_affected)
+				c_ranked.append((variant, total_affected))
+		c_ranked = sorted(c_ranked, key=lambda x: x[1], reverse=True)
+		clusters_ranked.append(c_ranked)
+	print clusters_ranked
+
+
+	final_variants = []
+	for final_cluster in clusters_ranked:
+		final_variants.append(final_cluster[0][0])
+	print final_variants
+	return final_variants
 
 
 
@@ -691,6 +806,7 @@ def hausdorff(v1, v2, distances):
 # 	"/Users/Chris/GitHub/thesis/mutagenesis/ab_order.txt",
 # 	"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb",
 # 	"/Users/Chris/GitHub/thesis/mutagenesis/heat_data.txt")
+
 
 
 

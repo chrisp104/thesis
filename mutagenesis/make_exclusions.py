@@ -1,4 +1,4 @@
-from cluster_triple import rmsdFromPDB
+from cluster_variants import rmsdFromPDB
 import os
 import time
 
@@ -154,7 +154,7 @@ def findExclusions(disrupted, isdb):
 	exclusions = []
 	distances = rmsdFromPDB(isdb)
 
-	# loop through all files once per mutation and eliminate
+	# loop through all files once per variant and eliminate
 	for variant in disrupted:
 		mutations = []
 		affected = disrupted[variant]
@@ -162,7 +162,7 @@ def findExclusions(disrupted, isdb):
 		for mutation in variant:
 			mutations.append(mutation[:3])
 
-		for ab in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_models"):
+		for ab in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_mutations"):
 			if ab[0] != 'D': continue
 
 			# set whether this ab should be disrupted for this mutation or not
@@ -170,38 +170,45 @@ def findExclusions(disrupted, isdb):
 			if ab in affected:
 				ab_disrupted = True
 
-			for mod in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_models/"+ab):
+			for mod in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_mutations/"+ab):
 				if mod[0] != 'm': continue
-				for d in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_models/"+ab+'/'+mod):
-					file = open("/Users/Chris/GitHub/thesis/mutagenesis/one_models/"+ab+'/'+mod+'/'+d)
+				for d in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_mutations/"+ab+'/'+mod):
+					file = open("/Users/Chris/GitHub/thesis/mutagenesis/one_mutations/"+ab+'/'+mod+'/'+d)
 					lines = file.readlines()
+					# store the mutation contact information in dictionary
+					model = {}
+					for line in lines:
+						model[line[:3]] = []
+						if len(line) <= 7: continue
+						model_muts = line.strip().split(':')[1].strip().split(',')
+						for mut in model_muts:
+							split_mut = mut.split('|')
+							model[line[:3]].append(split_mut)
 
 					# if disrupted model, then the file SHOULD contain the current mutation residue
+					# exclusing the ones that contain none of the residues
 					if ab_disrupted:
 						# loop through mutations, since at least one of them SHOULD be in here
 						variant_affects = False
 						for m in mutations:
-							for line in lines:
-								if line[0] == '\n': break
-								# variant does affect this model if it has contacts at a mutated residue
-								if line[:3] == m and len(line) > 9:
-									variant_affects = True
+							# variant does affect this model if it has contacts at a mutated residue
+							if len(model[m]) != 0:
+								variant_affects = True
 						if not variant_affects and not d[:9] in exclusions:
 							exclusions.append(d[:9])
 
 					# if NOT disrupted model, then the file should NOT contain any of the current mutation residue
-					# so eliminate any that have all three as contacts
+					# for now, eliminate any that have A mutation of the variant that is significantly disruptive, >0.5
 					if not ab_disrupted:
-
-						# loop through mutations, and NONE of them should be in here
-						all_present = True
+						# loop through mutations, and NONE of them should be disruptive. 
+						variant_affects = False
 						for m in mutations:
-							for line in lines:
-								if line[0] == '\n': break
-								# variant does affect this model if it has contacts at all the mutated residues for the variant
-								if line[:3] == m and len(line) == 9:
-									all_present = False
-						if all_present and not d[:9] in exclusions:
+							# variant does affect this model if it has contacts at a mutated residue
+							cur_model_mutations = model[m]
+							for cur_mut in cur_model_mutations:
+								if cur_mut[0] == "ALA" and float(cur_mut[1]) > 0.25:
+									variant_affects = True
+						if variant_affects and not d[:9] in exclusions:
 							print d
 							exclusions.append(d[:9])
 
@@ -209,6 +216,7 @@ def findExclusions(disrupted, isdb):
 					
 	for e in exclusions:
 		print e
+	print len(exclusions)
 	print "Ran EXCLUSIONS"
 	return exclusions
 
