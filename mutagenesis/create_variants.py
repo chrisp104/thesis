@@ -11,6 +11,8 @@ import itertools
 
 
 
+
+
 # 1.
 # createVariant()
 #
@@ -21,10 +23,11 @@ import itertools
 # 2. isdb: str - path of isdb protein pdb file
 # 3. k: int - the number of mutations per variant
 # 4. out_file: str - path to write variants to
+# 5. exclude: array - list of Ag residue numbers to exclude because done in previous iteration
 #
 # RETURNS 
 # 	array of arrays, each array representing a variant containing k mutations in the form 114mGLU
-def createVariant(ranked_file, isdb, k, out_file):
+def createVariant(ranked_file, isdb, k, out_file, exclude):
 	out_dir = out_file[:-10]
 	if not os.path.exists(out_dir):
 		os.makedirs(out_dir)
@@ -42,6 +45,7 @@ def createVariant(ranked_file, isdb, k, out_file):
 	for line in rlines:
 		if line == '\n': continue
 		mutation = line[:3]
+		if mutation in exclude: continue
 		#score = float(line.split('|')[2])
 		if not mutation in mutation_list:
 			# mutation_list.append((mutation, score))

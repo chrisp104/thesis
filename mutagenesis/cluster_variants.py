@@ -549,7 +549,7 @@ def findBestFinalVariants(clusters, rankedAllFile):
 
 
 
-# 5.
+# 6.
 # createHeatMapData()
 #
 # take written data output from bulk running function 2 and create data file for heat_mapper.py
@@ -636,7 +636,7 @@ def createHeatMapData(setFile, orderFile, isdb, outFile):
 
 
 
-# 6.
+# 7.
 # checkCoverage()
 #
 # take the medoids from function 1 and check to see if (they) mutations cover all docking models
@@ -691,7 +691,7 @@ def checkCoverage(medoids, rankedFile):
 
 
 
-# 7.
+# 8.
 # rmsdFromPDB()
 #
 # take pdb file lines and create distance matrix (dictionary) for pairwise CA atoms of every residue
@@ -740,7 +740,7 @@ def rmsdFromPDB(pdb):
 
 
 
-# 8.
+# 9.
 # hausdorff()
 #
 # calculate the hausdorff distance between two medoids - basically the maximum distance two points

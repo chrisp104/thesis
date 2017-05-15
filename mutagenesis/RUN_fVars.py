@@ -16,7 +16,7 @@ from cluster_variants import *
 # run all scripts in loop to narrow down appropriate docking models
 # the equivalent of running run_2 through run_5 in this directory but in a loop
 
-# NOTE: run_n3_v_na-_mutate.py should be run separate first since this does not change
+# NOTE: run_n2_v_k+_mutate.py should be run separate first since this does not change
 # NOTE: run_6 and 7 to make the heat map can be incorporated in later
 
 
@@ -33,11 +33,13 @@ from cluster_variants import *
 #		n: int - number of mutations per variant
 #		k1: int - k for k medoids clustering of docking model variants
 #		k2: int - k for k medoids clustering of final variants
+# 	exclude: array - Ag residues numbers to exclude 
 #
 # RETURNS 
 # 	
-def runAll(iteration, exclusions, out_dir, num_affected, cutoff_score, n, k1, k2):
-	log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n3_v_na-/log.txt", 'a')
+def runAll(iteration, exclusions, out_dir, num_affected, cutoff_score, n, k1, k2, exclude):
+
+	log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n2_v_k+/log.txt", 'a')
 	if not os.path.exists(out_dir):
 		os.makedirs(out_dir)
 
@@ -65,7 +67,7 @@ def runAll(iteration, exclusions, out_dir, num_affected, cutoff_score, n, k1, k2
 		print fn
 		createVariant(out_dir+str(iteration)+'_'+"ranked_mutations/"+fn, 
 		"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb", n,
-		out_dir+str(iteration)+'_variants_n'+str(n)+'/'+fn)
+		out_dir+str(iteration)+'_variants_n'+str(n)+'/'+fn, exclude)
 
 
 	# ************** CLUSTER DOCKING MODEL VARIANTS ************
@@ -139,15 +141,22 @@ def runAll(iteration, exclusions, out_dir, num_affected, cutoff_score, n, k1, k2
 	final_clusters_covered = findBestFinalVariants(final_clusters, out_dir+str(iteration)+'_'+"ranked_mutations/all.txt")
 
 	log_file.write("The best variants for this round were\n")
-	final_resis = []
+	return_clusters = []
 	for final_cluster in final_clusters_covered:
+		return_clusters.append(list(final_cluster))
 		for m in final_cluster:
-			final_resis.append(m)
 			log_file.write(m+"\n")
-	log_file.close()
-			
 
-	return final_resis
+			# add to exclude
+			exclude.append(m)
+
+	log_file.close()
+		
+	print "exclude: "
+	print exclude
+
+	print return_clusters
+	return return_clusters, exclude
 
 
 
@@ -157,33 +166,34 @@ def runAll(iteration, exclusions, out_dir, num_affected, cutoff_score, n, k1, k2
 # ******************** THE ACTUAL RUNNING OF IT ALL **********************
 
 
-log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n3_v_na-/log.txt", 'w')
+log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n2_v_k+/log.txt", 'w')
 
 iteration = 1
 num_affected = 3
 cutoff_score = 1
-n = 3
-k1 = 3
+n = 2
+k1 = 2
 k2 = 3
 exclusions = []
+excludeMutations = []
 
-while iteration < 10:
+while iteration < 5:
 	
 	nothing_changed = True
 
-	log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n3_v_na-/log.txt", 'a')
+	log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n2_v_k+/log.txt", 'a')
 	log_file.write("Iteration: "+str(iteration)+"\n")
 	log_file.write("num_affected: "+str(num_affected)+"\n")
 	log_file.write("cutoff_score: "+str(cutoff_score)+"\n")
 	log_file.write("num mutations per variant: "+str(n)+"\n")
 	log_file.write("k: "+str(k1)+"\n")
 	
-	final_resis = runAll(iteration=iteration, exclusions=exclusions,
-		out_dir="/Users/Chris/GitHub/thesis/mutagenesis/run_n3_v_na-/", 
+	final_resis, excludeMutations = runAll(iteration=iteration, exclusions=exclusions,
+		out_dir="/Users/Chris/GitHub/thesis/mutagenesis/run_n2_v_k+/", 
 		num_affected=num_affected, cutoff_score=cutoff_score, 
-		n=n, k1=k1, k2=k1)
+		n=n, k1=k1, k2=k1, exclude=excludeMutations)
 
-	cur_exclusions = makeExclusions("/Users/Chris/GitHub/thesis/mutagenesis/run_n3_v_na-/"+str(iteration)+"_final_clusters.txt",
+	cur_exclusions, cur_remaining = makeExclusions(final_resis,
 		"/Users/Chris/GitHub/thesis/mutagenesis/bins.txt", 
 		"/Users/Chris/GitHub/thesis/mutagenesis/all.txt",
 		"/Users/Chris/GitHub/thesis/mutagenesis/confirmed_mutations.txt",
@@ -198,9 +208,13 @@ while iteration < 10:
 
 	log_file.write("Excluded after this round: "+str(len(new_exclusions))+"\n\n")
 
-	out = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n3_v_na-/"+str(iteration)+"_exclusions.txt", 'w')
-	for e in new_exclusions:
-		out.write(e+'\n')
+	out = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n2_v_k+/"+str(iteration)+"_remaining.txt", 'w')
+	for ab in sorted(cur_remaining):
+		models = cur_remaining[ab]
+		for model in models:
+			if not model in exclusions:
+				out.write(model+'\n')
+		out.write('\n')
 	out.write("Eliminated "+str(len(new_exclusions))+" models\n")
 	out.close()
 
@@ -208,13 +222,13 @@ while iteration < 10:
 	# check to see if we have honed in on NEAT2 binding domain and if not then increase resolution maybe?
 
 	# ************** THIS IS WHERE TO MANIPULATE PARAMS TO HONE IN ********************
-	if len(new_exclusions) < 20:
+	# if len(new_exclusions) < 20:
 		# *********** K
-		#k1 += 1
+		# k1 += 1
 
 		# ********** NUM AFFECTED
-		if num_affected > 1:
-			num_affected -= 1
+		# if num_affected > 1:
+		# 	num_affected -= 1
 
 	iteration += 1
 

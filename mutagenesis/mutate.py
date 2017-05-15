@@ -36,15 +36,18 @@ def findMutations(matrix, file):
 	mut_data = {}		# return data
 
 	start_found = False
+	non_lines = ['A', 'O', 'R', 'T', 'I', 'E']
 	for line in data:
 
-		# only loop through resi info
-		if line[:-1] == "START":
-			start_found = True
-			continue
-		if line[:-1] == "END":
-			break
-		if not start_found:
+		# # only loop through resi info
+		# if line[:-1] == "START":
+		# 	start_found = True
+		# 	continue
+		# if line[:-1] == "END":
+		# 	break
+		# if not start_found:
+		# 	continue
+		if line[0] in non_lines:
 			continue
 
 		# loop through the Ag resi lines
@@ -193,6 +196,10 @@ def bulkDirMutations(out_dir):
 
 		file.close()
 
+
+
+os.chdir("/Users/Chris/GitHub/thesis/contacts/crystals/")
+bulkDirMutations("/Users/Chris/GitHub/thesis/contacts/crystals/")
 
 
 

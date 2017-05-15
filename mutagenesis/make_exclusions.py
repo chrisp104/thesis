@@ -21,27 +21,27 @@ import time
 #		if in not affected bin: eliminate models whose contacts are within N angstroms of correct mutation
 # 
 # ARGUMENTS
-# 1. clustersFile: str - path of final clusters file
+# 1. variants: array - array of arrays where internal arrays are the variants' mutations
 # 2. binsFile: str - path of file with known bins
 # 3. rankedFile: str - path of aggregated ranked mutations file
 # 4. experimentalFile: str - path of file with confirmed mutations (for validation)
 # 5. isdb: str - path of isdb Ag pdb file
 #
 # RETURNS 
-#		dictionary: key - Ab model (e.g. D102), value - list of eliminated contact models
-def makeExclusions(clustersFile, binsFile, rankedFile, experimentalFile, isdb):
+#		list: eliminated contact models
+def makeExclusions(variants, binsFile, rankedFile, experimentalFile, isdb):
 	# read in all files and convert to data structures
-	variants = []
+	#variants = []
 	bins = {}
 	mutations = {}
 
 	# clusters and medoids
-	cFile = open(clustersFile, 'r')
-	for line in cFile.readlines():
-		if line[0] == 'M':
-			variant = line[4:].strip().split(' ')
-			variants.append(variant)
-	cFile.close()
+	# cFile = open(clustersFile, 'r')
+	# for line in cFile.readlines():
+	# 	if line[0] == 'M':
+	# 		variant = line[4:].strip().split(' ')
+	# 		variants.append(variant)
+	# cFile.close()
 
 	# bins
 	bFile = open(binsFile, 'r')
@@ -110,8 +110,6 @@ def makeExclusions(clustersFile, binsFile, rankedFile, experimentalFile, isdb):
 					if int(d[1]) < 50:
 						disrupted[variant].append(d[0])
 
-	print disrupted
-
 	
 	# 2. add Ab models to disruption dictionary if in same bin as others
 	new_disrupted = {}
@@ -129,10 +127,9 @@ def makeExclusions(clustersFile, binsFile, rankedFile, experimentalFile, isdb):
 						if ab_model in new_disrupted[mutagen]: continue
 						new_disrupted[mutagen].append(ab_model)
 	disrupted = new_disrupted
-	print disrupted
 	
-	exclusions = findExclusions(disrupted, isdb)
-	return exclusions
+	exclusions, remaining = findExclusions(disrupted, isdb)
+	return exclusions, remaining
 
 
 
@@ -150,8 +147,10 @@ def makeExclusions(clustersFile, binsFile, rankedFile, experimentalFile, isdb):
 #
 # RETURNS 
 #		array - eliminated contact models
+#		remaining - dict: key = Ab, value = list of remaining models
 def findExclusions(disrupted, isdb):
 	exclusions = []
+	remaining = {}
 	distances = rmsdFromPDB(isdb)
 
 	# loop through all files once per variant and eliminate
@@ -164,6 +163,7 @@ def findExclusions(disrupted, isdb):
 
 		for ab in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_mutations"):
 			if ab[0] != 'D': continue
+			remaining[ab] = []
 
 			# set whether this ab should be disrupted for this mutation or not
 			ab_disrupted = False
@@ -196,6 +196,8 @@ def findExclusions(disrupted, isdb):
 								variant_affects = True
 						if not variant_affects and not d[:9] in exclusions:
 							exclusions.append(d[:9])
+						else: 
+							remaining[ab].append(d[:9])
 
 					# if NOT disrupted model, then the file should NOT contain any of the current mutation residue
 					# for now, eliminate any that have A mutation of the variant that is significantly disruptive, >0.5
@@ -206,11 +208,12 @@ def findExclusions(disrupted, isdb):
 							# variant does affect this model if it has contacts at a mutated residue
 							cur_model_mutations = model[m]
 							for cur_mut in cur_model_mutations:
-								if cur_mut[0] == "ALA" and float(cur_mut[1]) > 0.25:
+								if cur_mut[0] == "ALA" and float(cur_mut[1]) > 0.25:	# *************************** CHANGE HERE
 									variant_affects = True
 						if variant_affects and not d[:9] in exclusions:
-							print d
 							exclusions.append(d[:9])
+						else: 
+							remaining[ab].append(d[:9])
 
 					file.close()
 					
@@ -218,7 +221,7 @@ def findExclusions(disrupted, isdb):
 		print e
 	print len(exclusions)
 	print "Ran EXCLUSIONS"
-	return exclusions
+	return exclusions, remaining
 
 
 
