@@ -14,10 +14,10 @@ from cluster_variants import *
 
 
 # run all scripts in loop to narrow down appropriate docking models
-# the equivalent of running run_2 through run_5 in this directory but in a loop
+# the equivalent of running run_2 tk3_mgh run_5 ik3_mis directory but in a loop
 
-# NOTE: run_n2_m_k2_mutate.py should be run separate first since this does not change
-# NOTE: run_6 and 7 to make the heat map can be incorporated in later
+# NOTE: run_n3_k3_m_mutate.py should be run separate first since this does not change
+# NOTE: run_6 ak3_m to make the heat map can be incorporated in later
 
 
 
@@ -39,7 +39,7 @@ from cluster_variants import *
 # 	
 def runAll(iteration, exclusions, out_dir, num_affected, cutoff_score, n, k1, k2, exclude):
 
-	log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n2_m_k2/log.txt", 'a')
+	log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n3_k3_m/log.txt", 'a')
 	if not os.path.exists(out_dir):
 		os.makedirs(out_dir)
 
@@ -162,13 +162,13 @@ def runAll(iteration, exclusions, out_dir, num_affected, cutoff_score, n, k1, k2
 # ******************** THE ACTUAL RUNNING OF IT ALL **********************
 
 
-log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n2_m_k2/log.txt", 'w')
+log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n3_k3_m/log.txt", 'w')
 
 iteration = 1
 num_affected = 3
 cutoff_score = 1
-n = 2
-k1 = 2
+n = 3
+k1 = 3
 k2 = 3
 exclusions = []
 excludeMutations = []
@@ -177,7 +177,7 @@ while iteration < 5:
 	
 	nothing_changed = True
 
-	log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n2_m_k2/log.txt", 'a')
+	log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n3_k3_m/log.txt", 'a')
 	log_file.write("Iteration: "+str(iteration)+"\n")
 	log_file.write("num_affected: "+str(num_affected)+"\n")
 	log_file.write("cutoff_score: "+str(cutoff_score)+"\n")
@@ -185,7 +185,7 @@ while iteration < 5:
 	log_file.write("k: "+str(k1)+"\n")
 	
 	final_clusters, excludeMutations = runAll(iteration=iteration, exclusions=exclusions,
-		out_dir="/Users/Chris/GitHub/thesis/mutagenesis/run_n2_m_k2/", 
+		out_dir="/Users/Chris/GitHub/thesis/mutagenesis/run_n3_k3_m/", 
 		num_affected=num_affected, cutoff_score=cutoff_score, 
 		n=n, k1=k1, k2=k1, exclude=excludeMutations)
 
@@ -204,7 +204,7 @@ while iteration < 5:
 
 	log_file.write("Excluded after this round: "+str(len(new_exclusions))+"\n\n")
 
-	out = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n2_m_k2/"+str(iteration)+"_remaining.txt", 'w')
+	out = open("/Users/Chris/GitHub/thesis/mutagenesis/run_n3_k3_m/"+str(iteration)+"_remaining.txt", 'w')
 	for ab in sorted(cur_remaining):
 		models = cur_remaining[ab]
 		for model in models:
