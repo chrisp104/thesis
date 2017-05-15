@@ -32,14 +32,17 @@ import os
 # os.chdir("/Users/cpark/thesis/contacts/crystal/")
 # bulkDirectory(['E', 'I'], 8, "/Users/cpark/thesis/contacts/out_contacts/")
 
-os.chdir("/Users/Chris/GitHub/thesis/antibodies/D206/mR")
-bulkDirectory(['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/out_contacts/")
+# os.chdir("/Users/Chris/GitHub/thesis/antibodies/D206/mR")
+# bulkDirectory(['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/out_contacts/")
 
-os.chdir("/Users/Chris/GitHub/thesis/antibodies/D410/mR")
-bulkDirectory(['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/out_contacts/")
+# os.chdir("/Users/Chris/GitHub/thesis/antibodies/D410/mR")
+# bulkDirectory(['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/out_contacts/")
 
-os.chdir("/Users/Chris/GitHub/thesis/antibodies/D430/mR")
-bulkDirectory(['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/out_contacts/")
+# os.chdir("/Users/Chris/GitHub/thesis/antibodies/D430/mR")
+# bulkDirectory(['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/out_contacts/")
+
+os.chdir("/Users/Chris/GitHub/thesis/contacts/crystals/")
+bulkDirectory(['E', 'I'], 8, "/Users/Chris/GitHub/thesis/contacts/crystals/")
 
 
 # ********************* PERCENT CORRECT ***********************

@@ -15,7 +15,7 @@ import os
 
 
 # 1.
-# contacts()
+# reContacts()
 #
 # ARGUMENTS
 # pdb: string - pdb file name of the structure in question
