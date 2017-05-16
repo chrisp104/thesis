@@ -14,7 +14,7 @@ from cluster_variants import *
 
 
 # run all scripts in loop to narrow down appropriate docking models
-# the equivalent of running run_2 tk3_mgh run_5 ik3_mis directory but in a loop
+# the equivalent of running run_2 - run_5 directory but in a loop
 
 # NOTE: run_n3_k3_m_mutate.py should be run separate first since this does not change
 # NOTE: run_6 ak3_m to make the heat map can be incorporated in later

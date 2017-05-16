@@ -521,7 +521,6 @@ def findBestFinalVariants(clusters, rankedAllFile):
 			# check first that all mutations are present in mutations
 			# if not, then across all Ab docking models, the total disruption score was negative
 			for mutation in variant:
-				print mutation
 				if not mutation in mutations.keys():
 					variant_viable = False
 					continue

@@ -154,18 +154,19 @@ def rankForAb(directory, out_path, num_affected, cutoff_score, exclusions=[]):
 #		 a mutation is not counted
 # 4. cutoff_score: float - the cumulative disruption score below which a mutation is not considered
 # 5. exclusions: array - containing file names to exclude when ranking since they are invalid docking models
+# 6. type: char - 'm' or 'n'
 #
 # RETURNS 
 # 	dictionary:
 #			key: tuple = (Ag res #, mutation)
 #			value: array = [[models], # models, total score)]
-def rankForAll(directory, out_path, num_affected, cutoff_score, exclusions=[]):
+def rankForAll(directory, out_path, num_affected, cutoff_score, exclusions=[], modelType='m'):
 	out = open(out_path, 'w')
 	ranked_mutations = {}
 	for antibody in os.listdir(directory):
 		if antibody[0] != 'D': continue
 		for fn in os.listdir(directory+antibody):
-			if fn[0] != 'm': continue
+			if fn[0] != modelType: continue
 			for fn2 in os.listdir(directory+antibody+'/'+fn):
 				if fn2[:9] in exclusions: continue
 				#print fn2

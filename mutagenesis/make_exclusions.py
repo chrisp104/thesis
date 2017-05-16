@@ -26,10 +26,11 @@ import time
 # 3. rankedFile: str - path of aggregated ranked mutations file
 # 4. experimentalFile: str - path of file with confirmed mutations (for validation)
 # 5. isdb: str - path of isdb Ag pdb file
+# 6. modelType: str - which directory of models to look at: separate or one
 #
 # RETURNS 
 #		list: eliminated contact models
-def makeExclusions(variants, binsFile, rankedFile, experimentalFile, isdb):
+def makeExclusions(variants, binsFile, rankedFile, experimentalFile, isdb, modelType='m'):
 	# read in all files and convert to data structures
 	#variants = []
 	bins = {}
@@ -128,7 +129,7 @@ def makeExclusions(variants, binsFile, rankedFile, experimentalFile, isdb):
 						new_disrupted[mutagen].append(ab_model)
 	disrupted = new_disrupted
 	
-	exclusions, remaining = findExclusions(disrupted, isdb)
+	exclusions, remaining = findExclusions(disrupted, isdb, modelType)
 	return exclusions, remaining
 
 
@@ -144,11 +145,18 @@ def makeExclusions(variants, binsFile, rankedFile, experimentalFile, isdb):
 # ARGUMENTS
 # 1. disrupted: dict - the mutation and disrupted Abs from function 1
 # 2. isdb: str - path of isdb Ag pdb file
+# 3. modelType: str - which directory of models to look at: separate or one
 #
 # RETURNS 
 #		array - eliminated contact models
 #		remaining - dict: key = Ab, value = list of remaining models
-def findExclusions(disrupted, isdb):
+def findExclusions(disrupted, isdb, modelType):
+	if modelType == 'n':
+		mutation_directory = 'sep_mutations'
+	else:
+		mutation_directory = 'one_mutations'
+
+
 	exclusions = []
 	remaining = {}
 	distances = rmsdFromPDB(isdb)
@@ -161,7 +169,7 @@ def findExclusions(disrupted, isdb):
 		for mutation in variant:
 			mutations.append(mutation[:3])
 
-		for ab in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_mutations"):
+		for ab in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/"+mutation_directory):
 			if ab[0] != 'D': continue
 			remaining[ab] = []
 
@@ -170,10 +178,10 @@ def findExclusions(disrupted, isdb):
 			if ab in affected:
 				ab_disrupted = True
 
-			for mod in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_mutations/"+ab):
-				if mod[0] != 'm': continue
-				for d in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/one_mutations/"+ab+'/'+mod):
-					file = open("/Users/Chris/GitHub/thesis/mutagenesis/one_mutations/"+ab+'/'+mod+'/'+d)
+			for mod in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/"+mutation_directory+'/'+ab):
+				if mod[0] != modelType: continue
+				for d in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/"+mutation_directory+'/'+ab+'/'+mod):
+					file = open("/Users/Chris/GitHub/thesis/mutagenesis/"+mutation_directory+'/'+ab+'/'+mod+'/'+d)
 					lines = file.readlines()
 					# store the mutation contact information in dictionary
 					model = {}
@@ -186,11 +194,12 @@ def findExclusions(disrupted, isdb):
 							model[line[:3]].append(split_mut)
 
 					# if disrupted model, then the file SHOULD contain the current mutation residue
-					# exclusing the ones that contain none of the residues
+					# excluding the ones that contain none of the residues
 					if ab_disrupted:
 						# loop through mutations, since at least one of them SHOULD be in here
 						variant_affects = False
 						for m in mutations:
+							if not m in model.keys(): continue
 							# variant does affect this model if it has contacts at a mutated residue
 							if len(model[m]) != 0:
 								variant_affects = True
@@ -202,9 +211,10 @@ def findExclusions(disrupted, isdb):
 					# if NOT disrupted model, then the file should NOT contain any of the current mutation residue
 					# for now, eliminate any that have A mutation of the variant that is significantly disruptive, >0.5
 					if not ab_disrupted:
-						# loop through mutations, and NONE of them should be disruptive. 
+						# loop through mutations, and NONE of them should be disruptive.
 						variant_affects = False
 						for m in mutations:
+							if not m in model.keys(): continue
 							# variant does affect this model if it has contacts at a mutated residue
 							cur_model_mutations = model[m]
 							for cur_mut in cur_model_mutations:

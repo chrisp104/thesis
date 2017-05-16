@@ -1,0 +1,56 @@
+The best variants for this round were
+150
+267
+339
+407
+164
+165
+Iteration: 1
+num_affected: 3
+cutoff_score: 1
+num mutations per variant: 2
+k: 3
+Excluded after this round: 676
+
+The best variants for this round were
+410
+411
+242
+243
+345
+346
+Iteration: 2
+num_affected: 2
+cutoff_score: 1
+num mutations per variant: 2
+k: 3
+Excluded after this round: 57
+
+The best variants for this round were
+440
+443
+403
+406
+162
+167
+Iteration: 3
+num_affected: 1
+cutoff_score: 1
+num mutations per variant: 2
+k: 3
+Excluded after this round: 351
+
+The best variants for this round were
+191
+194
+161
+251
+438
+439
+Iteration: 4
+num_affected: 1
+cutoff_score: 1
+num mutations per variant: 2
+k: 3
+Excluded after this round: 47
+

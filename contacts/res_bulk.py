@@ -41,8 +41,15 @@ import os
 # os.chdir("/Users/Chris/GitHub/thesis/antibodies/D430/mR")
 # bulkDirectory(['O', 'R', 'T'], 8, "/Users/Chris/GitHub/thesis/contacts/out_contacts/")
 
-os.chdir("/Users/Chris/GitHub/thesis/contacts/crystals/")
-bulkDirectory(['E', 'I'], 8, "/Users/Chris/GitHub/thesis/contacts/crystals/")
+# os.chdir("/Users/Chris/GitHub/thesis/contacts/crystals/")
+# bulkDirectory(['E', 'I'], 8, "/Users/Chris/GitHub/thesis/contacts/crystals/")
+
+for ab in os.listdir("/Users/Chris/GitHub/thesis/antibodies_sepIsdb/"):
+	if ab[0] != 'D': continue
+	for neat in os.listdir("/Users/Chris/GitHub/thesis/antibodies_sepIsdb/"+ab):
+		if neat[0] != 'n': continue
+		os.chdir("/Users/Chris/GitHub/thesis/antibodies_sepIsdb/"+ab+'/'+neat)
+		bulkDirectory(['O', 'T'], 8, "/Users/Chris/GitHub/thesis/mutagenesis/sep_models/"+ab+'/'+neat+'/')
 
 
 # ********************* PERCENT CORRECT ***********************
