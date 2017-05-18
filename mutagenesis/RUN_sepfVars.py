@@ -40,7 +40,7 @@ from cluster_variants import *
 #		array of excluded docking models
 def runAll(iteration, exclusions, out_dir, num_affected, cutoff_score, n, k1, k2, exclude):
 
-	log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_sep_n2_k3_v_na/log.txt", 'a')
+	log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_sep_n3_k3_v_na/log.txt", 'a')
 	if not os.path.exists(out_dir):
 		os.makedirs(out_dir)
 
@@ -168,22 +168,22 @@ def runAll(iteration, exclusions, out_dir, num_affected, cutoff_score, n, k1, k2
 # ******************** THE ACTUAL RUNNING OF IT ALL **********************
 
 
-log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_sep_n2_k3_v_na/log.txt", 'w')
+log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_sep_n3_k3_v_na/log.txt", 'w')
 
 iteration = 1
 num_affected = 3
 cutoff_score = 1
 n = 3
-k1 = 1
+k1 = 3
 k2 = 3
 exclusions = []
 excludeMutations = []
 
-while iteration < 5:
+while iteration < 7:
 	
 	nothing_changed = True
 
-	log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_sep_n2_k3_v_na/log.txt", 'a')
+	log_file = open("/Users/Chris/GitHub/thesis/mutagenesis/run_sep_n3_k3_v_na/log.txt", 'a')
 	log_file.write("Iteration: "+str(iteration)+"\n")
 	log_file.write("num_affected: "+str(num_affected)+"\n")
 	log_file.write("cutoff_score: "+str(cutoff_score)+"\n")
@@ -191,7 +191,7 @@ while iteration < 5:
 	log_file.write("k: "+str(k1)+"\n")
 	
 	final_resis, excludeMutations = runAll(iteration=iteration, exclusions=exclusions,
-		out_dir="/Users/Chris/GitHub/thesis/mutagenesis/run_sep_n2_k3_v_na/", 
+		out_dir="/Users/Chris/GitHub/thesis/mutagenesis/run_sep_n3_k3_v_na/", 
 		num_affected=num_affected, cutoff_score=cutoff_score, 
 		n=n, k1=k1, k2=k1, exclude=excludeMutations)
 
@@ -211,7 +211,7 @@ while iteration < 5:
 
 	log_file.write("Excluded after this round: "+str(len(new_exclusions))+"\n\n")
 
-	out = open("/Users/Chris/GitHub/thesis/mutagenesis/run_sep_n2_k3_v_na/"+str(iteration)+"_remaining.txt", 'w')
+	out = open("/Users/Chris/GitHub/thesis/mutagenesis/run_sep_n3_k3_v_na/"+str(iteration)+"_remaining.txt", 'w')
 	for ab in sorted(cur_remaining):
 		models = cur_remaining[ab]
 		for model in models:

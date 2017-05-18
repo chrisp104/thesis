@@ -510,10 +510,15 @@ def findBestFinalVariants(clusters, rankedAllFile):
 			cur_cluster.append(v)
 		cluster_array.append(cur_cluster)
 
+	print cluster_array
+
 	# now for each cluster, find the variant with the mutations that disrupts the max docking models
 	clusters_ranked = []
 	for cluster in cluster_array:
 		c_ranked = []
+		# if the cluster only consisted of the medoid
+		if len(cluster) == 1: 
+			clusters_ranked.append((cluster, 1))
 		for variant in cluster:
 			variant_viable = True 	# to set to False if mutation was not disruptive
 			total_affected = 0
