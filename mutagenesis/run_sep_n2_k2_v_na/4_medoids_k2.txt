@@ -1,18 +1,18 @@
 D106n1.txt,0, | ,Score: 0
 
-D106n2.txt,0, | 391 432 | 356 444 | ,Score: 0
+D106n2.txt,0, | 391 394 | 394 445 | ,Score: 0
 
-D110n1.txt,0, | 248 249 | 194 219 | ,Score: 0
+D110n1.txt,0, | 171 219 | 194 244 | ,Score: 0
 
 D110n2.txt,0, | ,Score: 0
 
 D204n1.txt,0, | ,Score: 0
 
-D204n2.txt,0, | 401 432 | 403 405 | ,Score: 0
+D204n2.txt,0, | 432 434 | 401 403 | ,Score: 0
 
 D206n1.txt,0, | ,Score: 0
 
-D206n2.txt,0, | 367 389 | 361 444 | ,Score: 0
+D206n2.txt,0, | 389 433 | 361 367 | ,Score: 0
 
 D214n1.txt,0, | 158 250 | 190 219 | ,Score: 0
 
@@ -36,29 +36,29 @@ D301n2.txt,0, | 364 369 | 362 445 | ,Score: 0
 
 D302n1.txt,0, | ,Score: 0
 
-D302n2.txt,0, | 364 369 | 362 445 | ,Score: 0
+D302n2.txt,0, | 351 362 | 362 445 | ,Score: 0
 
 D305n1.txt,0, | ,Score: 0
 
-D305n2.txt,0, | 392 412 | 388 434 | ,Score: 0
+D305n2.txt,0, | 388 434 | 434 441 | ,Score: 0
 
 D307n1.txt,0, | ,Score: 0
 
-D307n2.txt,0, | 361 364 | 432 435 | ,Score: 0
+D307n2.txt,0, | 361 430 | 432 435 | ,Score: 0
 
-D312n1.txt,0, | 190 219 | 194 219 | ,Score: 0
+D312n1.txt,0, | 190 218 | 190 194 | ,Score: 0
 
 D312n2.txt,0, | ,Score: 0
 
 D318n1.txt,0, | ,Score: 0
 
-D318n2.txt,0, | 363 444 | 363 391 | ,Score: 0
+D318n2.txt,0, | 363 391 | 366 391 | ,Score: 0
 
-D320n1.txt,0, | 170 173 | 194 219 | ,Score: 0
+D320n1.txt,0, | 170 219 | 172 190 | ,Score: 0
 
 D320n2.txt,0, | ,Score: 0
 
-D323n1.txt,0, | 190 194 | 153 173 | ,Score: 0
+D323n1.txt,0, | 194 245 | 153 173 | ,Score: 0
 
 D323n2.txt,0, | ,Score: 0
 
@@ -66,7 +66,7 @@ D324n1.txt,0, | 153 172 | 191 217 | ,Score: 0
 
 D324n2.txt,0, | ,Score: 0
 
-D331n1.txt,0, | 190 240 | 158 249 | ,Score: 0
+D331n1.txt,0, | 240 249 | 160 251 | ,Score: 0
 
 D331n2.txt,0, | ,Score: 0
 
@@ -80,9 +80,9 @@ D413n2.txt,0, | ,Score: 0
 
 D430n1.txt,0, | ,Score: 0
 
-D430n2.txt,0, | 432 445 | 391 432 | ,Score: 0
+D430n2.txt,0, | 355 445 | 391 432 | ,Score: 0
 
 D431n1.txt,0, | ,Score: 0
 
-D431n2.txt,0, | 394 444 | 388 434 | ,Score: 0
+D431n2.txt,0, | 391 432 | 403 414 | ,Score: 0
 

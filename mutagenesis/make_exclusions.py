@@ -26,11 +26,13 @@ import time
 # 3. rankedFile: str - path of aggregated ranked mutations file
 # 4. experimentalFile: str - path of file with confirmed mutations (for validation)
 # 5. isdb: str - path of isdb Ag pdb file
-# 6. modelType: str - which directory of models to look at: separate or one
+# 6. ab_list: array - representative Abs that are being "experimentally tested"
+# 7. modelType: str - which directory of models to look at: separate or one
+#
 #
 # RETURNS 
 #		list: eliminated contact models
-def makeExclusions(variants, binsFile, rankedFile, experimentalFile, isdb, modelType='m'):
+def makeExclusions(variants, binsFile, rankedFile, experimentalFile, isdb, ab_list, modelType='m'):
 	# read in all files and convert to data structures
 	#variants = []
 	bins = {}
@@ -62,9 +64,15 @@ def makeExclusions(variants, binsFile, rankedFile, experimentalFile, isdb, model
 		models = splitLine[1].split(',')
 		for m in models:
 			m_split = m.split('-')
+
+			# skip if it's not one we "experimentally tested"
+			if not m_split[0] in ab_list: continue
+
 			tuple_model = (m_split[0], int(m_split[1].strip()))
 			affected.append(tuple_model)
 		mutations[tuple_mutation] = affected
+
+	print mutations
 
 
 	# 1. determine which medoid mutations are experimentally disruptive
@@ -128,9 +136,12 @@ def makeExclusions(variants, binsFile, rankedFile, experimentalFile, isdb, model
 						if ab_model in new_disrupted[mutagen]: continue
 						new_disrupted[mutagen].append(ab_model)
 	disrupted = new_disrupted
-	
+	print "Disrupted"
+	print disrupted
+
 	exclusions, remaining = findExclusions(disrupted, isdb, modelType)
 	return exclusions, remaining
+
 
 
 
@@ -227,8 +238,8 @@ def findExclusions(disrupted, isdb, modelType):
 
 					file.close()
 					
-	for e in exclusions:
-		print e
+	# for e in exclusions:
+	# 	print e
 	print len(exclusions)
 	print "Ran EXCLUSIONS"
 	return exclusions, remaining

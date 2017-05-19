@@ -1,88 +1,30 @@
 D106n1.txt,0, | ,Score: 0
 
-D106n2.txt,0, | 394 445 | 388 393 | ,Score: 0
+D106n2.txt,0, | 391 440 | 389 432 | ,Score: 0
 
-D110n1.txt,0, | 171 173 | 171 219 | ,Score: 0
+D110n1.txt,0, | 177 264 | 130 190 | ,Score: 0
 
-D110n2.txt,0, | ,Score: 0
+D110n2.txt,0, | 351 454 | 390 435 | ,Score: 0
 
 D204n1.txt,0, | ,Score: 0
 
-D204n2.txt,0, | 432 434 | 401 403 | ,Score: 0
+D204n2.txt,0, | 392 414 | 391 412 | ,Score: 0
 
 D206n1.txt,0, | ,Score: 0
 
-D206n2.txt,0, | 363 389 | 352 367 | ,Score: 0
+D206n2.txt,0, | 391 395 | 361 446 | ,Score: 0
 
-D214n1.txt,0, | 158 250 | 248 250 | ,Score: 0
+D214n1.txt,0, | 165 248 | 175 262 | ,Score: 0
 
-D214n2.txt,0, | ,Score: 0
+D214n2.txt,0, | 388 435 | 350 367 | ,Score: 0
 
-D216n1.txt,0, | 163 249 | 157 159 | ,Score: 0
+D216n1.txt,0, | 139 222 | 157 165 | ,Score: 0
 
-D216n2.txt,0, | ,Score: 0
+D216n2.txt,0, | 388 409 | 364 370 | ,Score: 0
 
-D228n1.txt,0, | 158 251 | 157 159 | ,Score: 0
+D228n1.txt,0, | 201 251 | 124 135 | ,Score: 0
 
-D228n2.txt,0, | ,Score: 0
+D228n2.txt,0, | 395 428 | 392 414 | ,Score: 0
 
-D229n1.txt,0, | 157 250 | 247 250 | ,Score: 0
-
-D229n2.txt,0, | ,Score: 0
-
-D301n1.txt,0, | ,Score: 0
-
-D301n2.txt,0, | 364 369 | 356 444 | ,Score: 0
-
-D302n1.txt,0, | ,Score: 0
-
-D302n2.txt,0, | 364 369 | 356 445 | ,Score: 0
-
-D305n1.txt,0, | ,Score: 0
-
-D305n2.txt,0, | 366 412 | 388 434 | ,Score: 0
-
-D307n1.txt,0, | ,Score: 0
-
-D307n2.txt,0, | 364 369 | 355 430 | ,Score: 0
-
-D312n1.txt,0, | 218 219 | ,Score: 0
-
-D312n2.txt,0, | ,Score: 0
-
-D318n1.txt,0, | ,Score: 0
-
-D318n2.txt,0, | 363 444 | 363 391 | ,Score: 0
-
-D320n1.txt,0, | 170 173 | 248 251 | ,Score: 0
-
-D320n2.txt,0, | ,Score: 0
-
-D323n1.txt,0, | 150 153 | 153 172 | ,Score: 0
-
-D323n2.txt,0, | ,Score: 0
-
-D324n1.txt,0, | 158 159 | 153 172 | ,Score: 0
-
-D324n2.txt,0, | ,Score: 0
-
-D331n1.txt,0, | 240 249 | 160 251 | ,Score: 0
-
-D331n2.txt,0, | ,Score: 0
-
-D410n1.txt,0, | 156 160 | ,Score: 0
-
-D410n2.txt,0, | ,Score: 0
-
-D413n1.txt,0, | 171 173 | 156 250 | ,Score: 0
-
-D413n2.txt,0, | ,Score: 0
-
-D430n1.txt,0, | ,Score: 0
-
-D430n2.txt,0, | 355 430 | 391 432 | ,Score: 0
-
-D431n1.txt,0, | ,Score: 0
-
-D431n2.txt,0, | 394 445 | 388 414 | ,Score: 0
+D229n1.txt,0, | 231 235 | 124 207 | ,Score: 0
 
