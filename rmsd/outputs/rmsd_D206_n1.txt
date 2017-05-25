@@ -1,0 +1,50 @@
+D206n1d00.pdb
+rmsd = NA
+D206n1d01.pdb
+rmsd = NA
+D206n1d02.pdb
+rmsd = NA
+D206n1d03.pdb
+rmsd = NA
+D206n1d04.pdb
+rmsd = NA
+D206n1d05.pdb
+rmsd = NA
+D206n1d06.pdb
+rmsd = NA
+D206n1d07.pdb
+rmsd = NA
+D206n1d08.pdb
+rmsd = NA
+D206n1d09.pdb
+rmsd = NA
+D206n1d10.pdb
+rmsd = NA
+D206n1d11.pdb
+rmsd = NA
+D206n1d12.pdb
+rmsd = NA
+D206n1d13.pdb
+rmsd = NA
+D206n1d14.pdb
+rmsd = NA
+D206n1d15.pdb
+rmsd = NA
+D206n1d16.pdb
+rmsd = NA
+D206n1d17.pdb
+rmsd = NA
+D206n1d18.pdb
+rmsd = NA
+D206n1d19.pdb
+rmsd = NA
+D206n1d20.pdb
+rmsd = NA
+D206n1d21.pdb
+rmsd = NA
+D206n1d22.pdb
+rmsd = NA
+D206n1d23.pdb
+rmsd = NA
+D206n1d24.pdb
+rmsd = NA

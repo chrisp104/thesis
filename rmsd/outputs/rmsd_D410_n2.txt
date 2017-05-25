@@ -1,0 +1,60 @@
+D410n2d00.pdb
+rmsd = NA
+D410n2d01.pdb
+rmsd = NA
+D410n2d02.pdb
+rmsd = NA
+D410n2d03.pdb
+rmsd = NA
+D410n2d04.pdb
+rmsd = NA
+D410n2d05.pdb
+rmsd = NA
+D410n2d06.pdb
+rmsd = NA
+D410n2d07.pdb
+rmsd = NA
+D410n2d08.pdb
+rmsd = NA
+D410n2d09.pdb
+rmsd = NA
+D410n2d10.pdb
+rmsd = NA
+D410n2d11.pdb
+rmsd = NA
+D410n2d12.pdb
+rmsd = NA
+D410n2d13.pdb
+rmsd = NA
+D410n2d14.pdb
+rmsd = NA
+D410n2d15.pdb
+rmsd = NA
+D410n2d16.pdb
+rmsd = NA
+D410n2d17.pdb
+rmsd = NA
+D410n2d18.pdb
+rmsd = NA
+D410n2d19.pdb
+rmsd = NA
+D410n2d20.pdb
+rmsd = NA
+D410n2d21.pdb
+rmsd = NA
+D410n2d22.pdb
+rmsd = NA
+D410n2d23.pdb
+rmsd = NA
+D410n2d24.pdb
+rmsd = NA
+D410n2d25.pdb
+rmsd = NA
+D410n2d26.pdb
+rmsd = NA
+D410n2d27.pdb
+rmsd = NA
+D410n2d28.pdb
+rmsd = NA
+D410n2d29.pdb
+rmsd = NA

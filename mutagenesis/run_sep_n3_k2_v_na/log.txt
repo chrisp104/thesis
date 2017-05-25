@@ -1,5 +1,6 @@
 Experimentally Tested Abs:
-D324 D312 D206 D106 
+D413 D410 D229 D320 D324 D214 D323 D110 D106 D431 D206 D204 D305 D302 D307 D318 
+
 The best variants for this round were
 339
 403
@@ -12,44 +13,58 @@ num_affected: 3
 cutoff_score: 1
 num mutations per variant: 3
 k: 2
-Excluded after this round: 669
+Excluded after this round: 375
 
 The best variants for this round were
 393
 440
 443
-194
-242
-243
+146
+265
+267
 Iteration: 2
 num_affected: 2
 cutoff_score: 1
 num mutations per variant: 3
 k: 2
-Excluded after this round: 154
+Excluded after this round: 276
 
 The best variants for this round were
 388
 408
 411
-167
-169
-190
+400
+401
+428
 Iteration: 3
 num_affected: 1
 cutoff_score: 1
 num mutations per variant: 3
 k: 2
-Excluded after this round: 253
+Excluded after this round: 61
 
 The best variants for this round were
-240
-245
-248
-340
-341
-406
+194
+243
+244
+343
+344
+345
 Iteration: 4
+num_affected: 1
+cutoff_score: 1
+num mutations per variant: 3
+k: 2
+Excluded after this round: 25
+
+The best variants for this round were
+375
+378
+419
+147
+149
+266
+Iteration: 5
 num_affected: 1
 cutoff_score: 1
 num mutations per variant: 3
@@ -57,26 +72,12 @@ k: 2
 Excluded after this round: 0
 
 The best variants for this round were
-157
-159
-161
-343
-344
-345
-Iteration: 5
-num_affected: 1
-cutoff_score: 1
-num mutations per variant: 3
-k: 2
-Excluded after this round: 39
-
-The best variants for this round were
-158
-160
-251
-387
-412
-413
+389
+409
+410
+150
+257
+258
 Iteration: 6
 num_affected: 1
 cutoff_score: 1

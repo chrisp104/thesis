@@ -72,7 +72,6 @@ def makeExclusions(variants, binsFile, rankedFile, experimentalFile, isdb, ab_li
 			affected.append(tuple_model)
 		mutations[tuple_mutation] = affected
 
-	print mutations
 
 
 	# 1. determine which medoid mutations are experimentally disruptive
@@ -92,54 +91,84 @@ def makeExclusions(variants, binsFile, rankedFile, experimentalFile, isdb, ab_li
 
 
 	# for each mutagen that produced valid experimental results:
-	# for mutagen in mutagens:
-	# 	for m in mutagen:
-
-	# 		# for each mutation within the mutagen
-	# 		m_invalid = False	
-	# 		for aa in m:
-	# 			if aa[-3:] != "ALA":		# SET TO WHAT AA WE WANT TO MUTATE TO
-	# 				m_invalid = True
-	# 		if m_invalid: continue
-	# for each mutagen that produced valid experimental results LET'S JUST ALA MUTATE FOR NOW:
+	# we will have a list of experimentally disrupted and not disrupted
+	# dictionary disrupted: key = mutation, value = [disrupted], [non-disrupted]
 	for variant in mutagens:
 		variant = tuple(variant)
 		for mutation in variant:
+			print mutation
 			m = mutation+"mALA"
 			m = [m]
 			m = tuple(m)
 			if m in mutations.keys():
 				# add entry to dictionary if valid mutation
 				if not variant in disrupted:
-					disrupted[variant] = []		# array to hold models
+					disrupted[variant] = [[], []]		# array to hold models
 
 				data = mutations[m]
 				for d in data:
 					# if disruption score is below 50 (on 100 scale), add
-					if int(d[1]) < 50:
-						disrupted[variant].append(d[0])
+					if int(d[1]) < 50 and not d[0] in disrupted[variant][0]:
+						disrupted[variant][0].append(d[0])
+					elif not d[0] in disrupted[variant][1]:
+						disrupted[variant][1].append(d[0])
 
 	
-	# 2. add Ab models to disruption dictionary if in same bin as others
-	new_disrupted = {}
+	# 2. add Ab models to disrupted domains dictionary if in same bin as others to
+	# eliminate first based on if it's not in the right domain
+	new_disrupted = {}			# holds the actual disruption data and extrapolated disruptions
+	domain_disrupted = {}		# holds which ab bins were disrupted as a whole
+
 	for mutagen in disrupted:
+		print "mutagen"
+		print mutagen
 		new_disrupted[mutagen] = []
-		affected = disrupted[mutagen]
+		domain_disrupted[mutagen] = []
+		
+		# determine if this mutation spot was more disruptive to more tested models 
+		disruptive = False
+		disrupted_models = disrupted[mutagen][0]
+		non_disr_models = disrupted[mutagen][1]
+
+		if len(disrupted_models) >= len(non_disr_models):
+			disruptive = True
+
+		affected = disrupted[mutagen][0]
+
 		for ab in affected:
+
 			new_disrupted[mutagen].append(ab)
+			domain_disrupted[mutagen].append(ab)
+			
 			# find it's bin
 			for b in bins:
 				ab_models = bins[b]
-				# if this ab is in this bin, add all other models to disrupted
+				print ab_models
+				# if this ab is in this bin, add all other models to disrupted that we 
+				# don't have experimental data for - this is the extrapolation step  
 				if ab in ab_models:
 					for ab_model in ab_models:
-						if ab_model in new_disrupted[mutagen]: continue
-						new_disrupted[mutagen].append(ab_model)
+						if not ab_model in domain_disrupted[mutagen]: 
+							domain_disrupted[mutagen].append(ab_model)
+
+						# first add the tested disruptives to the dictionary no matter what
+						if not ab_model in new_disrupted[mutagen] and ab_model in disrupted_models:
+							new_disrupted[mutagen].append(ab_model)
+
+						# if we have deemed the bin to more likely be disruptive, then
+						# add the rest of the non tested models into the disrupted list
+						# as long as it wasn't tested to be non disruptive.
+						if not ab_model in new_disrupted[mutagen] and disruptive and not ab_model in non_disr_models:
+							new_disrupted[mutagen].append(ab_model)
+
+
 	disrupted = new_disrupted
 	print "Disrupted"
 	print disrupted
+	print "Domains disrupted"
+	print domain_disrupted
 
-	exclusions, remaining = findExclusions(disrupted, isdb, modelType)
+	exclusions, remaining = findExclusions(disrupted, isdb, modelType, domain_disrupted)
 	return exclusions, remaining
 
 
@@ -157,11 +186,13 @@ def makeExclusions(variants, binsFile, rankedFile, experimentalFile, isdb, ab_li
 # 1. disrupted: dict - the mutation and disrupted Abs from function 1
 # 2. isdb: str - path of isdb Ag pdb file
 # 3. modelType: str - which directory of models to look at: separate or one
+# 4. domain_disrupted: dict - the domains disrupted using tested positives regardless of what
+#				the majority disrutive/non-disruptive consensus was so we can eliminate based off of domain first
 #
 # RETURNS 
 #		array - eliminated contact models
 #		remaining - dict: key = Ab, value = list of remaining models
-def findExclusions(disrupted, isdb, modelType):
+def findExclusions(disrupted, isdb, modelType, domain_disrupted):
 	if modelType == 'n':
 		mutation_directory = 'sep_mutations'
 	else:
@@ -176,6 +207,8 @@ def findExclusions(disrupted, isdb, modelType):
 	for variant in disrupted:
 		mutations = []
 		affected = disrupted[variant]
+		print domain_disrupted
+		domain_affected = domain_disrupted[variant]
 		
 		for mutation in variant:
 			mutations.append(mutation[:3])
@@ -186,8 +219,12 @@ def findExclusions(disrupted, isdb, modelType):
 
 			# set whether this ab should be disrupted for this mutation or not
 			ab_disrupted = False
+			cur_domain_disrupted = False
 			if ab in affected:
 				ab_disrupted = True
+
+			if ab in domain_affected:
+				cur_domain_disrupted = True
 
 			for mod in os.listdir("/Users/Chris/GitHub/thesis/mutagenesis/"+mutation_directory+'/'+ab):
 				if mod[0] != modelType: continue
@@ -195,14 +232,24 @@ def findExclusions(disrupted, isdb, modelType):
 					file = open("/Users/Chris/GitHub/thesis/mutagenesis/"+mutation_directory+'/'+ab+'/'+mod+'/'+d)
 					lines = file.readlines()
 					# store the mutation contact information in dictionary
+					incorrect_domain = True		# to use if this model SHOULD have the mutation spots possible in variant's positions
 					model = {}
 					for line in lines:
 						model[line[:3]] = []
+
+						# set incorrect_domain to true if this has residue spots in variant
+						if cur_domain_disrupted and line[:3] in mutations:
+							incorrect_domain = False
+
 						if len(line) <= 7: continue
 						model_muts = line.strip().split(':')[1].strip().split(',')
 						for mut in model_muts:
 							split_mut = mut.split('|')
 							model[line[:3]].append(split_mut)
+
+					if incorrect_domain and cur_domain_disrupted:
+						exclusions.append(d[:9])
+						continue
 
 					# if disrupted model, then the file SHOULD contain the current mutation residue
 					# excluding the ones that contain none of the residues
@@ -251,8 +298,10 @@ def findExclusions(disrupted, isdb, modelType):
 
 
 
-# makeExclusions("/Users/Chris/GitHub/thesis/mutagenesis/final_clusters.txt",
+# makeExclusions([['339', '407'], ['165', '166']],
 # 	"/Users/Chris/GitHub/thesis/mutagenesis/bins.txt", 
 # 	"/Users/Chris/GitHub/thesis/mutagenesis/all.txt",
 # 	"/Users/Chris/GitHub/thesis/mutagenesis/confirmed_mutations.txt",
-# 	"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb")
+# 	"/Users/Chris/GitHub/thesis/mutagenesis/merged_isdb.pdb",
+# 	["D110", "D331", "D410", "D229", "D324", "D214", "D431", "D302", "D106", "D305", "D204", "D318"],
+# 	'n')

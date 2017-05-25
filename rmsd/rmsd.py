@@ -61,6 +61,7 @@ def rmsd(f1, f2, chains, ag):
 			if m_line[16:20].strip() == "BMET": continue
 
 			if (c_line[23:27].strip() == m_line[23:27].strip()):
+
 				if (c_line[17:20] == m_line[17:20]):
 
 					## PUT A PRINT HERE TO MAKE SURE COMPARING CORRECT THINGS
@@ -74,8 +75,11 @@ def rmsd(f1, f2, chains, ag):
 					n += 1
 					break
 
-	rmsd_s_mean = rmsd_squared / n
-	rmsd = rmsd_s_mean**(0.5)
+	if n == 0:
+		rmsd = "NA"
+	else:
+		rmsd_s_mean = rmsd_squared / n
+		rmsd = rmsd_s_mean**(0.5)
 	print str(rmsd)
 	return rmsd
 

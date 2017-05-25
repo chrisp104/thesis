@@ -181,25 +181,29 @@ def runAll(iteration, exclusions, out_dir, num_affected, cutoff_score, n, k1, k2
 # 	cutoff_score: float - for ranking, minimum
 #		n: int - number of mutations per variant
 #		k1: int - k for k medoids clustering of docking model variants
-#		num_abs: int - number of antibodies to "experimentally" test each iteration (not > 9)
+#		num_binC: int - number of antibodies to "experimentally" test each iteration (not > 9)
+#		num_binP: int - number of antibodies to "experimentally" test each iteration (not > 9)
 # 	exclude: array - Ag residues numbers to exclude 
 #
 # RETURNS 
 # 	final clusters
 #		array of excluded docking models
-def literallyRunAll(num_affected, cutoff_score, n, k1, num_abs, out_directory):
+def literallyRunAll(num_affected, cutoff_score, n, k1, num_binC, num_binP, out_directory):
+	if not os.path.exists(out_directory):
+		os.makedirs(out_directory)
+
 	# decide which are the random Abs we will experimentally test
 	testC = []
 	testP = []
 	binC = ["D229","D110","D214","D216","D228","D312","D320","D323","D324","D331","D410","D413"]
 	binP = ["D106","D204","D206","D301","D302","D305","D307","D318","D430","D431"]
 
-	while len(testC) < num_abs:
+	while len(testC) < num_binC:
 		choose = (randint(0,len(binC)-1))
 		if not binC[choose] in testC:
 			testC.append(binC[choose])
 
-	while len(testP) < num_abs:
+	while len(testP) < num_binP:
 		choose = (randint(0,len(binP)-1))
 		if not binP[choose] in testP:
 			testP.append(binP[choose])
@@ -218,7 +222,6 @@ def literallyRunAll(num_affected, cutoff_score, n, k1, num_abs, out_directory):
 	for z in final_abs:
 		log_file.write(z+" ")
 	log_file.write('\n\n')
-
 
 	iteration = 1
 	exclusions = []
@@ -280,12 +283,13 @@ def literallyRunAll(num_affected, cutoff_score, n, k1, num_abs, out_directory):
 			num_affected -= 1
 
 		iteration += 1
-		return
-		
 
 	log_file.close()
 
 
-literallyRunAll(num_affected=3, cutoff_score=1, n=2, k1=2, num_abs=6, out_directory="run_sep_n2_k2_v_na")
+for i in range(1, 5):
+	os.chdir("/Users/Chris/GitHub/thesis/mutagenesis/")
+	literallyRunAll(num_affected=3, cutoff_score=1, n=3, k1=3, num_binC=5, num_binP=8, 
+		out_directory="run_sep_n3_k3_"+str(i))
 
 

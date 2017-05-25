@@ -1,0 +1,42 @@
+Experimentally Tested Abs:
+D229 D216 D320 D410 D413 D307 D318 D302 D204 D206 D431 D301 D305 
+
+The best variants for this round were
+194
+243
+245
+339
+403
+407
+162
+164
+165
+Iteration: 1
+num_affected: 3
+cutoff_score: 1
+num mutations per variant: 3
+k: 3
+Excluded after this round: 241
+
+The best variants for this round were
+119
+120
+123
+146
+265
+267
+439
+440
+441
+Iteration: 2
+num_affected: 2
+cutoff_score: 1
+num mutations per variant: 3
+k: 3
+Excluded after this round: 284
+
+Iteration: 3
+num_affected: 1
+cutoff_score: 1
+num mutations per variant: 3
+k: 3
